@@ -1,0 +1,57 @@
+---
+layout: default
+title: libsnap Quick Start
+---
+
+This quick start guide is meant to be a _very_ simple introduction to libsnap and its most basic concepts. However, despite its basic level, we will still cover most of the concepts you will ever need to be productive with libsnap.
+
+
+h2(#first-project). Your First Project
+
+{% highlight c %}
+#include <libsnap/snap.h>
+#include <stdio.h>
+
+int main(int argc, char **argv)
+{
+    SNAP_UNUSED( argc );
+    SNAP_UNUSED( argv );
+    
+    snap_t snap;
+    snap_init( &snap );
+    
+    uint8_t in[] = "If a packet hits a pocket on a socket on a port, "
+        "and the bus is interrupted and the interrupt's not caught, "
+        "then the socket packet pocket has an error to report.";
+
+    size_t in_size = sizeof( in ) / sizeof( in[ 0 ] ) - 1;
+
+    size_t out_size = snap_encode_bound( &snap, in_size );
+    uint8_t *out = malloc( out_size );
+    size_t out_pos = 0;
+
+    snap_encode( &snap, in, in_size, out, &out_pos, out_size );
+    
+    out_pos--; // do not point to the next unwritten byte, do point to the last written one.
+    
+    printf( "Input:" );
+    for(size_t i = 0; i < in_size; ++i) {
+        if( i % 75 == 0 ) { 
+            printf( "\n    " );
+        }
+        printf( "%c", in[ i ] );
+    }
+    
+    printf( "\n\nOutput:" );
+    for(size_t i = 0; i < out_pos; ++i) {
+        if( i % 12 == 0 ) { 
+            printf( "\n    " );
+        }
+        printf( "0x%02X", out[ i ] );
+        if( i < out_pos - 1 ) { 
+            printf( ", " );
+        }
+    }
+    printf( "\n" );
+}
+{% endhighlight %}

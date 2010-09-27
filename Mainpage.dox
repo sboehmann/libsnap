@@ -1,0 +1,230 @@
+/** @mainpage Welcome to the developer documentation!
+
+<b>libsnap</b> is an Open Source software project that implements the <tt>S.N.A.P</tt> 
+networking protocol.
+
+<tt>S.N.A.P</tt> is an free and open network protocol developed by High Tech Horizon. 
+The <tt>S.N.A.P</tt> protocol is a generic and flexible network protocol designed to be 
+useable in any type of applications where an easy to learn and light weighted 
+network protocol is needed.
+
+
+<h2>Table of contents</h2>
+@li @ref description
+@li @ref development
+@li @ref references
+
+
+@note Have fun!
+@author Stefan Böhmann \<kde@hilefoks.org\><br>
+*/
+
+
+/** @page description Project Description
+
+<p><b>
+@ref index "Overview" | @ref description | @ref development | @ref references
+<hr size="1"></b></p>
+
+@image html luftschiff.png
+
+An der Fachhochschule Emden/Leer wird im Rahmen des Projektes Autonome Systeme 
+ein autonomes Luftschiff entwickelt. Diese Arbeit dokumentiert die Entwicklung 
+des Teilmoduls Telemetrie-Protokoll.
+
+
+@section motivation Motivation
+Das Luftschiff soll mittels Luftschnittstelle in die Lage versetzt werden, 
+Telemetriedaten an eine Bodenstation zur weiteren Auswertung zu übermitteln. 
+Auch die Bodenstation soll ihrerseits die Möglichkeit besitzen, Kontakt mit 
+dem Schiff aufzunehmen, um beispielsweise Steuerinformationen zu übermitteln.
+
+Zu diesem Zweck muss ein geeignetes bidirektionales Kommunikationsprotokoll 
+implementiert werden. Dabei ist auf die besonderen Ressourcenbeschränkungen 
+im Zusammenhang mit eingebetteten Systemen sowie der hohen Störanfälligkeit
+einer Luftschnittstelle zu achten.
+
+Im Rahmen der vorliegenden Arbeit wurden verschiedene Protokolle evaluiert. 
+Dabei konnte ein geeignetes Protokoll identifiziert werden. Im weiterem Verlauf 
+dieser Arbeit wurde dieses anhand öffentlich zugänglicher Informationen und 
+insbesondere einer ausführlichen Protokoll-Spezifikation implementiert.
+
+
+@section current Evaluation
+Untersucht man das Angebot einschlägiger Elektronik-Versandhäuser, stellt man 
+schnell fest, dass der Markt ein reichhaltiges Angebot an Kleinstgeräten auf Basis 
+eingebetteter Systeme anbietet. Insbesondere auch das Angebot an Systemen, die
+mittels Luftschnittstelle eine gewisse Kommunikation betreiben, ist reichhaltig.
+Hierzu zählen beispielsweise Funkschaltsysteme, schwenkbare Videoüberwachungsanlage, 
+Systeme aus dem Bereich des Modellsports und Wetterstationen.
+
+Folgerichtig müssen viele dieser Systeme mit einem Kommunikationsprotokoll 
+ausgestattet sein. Ausserdem muss ein solches Protokoll ein ähnliches 
+Leistungsspektrum abdecken, wie das, das für das gesuchte Telemetrieprotokoll 
+des Luftschiffes vonnöten ist.
+
+Weitere Recherchen in diese Richtung ergaben jedoch, das nahezu jedes
+untersuchte System sein eigenes, speziell an die jeweiligen Bedürfnisse angepasstes
+Protokoll verwendet. In allen Fällen handelt es sich zudem um proprietäre 
+Protokolle, womit sie für eine Verwendung im Luftschiff ungeeignet sind.
+
+Ebenfalls untersucht wurde der Bereich des Amateuerfunk. Hier wird das standardisierte
+Protokoll AX.25 eingesetzt, um Daten über einen Funk-Kanal zu übertragen. 
+
+AX.25 besitzt einen relativ fixen Aufbau. Jedes Paket schließt mit einer 16 Bit 
+breiten Prüfsumme ab. Zur Adressierung werden immer mindestens 112 Bit, also 14 Byte, 
+belegt. Ein derart großer Adressraum ist für den geplanten Einsatzbereich 
+allerdings unerheblich. Hierdurch erweist sich auch AX.25 als ungeeignet.
+
+Recherchen im Umfeld des Modellbauer-Handwerks ergaben, dass hier ein weiteres 
+Protokoll eine gewisse Verbreitung gefunden hat. Es handelt sich um <tt>S.N.A.P</tt>.
+<tt>S.N.A.P</tt> ist ein Netzwerkprotokoll, entwickelt von der schwedischen Firma HTC.
+Im Gegensatz zu AX.25 ist <tt>S.N.A.P</tt> weitaus flexibler konfigurierbar. Seine minimale
+Paketlänge beträgt 3 Byte. Dennoch unterstützt auch <tt>S.N.A.P</tt> eine bis zu 48 Bit
+breite Adressierung. Auch im Bezug auf das verwendete Prüfsummen-Verfahren ist das 
+Protokoll weitaus flexibler, bietet es doch acht verschiedene Fehlerdetektionsmethoden
+ an. Trotz dieses Leistungsspektrums ist <tt>S.N.A.P</tt> aber dennoch speziell auf den 
+Einsatz in eingebetteten Systemen hin entwickelt worden.
+
+
+@section implementation Implementierung
+Die Implementierung des Protokolls erfolgte in ANSI C. Zur Unterstützung einer 
+testgetriebenen Entwicklung wurde das C Unit Test Framework CUnit
+verwendet. Zudem wurden zur Kontrolle einer guten Testabdeckung das
+Code-Coverage-Tool Gcov eingesetzt.
+
+Als Build-System wurde das plattformunabhängige CMake bemüht. Das entsprechende
+Makefile ist so konfiguriert, dass bei einem Build-Lauf neben der Übersetzung der
+Softwarekomponenten auch die entsprechenden Unit-Tests ausgeführt werden. Auch 
+alle weiteren Programmierwerkzeuge <i>(Doxygen, gcov, ...)</i> sind entsprechend 
+eingebunden. 
+
+Alle zusätzlichen Funktionen werden, ebenso wie die weiter unten aufgeführte
+Software, nur dann erstellt, wenn entsprechende Abhängigkeiten erfühlt sind.
+Diese Abhängigkeiten sind für das Erstellen der Bibliothek libsnap jedoch 
+unerheblich und gelten daher als optional.
+
+@li CUnit
+@li lcov
+@li Doxygen
+@li PDFLatex sowie Beamer
+@li Jekyll
+@li Qt 4.5, kdelibs 4.4 sowie Okteta 0.4 (Hex-Editor Komponente)
+
+@image html lcov_1.png "Bildschirmfoto der generierten Code-Coverage Analyse"
+
+
+@subsection csnap csnap
+Das Programm csnap stellt eine kommandozeilenorientierte Schnittstelle zu den 
+Funktionen der Bibliothek libsnap dar. Dieses Programm ermöglicht die Ein- 
+und Ausgabe von S.N.A.P Datenpacket. Auf die verschiedenen 
+Konfigurationsmöglichkeiten der Bibliothek kann mittels einer Vielzahl von 
+Kommandozeilenparameter Einfluss genommen werden. csnap wurde ebenfalls in der
+Programmiersprache C entwickelt.
+
+@image html csnap_1.png "Bildschirmfoto des Programm csnap"
+
+
+@subsection snapgauge snapgauge
+Desweiteren wurde ein GUI-Programm zur dynamischen Analyse von S.N.A.P.
+Datenpaketen entwickelt. Das Programm ist in C++ geschrieben. Es basiert auf der
+C++-Klassenbibliothek Qt der Firma Nokia sowie auf den Bibliotheken des 
+KDE-Projekts.
+
+@image html snapgauge_3.png "Bildschirmfoto des Programm snapgauge"
+
+
+@section conclusion Zusammenfassung und Ausblick
+
+Bei der Implementierung wurden Spezifikationskonformität und hohe Portabilität 
+in den Vordergrund gestellt.
+
+Für den Einsatz am Luftschiff sinnvolle oder sogar nötige Minimierungen, 
+Optimierungen oder andersartige Anpassungen wurden nicht berücksichtigt. 
+Es erscheint sinnvoller, eine allgemeine, umfassende, quelloffene und leicht 
+verständliche Implementierung zu besitzen. Auch darf erwartet werden, dass eine 
+für den speziellen Einsatzzweck optimierte Lösung leicht abgeleitet werden kann.
+
+@note Zu frühe Optimierung ist die Wurzel allen Übels
+
+In der aktuellen Version wurden bisher nicht alle in der S.N.A.P. Spezifikation 
+beschriebenen und als optional gekennzeichneten Funktionen implementiert. 
+Für den Einsatz am Luftschiff wäre aus heutiger Sicht die Funktion "Command Mode" 
+jedoch durchaus wünschenswert.
+*/
+
+
+/** @page development Development
+<p><b>
+@ref index "Overview" | @ref description  | @ref development | @ref references
+<hr size="1"></b></p>
+
+
+<h2>Table of contents</h2>
+@li @ref contribute
+@li @ref knownissues
+@li @ref licence
+
+
+@section contribute How to Contribute
+libsnap is nothing without contributions. There are many ways to contribute. 
+However - we are constantly working on the software, so it would be a good 
+idea to contact us to avoid duplicating effort.
+
+@subsection docex Documentation and Examples
+A typical weak point of open source software is the documentation. Any help with 
+this aspect of the project will be welcomed.
+
+@subsection feature Feature Requests
+We eat our own dogfood, but we're also happy to feed other people's dogs 
+(if you'll excuse a stretched dachshund metaphor!). If you want to request 
+a new feature feel free to contact me.
+
+@subsection bugreports Bug Reports
+Please report any bug you find. Additional brownie points are awarded 
+for bug reports that include a failing unit test. And if you want lots 
+of brownie points, send a fix along with your bug report and failing unit test. 
+Bug fixes are best sent as patches.
+
+@section knownissues Known Issues
+@see @ref bug
+
+@subsection ProtocolIssuses Protocol Issuses
+@li Error correction is optional. That means the flag itself could be corrupted and no error correction will take place.
+
+
+@section licence Licence
+@verbatim
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library.  If not, see <http://www.gnu.org/licenses/>.
+@endverbatim
+*/
+
+
+/** @page references References
+
+<p><b>
+@ref index "Overview" | @ref description  | @ref development | @ref references
+<hr size="1"></b></p>
+
+<ul>
+  <li><a href="http://www.hth.com" target="_blank">High Tech Horizon, the developers of <tt>S.N.A.P</tt></a></li>
+  <li><a href="http://www.hth.com/filelibrary/pdffiles/snap.pdf" target="_blank"><tt>S.N.A.P</tt> Protocol Specification</a></li>
+  <li><a href="http://www.hth.com/filelibrary/pdffiles/snapscii.pdf" target="_blank"><tt>S.N.A.P</tt> ASCII I/O Interface Specification</a></li>
+  <li><a href="http://www.hth.com/snap/dlldl.htm" target="_blank">Reference implementation for Windows</a></li>
+  <li><a href="http://www.hth.com/snap/libdl.htm" target="_blank">Reference implementation for Linux</a></li>
+</ul>
+*/
+
+
+// vim:ts=4:sw=4:expandtab:filetype=doxygen

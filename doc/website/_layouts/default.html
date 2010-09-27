@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <meta content='text/html;charset=UTF-8' http-equiv='Content-Type'>
+    <title>libsnap &mdash; {{ page.title }}</title>
+    <style type='text/css'>
+      @import 'css/default.css';
+      @import 'css/syntax.css';
+    </style>
+    <style media='print' type='text/css'>
+      @import 'css/print.css';
+    </style>
+    <meta content='libsnap is a portable open-source S.N.A.P implementation' name='subject'>
+  </head>
+  <body>
+    <div id='wrap'>
+      <div id='header'>
+        <h1><a href='http://hilefoks.github.com/libsnap/' title="libsnap is a portable open-source S.N.A.P implementation">libsnap</a></h1>
+        <div class='tagline'>a portable open-source S.N.A.P implementation</div>
+      </div>
+      <div id='pages'>
+        <ol class='toc'>
+          <li>Start Here
+            <ol class="toc">
+              <li><a href='index.html'>Overview</a></li>
+              <li><a href='features.html'>Features</a></li>
+              <li><a href='authors.html'>Authors</a></li>
+            </ol>
+          </li>
+          <li>libsnap
+            <ol class="toc">
+              <li><a href='libsnap_quick_start.html'>Quick Start</a></li>
+              <li><a href='libsnap_documentation.html'>Documentation</a></li>
+            </ol>
+          </li>
+          <li>libsnap++
+            <ol class="toc">
+              <li><a href='libsnapmm_quick_start.html'>Quick Start</a></li>
+              <li><a href='libsnapmm_documentation.html'>Documentation</a></li>
+            </ol>
+          </li>
+          <li>csnap
+            <ol class="toc">
+              <li><a href='csnap_quick_start.html'>Quick Start</a></li>
+              <li><a href='csnap_documentation.html'>Documentation</a></li>
+            </ol>
+          </li>
+         <li>snapgauge
+            <ol class="toc">
+              <li><a href='snapgauge_quick_start.html'>Quick Start</a></li>
+              <li><a href='snapgauge_documentation.html'>Documentation</a></li>
+            </ol>
+          </li>
+          <li>Reference
+            <ol class="toc">
+              <li><a href='api/index.html'>API Reference</a></li>
+              <li><a href='coverage/index.html'>Coverage</a></li>
+              <li><a href='http://github.com/hilefoks/libsnap'>Source Code</a></li>
+            </ol>
+          </li>
+          <li>Get Involved
+            <ol class="toc">
+              <li><a href='contributing.html'>Contributing</a></li>
+              <li><a href='http://wiki.github.com/hilefoks/libsnap/'>Wiki</a></li>
+              <li><a href='http://github.com/hilefoks/libsnap/issues'>Issues/Bugs</a></li>
+              <li><a href='download.html'>Download</a></li>
+            </ol>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <h1 id='{{ page.title | downcase | replace(' ', '_') }}'>{{ page.title }}</h1>
+        {{ content | toc }}
+      </div>
+      <div id='footer'>Copyright &copy; 2010 Stefan Böhmann</div>
+    </div>
+  </body>
+</html>

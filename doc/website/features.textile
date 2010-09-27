@@ -1,0 +1,17 @@
+---
+layout: default
+title: Features
+---
+
+* Easy to learn, use and implement
+* Free and open network protocol
+* Scaleable binary protocol with small overhead
+* Up to 16.7 million node addresses
+* Up to 24 protocol specific flags 
+* Optional ACK/NAK request
+* Optional command mode
+* 8 different error detecting methods
+* Media independent (power line, RF, TP, IR etc.)
+* Works with simplex, half-, full- duplex links
+* Header is scaleable from 3-12 bytes
+* User specified number of preamble bytes (0-n)

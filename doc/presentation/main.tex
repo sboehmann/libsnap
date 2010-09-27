@@ -1,0 +1,84 @@
+\documentclass[utf8x]{beamer}
+\usetheme{Frankfurt}
+%\usetheme{Rochester}
+\setbeamertemplate{navigation symbols}{}
+\usepackage[ngerman]{babel}
+\usepackage{listings}
+\usepackage{tikz}
+
+%\definecolor{hintergrundfarble}{rgb}{0.99,0.99,0.99}
+\definecolor{colKeys}{rgb}{0,0,1}
+\definecolor{colIdentifier}{rgb}{0,0,0}
+\definecolor{colComments}{rgb}{1,0,0}
+\definecolor{colString}{rgb}{0,0.5,0}
+\lstset{
+    language=c,
+    float=hbp,
+    basicstyle=\ttfamily\normalsize\mdseries,
+    identifierstyle=\color{colIdentifier},
+    keywordstyle=\color{colKeys},
+    stringstyle=\color{colString},
+    commentstyle=\color{colComments},
+    columns=flexible,
+    tabsize=4,
+    frame=none, %single,
+    extendedchars=false,
+    showspaces=false,
+    showstringspaces=false,
+    numbers=none, %left,
+  %  breaklines=true,
+  %  backgroundcolor= \color{hintergrundfarble},
+  %  breakautoindent=true
+}
+
+%\lstset{
+%  emph={@Entity},         emphstyle=\color{red},
+%  emph={@Id},             emphstyle=\color{red},
+%  emph={@GeneratedValue}, emphstyle=\color{red},
+%  emph={@OneToOne},       emphstyle=\color{red},
+%  emph={@JoinColumn},     emphstyle=\color{red}
+%}
+
+
+\definecolor{darkblue}{rgb}{0,0,.5}
+\definecolor{fh-blau}{rgb}{0.537255, 0.780392, 0.796078}
+\definecolor{fh-gruen}{rgb}{0.364706, 0.658824, 0.172549}
+
+\setbeamercolor{structure}{fg=fh-gruen}
+\setbeamercolor{section in toc}{fg=black}
+\setbeamercolor{subsection in toc}{parent=section in toc}
+
+\title[libsnap]{\texttt{libsnap}}
+\subtitle{Scaleable Node Address Protocol}
+\author[Stefan B\"ohmann | sboehm@technik-emden.de]{Stefan B\"ohmann \newline \scriptsize \texttt{<sboehm@technik-emden.de>}}
+\institute[FH Emden/Leer]{Fachhochschule Emden/Leer}
+\logo{\includegraphics[width=1cm,height=1cm]{images/logo_el_small.png}}
+\titlegraphic{\includegraphics[scale=0.2]{images/logo_el_small.png}}
+\date{\today} 
+
+\setbeamercovered{invisible}         %\setbeamercovered{transparent}
+
+\begin{document}
+
+\begin{frame}
+    \thispagestyle{empty}
+    \titlepage
+    \vfill
+    \begin{center}
+        \includegraphics[scale=0.25]{images/cc-by-white.png}\hspace*{0.2ex}
+        \includegraphics[scale=0.25]{images/cc-nc-white.png}\hspace*{0.2ex}
+        \includegraphics[scale=0.25]{images/cc-sa-white.png}
+        \\\textcolor{red}{DRAFT}
+        \\\tiny 
+        Except where otherwise noted, this work is licensed under the Creative Commons
+        \textit{\textcolor{darkblue}{\href{http://creativecommons.org/licenses/by-nc-sa/3.0}{Attribution-Noncommercial-Share~Alike}}} 3.0 License
+        \vspace*{0.5ex}
+    \end{center}
+\end{frame}
+
+\input{content}
+
+\end{document}
+
+% kate: word-wrap off; encoding utf-8; indent-width 4; tab-width 4; line-numbers on; mixed-indent off; remove-trailing-space-save on; replace-tabs-save on; replace-tabs on; space-indent on;
+% vim:set spell et sw=4 ts=4 nowrap cino=l1,cs,U1:

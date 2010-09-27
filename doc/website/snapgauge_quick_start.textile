@@ -1,0 +1,8 @@
+---
+layout: default
+title: snapgauge Quick Start
+---
+
+!images/screenie_snapgauge.png!
+
+!images/under_construction.png!

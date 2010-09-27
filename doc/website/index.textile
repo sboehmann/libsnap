@@ -1,0 +1,26 @@
+---
+layout: default
+title: Welcome to libsnap
+---
+
+The libsnap project provides free LGPL-licensed S.N.A.P. tools and libraries.
+
+S.N.A.P., the Scaleable Node Address Protocol, is a simple and lightweight network 
+protocol original designed for home automation products.
+
+The libsnap library is completely written in C, supports the full S.N.A.P 
+specification and adds various extensions.
+
+The libsnap project also provides useful software tools for development with S.N.A.P.
+
+
+h2(#goals).  The goals of libsnap are:
+* Provide a reliable implementation of the S.N.A.P specification
+* A small footprint so that it can be used on many embedded devices
+* The library should run on as many devices and platforms as possible
+* Easily usable from other languages
+
+
+h2(#news).  What's New
+
+See the "CHANGELOG":http://github.com/hilefoks/libsnap/raw/master/CHANGELOG for full details.

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gui name="snapgauge" version="1"
+     xmlns="http://www.kde.org/standards/kxmlgui/1.0"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
+                         http://www.kde.org/standards/kxmlgui/1.0/kxmlgui.xsd" >
+  <MenuBar>
+     <menu name="file">
+      <text>&amp;File</text>
+      <merge/>
+      <separator/>
+      <action name="file_quit" />
+      <merge/>
+    </menu>
+  </MenuBar>
+
+  <ToolBar name="mainToolBar" >
+    <text>Main Toolbar</text>
+    <Action name="file_quit" />
+    <!--    <ActionList name="dynamicActionlist" /> -->
+  </ToolBar>
+
+</gui>

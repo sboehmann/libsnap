@@ -1,0 +1,8 @@
+---
+layout: default
+title: Authors
+---
+
+
+Stefan Böhmann <kde@hilefoks.org>
+ -- libsnap founder, developer, project leader

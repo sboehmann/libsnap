@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Snapgauge
+Name[de]=Snapgauge
+Name[x-test]=xxSnapgaugexx
+Exec=snapgauge
+Icon=snapgauge
+Type=Application
+Terminal=false
+Categories=Development;

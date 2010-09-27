@@ -1,0 +1,89 @@
+---
+layout: default
+title: Contributing
+---
+
+libsnap is a community effort, and we welcome all contributors. Here's your chance to get involved and help your fellow developers.
+
+h2(#bugs).  Bugs and Issues
+
+We really do try to keep bugs to a minimum, and anticipate everything you'll ever want to do with libsnap.  We're also, not perfect. So you may have found a bug, or have an enhancement in mind, or better yet, a patch to contribute. Here's what you can do.
+
+If it's a bug, enhancement or patch, add it to "our bug tracker":http://github.com/hilefoks/libsnap/issues.
+When reporting a bug, please tell us which version of libsnap, which target platform and which compiler you are using, and also which operating system you are on:
+
+{% highlight sh %}
+$ csnap --version
+$ uname -a
+{% endhighlight %}
+
+
+h2(#wiki).  Wiki
+
+"Our Wiki":http://wiki.github.com/hilefoks/libsnap.
+
+
+h2(#code).  Contributing Code
+
+Yes, please.
+
+If you have a patch to submit, do it through "our bug tracker":http://github.com/hilefoks/libsnap/issues. 
+
+
+h3.  The Perfect Patch
+
+If you want to get your patch accepted quickly:
+
+#  Provide a good summary of the bug/fix.  We use that to decide which issue we can do quickly, and also copy and paste it into the changelog.
+#  Provide short explanation of what failed, under what conditions, why, and what else could be affected by the change (when relevant).  The helps us understand the problem and move on to the next step.
+#  Provide a patch with a relevant unit test, or a fix to incomplete/broken unit test. First thing we have to do is replicate the problem, before applying the change, and then make sure the change fixes that problem.  And we need to have those unit test in there, they make sure we don't accidentally break it again in the future.
+#  Provide a patch with the fix/change itself.  Keep it separate from the unit test, so it's easy to apply them individually.
+
+If you don't know how to fix it, but can at least write a unit test for the correct behavior (which, obviously would fail), do just that.  A unit test is preferred to a fix.
+
+
+
+h2(#edge).  Living on the edge
+
+Did we mention libsnap is an open source project? In fact, when you install libsnap you get all the source code, documentation, test case and everything you need to use it, extend it and patch it.
+
+h3(#git).  Git
+
+But if you want to work with the latest and greatest, you'll want to check out "libsnap from Git":http://github.com/hilefoks/libsnap
+
+{% highlight sh %}
+$ git clone git://github.com/hilefoks/libsnap.git
+{% endhighlight %}
+
+If you want to learn more about Git, you can start by watching Scott Chacon’s "Git presentation":http://en.oreilly.com/rails2008/public/asset/attachment/2816 (PDF), or any of the "Git screencasts":http://www.gitcasts.com/.  For more, there's also the "Git Internals book":http://peepcode.com/products/git-internals-pdf.
+
+And keep this "Git cheat sheet":http://ktown.kde.org/~zrusin/git/git-cheat-sheet-medium.png close at hand. Very useful.
+
+h4. GitHub
+
+You are also welcome to fork the "libsnap repository on GitHub":http://github.com/hilefoks/libsnap.  
+
+
+h1(#testing).  Unit Tests
+
+Obviously we won't turn down patches, but we'll love you even more if you include a test case.  One that will fail without the patch, and run successfully with it.  If not for our love, then think of the benefit to you: once we add that test case, we won't accidentally break that feature in the next release.
+
+We test using "CUnit":http://cunit.sourceforge.net, a Unit Testing Framework for C.
+
+You can run tests using:
+
+{% highlight sh %}
+~/libsnap $ make test
+{% endhighlight %}
+
+For full test coverage:
+
+{% highlight sh %}
+~/libsnap $ make coverage
+{% endhighlight %}
+
+You can also check out the "coverage report":coverage/index.html we publish with each release.
+
+
+h1(#docs).  Documentation
+...
