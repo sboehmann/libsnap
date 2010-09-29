@@ -23,4 +23,4 @@ h2(#goals).  The goals of libsnap are:
 
 h2(#news).  What's New
 
-See the "CHANGELOG":http://github.com/hilefoks/libsnap/raw/master/CHANGELOG for full details.
+See the "ChangeLog":http://github.com/hilefoks/libsnap/raw/master/ChangeLog for full details.
