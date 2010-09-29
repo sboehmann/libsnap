@@ -2,6 +2,8 @@
 layout: default
 title: Download
 ---
+The latest stable release of libsnap <a href="http://github.com/hilefoks/libsnap/downloads">is available here</a>.
+
 
 h2(#download). Download current snapshot
 
