@@ -101,528 +101,528 @@
 <span class="lineNum">      24 </span>                :            : #include &quot;edm.h&quot;
 <a name="25"><span class="lineNum">      25 </span>                :            : </a>
 <span class="lineNum">      26 </span>                :            : 
-<span class="lineNum">      27 </span>                :<span class="lineCov">     435352 : void snap_init(snap_t *ptr)</span>
+<span class="lineNum">      27 </span>                :<span class="lineCov">     217676 : void snap_init(snap_t *ptr)</span>
 <span class="lineNum">      28 </span>                :            : {
-<span class="lineNum">      29 </span>                :<span class="lineCov">     435352 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">      29 </span>                :<span class="lineCov">     217676 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">      30 </span>                :            : 
-<span class="lineNum">      31 </span>                :<span class="lineCov">     435352 :     ptr-&gt;ack = false;</span>
-<span class="lineNum">      32 </span>                :<span class="lineCov">     435352 :     ptr-&gt;edm = EDM_NONE;</span>
-<span class="lineNum">      33 </span>                :<span class="lineCov">     435352 :     ptr-&gt;local_address = 0;</span>
-<span class="lineNum">      34 </span>                :<span class="lineCov">     435352 :     ptr-&gt;peer_address = 0;</span>
+<span class="lineNum">      31 </span>                :<span class="lineCov">     217676 :     ptr-&gt;ack = false;</span>
+<span class="lineNum">      32 </span>                :<span class="lineCov">     217676 :     ptr-&gt;edm = EDM_NONE;</span>
+<span class="lineNum">      33 </span>                :<span class="lineCov">     217676 :     ptr-&gt;local_address = 0;</span>
+<span class="lineNum">      34 </span>                :<span class="lineCov">     217676 :     ptr-&gt;peer_address = 0;</span>
 <span class="lineNum">      35 </span>                :            : 
-<span class="lineNum">      36 </span>                :<span class="lineCov">     435352 :     ptr-&gt;packet.bound = 0;</span>
-<span class="lineNum">      37 </span>                :<span class="lineCov">     435352 :     ptr-&gt;packet.edm = EDM_NONE;</span>
-<span class="lineNum">      38 </span>                :<span class="lineCov">     435352 :     ptr-&gt;packet.local_address = 0;</span>
-<span class="lineNum">      39 </span>                :<span class="lineCov">     435352 :     ptr-&gt;packet.peer_address = 0;</span>
-<span class="lineNum">      40 </span>                :<span class="lineCov">     435352 :     ptr-&gt;packet.size = 0;</span>
+<span class="lineNum">      36 </span>                :<span class="lineCov">     217676 :     ptr-&gt;packet.bound = 0;</span>
+<span class="lineNum">      37 </span>                :<span class="lineCov">     217676 :     ptr-&gt;packet.edm = EDM_NONE;</span>
+<span class="lineNum">      38 </span>                :<span class="lineCov">     217676 :     ptr-&gt;packet.local_address = 0;</span>
+<span class="lineNum">      39 </span>                :<span class="lineCov">     217676 :     ptr-&gt;packet.peer_address = 0;</span>
+<span class="lineNum">      40 </span>                :<span class="lineCov">     217676 :     ptr-&gt;packet.size = 0;</span>
 <span class="lineNum">      41 </span>                :            : 
-<span class="lineNum">      42 </span>                :<span class="lineCov">     435352 :     ptr-&gt;last_decode_error_pos = 0;</span>
+<span class="lineNum">      42 </span>                :<span class="lineCov">     217676 :     ptr-&gt;last_decode_error_pos = 0;</span>
 <span class="lineNum">      43 </span>                :            : 
-<span class="lineNum">      44 </span>                :<span class="lineCov">     435352 :     snap_clear_statistic( ptr );</span>
-<span class="lineNum">      45 </span>                :<span class="lineCov">     435352 :     snap_clear( ptr );</span>
-<span class="lineNum">      46 </span>                :<span class="lineCov">     435352 : }</span>
+<span class="lineNum">      44 </span>                :<span class="lineCov">     217676 :     snap_clear_statistic( ptr );</span>
+<span class="lineNum">      45 </span>                :<span class="lineCov">     217676 :     snap_clear( ptr );</span>
+<span class="lineNum">      46 </span>                :<span class="lineCov">     217676 : }</span>
 <a name="47"><span class="lineNum">      47 </span>                :            : </a>
 <span class="lineNum">      48 </span>                :            : 
-<span class="lineNum">      49 </span>                :<span class="lineCov">     209348 : void snap_reset(snap_t *ptr)</span>
+<span class="lineNum">      49 </span>                :<span class="lineCov">     104674 : void snap_reset(snap_t *ptr)</span>
 <span class="lineNum">      50 </span>                :            : {
-<span class="lineNum">      51 </span>                :<span class="lineCov">     209348 :     snap_init( ptr );</span>
-<span class="lineNum">      52 </span>                :<span class="lineCov">     209348 : }</span>
+<span class="lineNum">      51 </span>                :<span class="lineCov">     104674 :     snap_init( ptr );</span>
+<span class="lineNum">      52 </span>                :<span class="lineCov">     104674 : }</span>
 <a name="53"><span class="lineNum">      53 </span>                :            : </a>
 <span class="lineNum">      54 </span>                :            : 
-<span class="lineNum">      55 </span>                :<span class="lineCov">   13449456 : bool snap_is_ready(snap_t *ptr)</span>
+<span class="lineNum">      55 </span>                :<span class="lineCov">    6724728 : bool snap_is_ready(snap_t *ptr)</span>
 <span class="lineNum">      56 </span>                :            : {
-<span class="lineNum">      57 </span>                :<span class="lineCov">   13449456 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">      57 </span>                :<span class="lineCov">    6724728 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">      58 </span>                :            : 
-<span class="lineNum">      59 </span>        [<span class="branchCov" title="Branch 0 was taken 326436 times"> + </span><span class="branchCov" title="Branch 1 was taken 13123020 times"> + </span>]:<span class="lineCov">   13449456 :     if( ptr-&gt;last_error != SNAP_ERROR_NONE ) {</span>
-<span class="lineNum">      60 </span>                :<span class="lineCov">     326436 :         return false;</span>
+<span class="lineNum">      59 </span>        [<span class="branchCov" title="Branch 0 was taken 163218 times"> + </span><span class="branchCov" title="Branch 1 was taken 6561510 times"> + </span>]:<span class="lineCov">    6724728 :     if( ptr-&gt;last_error != SNAP_ERROR_NONE ) {</span>
+<span class="lineNum">      60 </span>                :<span class="lineCov">     163218 :         return false;</span>
 <span class="lineNum">      61 </span>                :            :     }
 <span class="lineNum">      62 </span>                :            : 
-<span class="lineNum">      63 </span>        [<span class="branchCov" title="Branch 0 was taken 12165620 times"> + </span><span class="branchCov" title="Branch 1 was taken 957400 times"> + </span>]:<span class="lineCov">   13123020 :     if( ptr-&gt;packet.size &gt; 0 ) {</span>
-<span class="lineNum">      64 </span>                :<span class="lineCov">   12165620 :         return false;</span>
+<span class="lineNum">      63 </span>        [<span class="branchCov" title="Branch 0 was taken 6082810 times"> + </span><span class="branchCov" title="Branch 1 was taken 478700 times"> + </span>]:<span class="lineCov">    6561510 :     if( ptr-&gt;packet.size &gt; 0 ) {</span>
+<span class="lineNum">      64 </span>                :<span class="lineCov">    6082810 :         return false;</span>
 <span class="lineNum">      65 </span>                :            :     }
 <span class="lineNum">      66 </span>                :            : 
-<span class="lineNum">      67 </span>                :<span class="lineCov">   13449456 :     return true;</span>
+<span class="lineNum">      67 </span>                :<span class="lineCov">    6724728 :     return true;</span>
 <span class="lineNum">      68 </span>                :            : }
 <a name="69"><span class="lineNum">      69 </span>                :            : </a>
 <span class="lineNum">      70 </span>                :            : 
-<span class="lineNum">      71 </span>                :<span class="lineCov">     544168 : void snap_clear(snap_t *ptr)</span>
+<span class="lineNum">      71 </span>                :<span class="lineCov">     272084 : void snap_clear(snap_t *ptr)</span>
 <span class="lineNum">      72 </span>                :            : {
-<span class="lineNum">      73 </span>                :<span class="lineCov">     544168 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">      73 </span>                :<span class="lineCov">     272084 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">      74 </span>                :            : 
-<span class="lineNum">      75 </span>                :<span class="lineCov">     544168 :     ptr-&gt;packet.size = 0;</span>
-<span class="lineNum">      76 </span>                :<span class="lineCov">     544168 :     ptr-&gt;packet.bound = 0;</span>
-<span class="lineNum">      77 </span>                :<span class="lineCov">     544168 :     ptr-&gt;last_error = SNAP_ERROR_NONE;</span>
-<span class="lineNum">      78 </span>                :<span class="lineCov">     544168 : }</span>
+<span class="lineNum">      75 </span>                :<span class="lineCov">     272084 :     ptr-&gt;packet.size = 0;</span>
+<span class="lineNum">      76 </span>                :<span class="lineCov">     272084 :     ptr-&gt;packet.bound = 0;</span>
+<span class="lineNum">      77 </span>                :<span class="lineCov">     272084 :     ptr-&gt;last_error = SNAP_ERROR_NONE;</span>
+<span class="lineNum">      78 </span>                :<span class="lineCov">     272084 : }</span>
 <a name="79"><span class="lineNum">      79 </span>                :            : </a>
 <span class="lineNum">      80 </span>                :            : 
-<span class="lineNum">      81 </span>                :<span class="lineCov">     217708 : snap_statistic_t snap_get_statistic(snap_t *ptr)</span>
+<span class="lineNum">      81 </span>                :<span class="lineCov">     108854 : snap_statistic_t snap_get_statistic(snap_t *ptr)</span>
 <span class="lineNum">      82 </span>                :            : {
-<span class="lineNum">      83 </span>                :<span class="lineCov">     217708 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">      83 </span>                :<span class="lineCov">     108854 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">      84 </span>                :            : 
-<span class="lineNum">      85 </span>                :<span class="lineCov">     217708 :     return ptr-&gt;stat;</span>
+<span class="lineNum">      85 </span>                :<span class="lineCov">     108854 :     return ptr-&gt;stat;</span>
 <span class="lineNum">      86 </span>                :            : }
 <a name="87"><span class="lineNum">      87 </span>                :            : </a>
 <span class="lineNum">      88 </span>                :            : 
-<span class="lineNum">      89 </span>                :<span class="lineCov">     435356 : void snap_clear_statistic(snap_t *ptr)</span>
+<span class="lineNum">      89 </span>                :<span class="lineCov">     217678 : void snap_clear_statistic(snap_t *ptr)</span>
 <span class="lineNum">      90 </span>                :            : {
-<span class="lineNum">      91 </span>                :<span class="lineCov">     435356 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">      91 </span>                :<span class="lineCov">     217678 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">      92 </span>                :            : 
-<span class="lineNum">      93 </span>                :<span class="lineCov">     435356 :     ptr-&gt;stat.rejected_packets = 0;</span>
-<span class="lineNum">      94 </span>                :<span class="lineCov">     435356 :     ptr-&gt;stat.transmitted_packets = 0;</span>
-<span class="lineNum">      95 </span>                :<span class="lineCov">     435356 :     ptr-&gt;stat.received_packets = 0;</span>
-<span class="lineNum">      96 </span>                :<span class="lineCov">     435356 :     ptr-&gt;stat.total_packets = 0;</span>
-<span class="lineNum">      97 </span>                :<span class="lineCov">     435356 :     ptr-&gt;stat.rejected_bytes = 0;</span>
-<span class="lineNum">      98 </span>                :<span class="lineCov">     435356 :     ptr-&gt;stat.transmitted_bytes = 0;</span>
-<span class="lineNum">      99 </span>                :<span class="lineCov">     435356 :     ptr-&gt;stat.received_bytes = 0;</span>
-<span class="lineNum">     100 </span>                :<span class="lineCov">     435356 :     ptr-&gt;stat.total_bytes = 0;</span>
-<span class="lineNum">     101 </span>                :<span class="lineCov">     435356 :     ptr-&gt;stat.transmitted_payload_bytes = 0;</span>
-<span class="lineNum">     102 </span>                :<span class="lineCov">     435356 :     ptr-&gt;stat.received_payload_bytes = 0;</span>
-<span class="lineNum">     103 </span>                :<span class="lineCov">     435356 :     ptr-&gt;stat.total_payload_bytes = 0;</span>
-<span class="lineNum">     104 </span>                :<span class="lineCov">     435356 :     ptr-&gt;stat.transmitted_fill_bytes = 0;</span>
-<span class="lineNum">     105 </span>                :<span class="lineCov">     435356 :     ptr-&gt;stat.received_fill_bytes = 0;</span>
-<span class="lineNum">     106 </span>                :<span class="lineCov">     435356 :     ptr-&gt;stat.total_fill_bytes = 0;</span>
-<span class="lineNum">     107 </span>                :<span class="lineCov">     435356 : }</span>
+<span class="lineNum">      93 </span>                :<span class="lineCov">     217678 :     ptr-&gt;stat.rejected_packets = 0;</span>
+<span class="lineNum">      94 </span>                :<span class="lineCov">     217678 :     ptr-&gt;stat.transmitted_packets = 0;</span>
+<span class="lineNum">      95 </span>                :<span class="lineCov">     217678 :     ptr-&gt;stat.received_packets = 0;</span>
+<span class="lineNum">      96 </span>                :<span class="lineCov">     217678 :     ptr-&gt;stat.total_packets = 0;</span>
+<span class="lineNum">      97 </span>                :<span class="lineCov">     217678 :     ptr-&gt;stat.rejected_bytes = 0;</span>
+<span class="lineNum">      98 </span>                :<span class="lineCov">     217678 :     ptr-&gt;stat.transmitted_bytes = 0;</span>
+<span class="lineNum">      99 </span>                :<span class="lineCov">     217678 :     ptr-&gt;stat.received_bytes = 0;</span>
+<span class="lineNum">     100 </span>                :<span class="lineCov">     217678 :     ptr-&gt;stat.total_bytes = 0;</span>
+<span class="lineNum">     101 </span>                :<span class="lineCov">     217678 :     ptr-&gt;stat.transmitted_payload_bytes = 0;</span>
+<span class="lineNum">     102 </span>                :<span class="lineCov">     217678 :     ptr-&gt;stat.received_payload_bytes = 0;</span>
+<span class="lineNum">     103 </span>                :<span class="lineCov">     217678 :     ptr-&gt;stat.total_payload_bytes = 0;</span>
+<span class="lineNum">     104 </span>                :<span class="lineCov">     217678 :     ptr-&gt;stat.transmitted_fill_bytes = 0;</span>
+<span class="lineNum">     105 </span>                :<span class="lineCov">     217678 :     ptr-&gt;stat.received_fill_bytes = 0;</span>
+<span class="lineNum">     106 </span>                :<span class="lineCov">     217678 :     ptr-&gt;stat.total_fill_bytes = 0;</span>
+<span class="lineNum">     107 </span>                :<span class="lineCov">     217678 : }</span>
 <a name="108"><span class="lineNum">     108 </span>                :            : </a>
 <span class="lineNum">     109 </span>                :            : 
-<span class="lineNum">     110 </span>                :<span class="lineCov">         12 : SnapErrorCode snap_get_last_error(snap_t *ptr)</span>
+<span class="lineNum">     110 </span>                :<span class="lineCov">          6 : SnapErrorCode snap_get_last_error(snap_t *ptr)</span>
 <span class="lineNum">     111 </span>                :            : {
-<span class="lineNum">     112 </span>                :<span class="lineCov">         12 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     112 </span>                :<span class="lineCov">          6 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">     113 </span>                :            : 
-<span class="lineNum">     114 </span>                :<span class="lineCov">         12 :     return ptr-&gt;last_error;</span>
+<span class="lineNum">     114 </span>                :<span class="lineCov">          6 :     return ptr-&gt;last_error;</span>
 <span class="lineNum">     115 </span>                :            : }
 <a name="116"><span class="lineNum">     116 </span>                :            : </a>
 <span class="lineNum">     117 </span>                :            : 
-<span class="lineNum">     118 </span>                :<span class="lineCov">     665492 : size_t snap_get_metadata_size(snap_t *ptr)</span>
+<span class="lineNum">     118 </span>                :<span class="lineCov">     332746 : size_t snap_get_metadata_size(snap_t *ptr)</span>
 <span class="lineNum">     119 </span>                :            : {
-<span class="lineNum">     120 </span>                :<span class="lineCov">     665492 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     120 </span>                :<span class="lineCov">     332746 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">     121 </span>                :            : 
-<span class="lineNum">     122 </span>                :<span class="lineCov">     665492 :     const size_t sync = 1;</span>
-<span class="lineNum">     123 </span>                :<span class="lineCov">     665492 :     const size_t hdb = 2;</span>
-<span class="lineNum">     124 </span>                :<span class="lineCov">     665492 :     const size_t dab = snap_get_peer_address_size( ptr );</span>
-<span class="lineNum">     125 </span>                :<span class="lineCov">     665492 :     const size_t sab = snap_get_local_address_size( ptr );</span>
-<span class="lineNum">     126 </span>                :<span class="lineCov">     665492 :     const size_t crc = snap_get_error_detection_mode_size( ptr );</span>
+<span class="lineNum">     122 </span>                :<span class="lineCov">     332746 :     const size_t sync = 1;</span>
+<span class="lineNum">     123 </span>                :<span class="lineCov">     332746 :     const size_t hdb = 2;</span>
+<span class="lineNum">     124 </span>                :<span class="lineCov">     332746 :     const size_t dab = snap_get_peer_address_size( ptr );</span>
+<span class="lineNum">     125 </span>                :<span class="lineCov">     332746 :     const size_t sab = snap_get_local_address_size( ptr );</span>
+<span class="lineNum">     126 </span>                :<span class="lineCov">     332746 :     const size_t crc = snap_get_error_detection_mode_size( ptr );</span>
 <span class="lineNum">     127 </span>                :            : 
-<span class="lineNum">     128 </span>                :<span class="lineCov">     665492 :     return sync + hdb + dab + sab + crc;</span>
+<span class="lineNum">     128 </span>                :<span class="lineCov">     332746 :     return sync + hdb + dab + sab + crc;</span>
 <span class="lineNum">     129 </span>                :            : }
 <a name="130"><span class="lineNum">     130 </span>                :            : </a>
 <span class="lineNum">     131 </span>                :            : 
-<span class="lineNum">     132 </span>                :<span class="lineCov">    1171660 : bool snap_get_acknowledgement(snap_t *ptr)</span>
+<span class="lineNum">     132 </span>                :<span class="lineCov">     585830 : bool snap_get_acknowledgement(snap_t *ptr)</span>
 <span class="lineNum">     133 </span>                :            : {
-<span class="lineNum">     134 </span>                :<span class="lineCov">    1171660 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     134 </span>                :<span class="lineCov">     585830 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">     135 </span>                :            : 
-<span class="lineNum">     136 </span>                :<span class="lineCov">    1171660 :     return ptr-&gt;ack;</span>
+<span class="lineNum">     136 </span>                :<span class="lineCov">     585830 :     return ptr-&gt;ack;</span>
 <span class="lineNum">     137 </span>                :            : }
 <a name="138"><span class="lineNum">     138 </span>                :            : </a>
 <span class="lineNum">     139 </span>                :            : 
-<span class="lineNum">     140 </span>                :<span class="lineCov">     225868 : void snap_set_acknowledgement(snap_t *ptr, bool ack)</span>
+<span class="lineNum">     140 </span>                :<span class="lineCov">     112934 : void snap_set_acknowledgement(snap_t *ptr, bool ack)</span>
 <span class="lineNum">     141 </span>                :            : {
-<span class="lineNum">     142 </span>                :<span class="lineCov">     225868 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     142 </span>                :<span class="lineCov">     112934 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">     143 </span>                :            : 
-<span class="lineNum">     144 </span>                :<span class="lineCov">     225868 :     ptr-&gt;ack = ack;</span>
-<span class="lineNum">     145 </span>                :<span class="lineCov">     225868 : }</span>
+<span class="lineNum">     144 </span>                :<span class="lineCov">     112934 :     ptr-&gt;ack = ack;</span>
+<span class="lineNum">     145 </span>                :<span class="lineCov">     112934 : }</span>
 <a name="146"><span class="lineNum">     146 </span>                :            : </a>
 <span class="lineNum">     147 </span>                :            : 
-<span class="lineNum">     148 </span>                :<span class="lineCov">     665572 : size_t snap_get_error_detection_mode_size(snap_t *ptr)</span>
+<span class="lineNum">     148 </span>                :<span class="lineCov">     332786 : size_t snap_get_error_detection_mode_size(snap_t *ptr)</span>
 <span class="lineNum">     149 </span>                :            : {
-<span class="lineNum">     150 </span>                :<span class="lineCov">     665572 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     150 </span>                :<span class="lineCov">     332786 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">     151 </span>                :            : 
-<span class="lineNum">     152 </span>                :<span class="lineCov">     665572 :     return snap_util_get_edm_size( snap_get_error_detection_mode( ptr ) );</span>
+<span class="lineNum">     152 </span>                :<span class="lineCov">     332786 :     return snap_util_get_edm_size( snap_get_error_detection_mode( ptr ) );</span>
 <span class="lineNum">     153 </span>                :            : }
 <a name="154"><span class="lineNum">     154 </span>                :            : </a>
 <span class="lineNum">     155 </span>                :            : 
-<span class="lineNum">     156 </span>                :<span class="lineCov">    2729652 : SnapErrorDetectionMode snap_get_error_detection_mode(snap_t *ptr)</span>
+<span class="lineNum">     156 </span>                :<span class="lineCov">    1364826 : SnapErrorDetectionMode snap_get_error_detection_mode(snap_t *ptr)</span>
 <span class="lineNum">     157 </span>                :            : {
-<span class="lineNum">     158 </span>                :<span class="lineCov">    2729652 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     158 </span>                :<span class="lineCov">    1364826 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">     159 </span>                :            : 
-<span class="lineNum">     160 </span>        [<span class="branchCov" title="Branch 0 was taken 2729644 times"> + </span><span class="branchCov" title="Branch 1 was taken 8 times"> + </span>]:<span class="lineCov">    2729652 :     if( ptr-&gt;edm &lt;= EDM_USER ) {</span>
-<span class="lineNum">     161 </span>                :<span class="lineCov">    2729644 :         return ptr-&gt;edm;</span>
+<span class="lineNum">     160 </span>        [<span class="branchCov" title="Branch 0 was taken 1364822 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">    1364826 :     if( ptr-&gt;edm &lt;= EDM_USER ) {</span>
+<span class="lineNum">     161 </span>                :<span class="lineCov">    1364822 :         return ptr-&gt;edm;</span>
 <span class="lineNum">     162 </span>                :            :     }
 <span class="lineNum">     163 </span>                :            : 
-<span class="lineNum">     164 </span>                :<span class="lineCov">    2729652 :     return EDM_NONE;</span>
+<span class="lineNum">     164 </span>                :<span class="lineCov">    1364826 :     return EDM_NONE;</span>
 <span class="lineNum">     165 </span>                :            : }
 <a name="166"><span class="lineNum">     166 </span>                :            : </a>
 <span class="lineNum">     167 </span>                :            : 
-<span class="lineNum">     168 </span>                :<span class="lineCov">     246536 : void snap_set_error_detection_mode(snap_t *ptr, SnapErrorDetectionMode edm)</span>
+<span class="lineNum">     168 </span>                :<span class="lineCov">     123268 : void snap_set_error_detection_mode(snap_t *ptr, SnapErrorDetectionMode edm)</span>
 <span class="lineNum">     169 </span>                :            : {
-<span class="lineNum">     170 </span>                :<span class="lineCov">     246536 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     170 </span>                :<span class="lineCov">     123268 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">     171 </span>                :            : 
-<span class="lineNum">     172 </span>        [<span class="branchCov" title="Branch 0 was taken 246532 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">     246536 :     if( edm &lt;= EDM_USER ) {</span>
-<span class="lineNum">     173 </span>                :<span class="lineCov">     246532 :         ptr-&gt;edm = edm;</span>
+<span class="lineNum">     172 </span>        [<span class="branchCov" title="Branch 0 was taken 123266 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">     123268 :     if( edm &lt;= EDM_USER ) {</span>
+<span class="lineNum">     173 </span>                :<span class="lineCov">     123266 :         ptr-&gt;edm = edm;</span>
 <span class="lineNum">     174 </span>                :            :     }
 <span class="lineNum">     175 </span>                :            :     else {
-<span class="lineNum">     176 </span>                :<span class="lineCov">          4 :         ptr-&gt;edm = EDM_NONE;</span>
+<span class="lineNum">     176 </span>                :<span class="lineCov">          2 :         ptr-&gt;edm = EDM_NONE;</span>
 <span class="lineNum">     177 </span>                :            :     }
-<span class="lineNum">     178 </span>                :<span class="lineCov">     246536 : }</span>
+<span class="lineNum">     178 </span>                :<span class="lineCov">     123268 : }</span>
 <a name="179"><span class="lineNum">     179 </span>                :            : </a>
 <span class="lineNum">     180 </span>                :            : 
-<span class="lineNum">     181 </span>                :<span class="lineCov">    2132212 : size_t snap_get_local_address_size(snap_t *ptr)</span>
+<span class="lineNum">     181 </span>                :<span class="lineCov">    1066106 : size_t snap_get_local_address_size(snap_t *ptr)</span>
 <span class="lineNum">     182 </span>                :            : {
-<span class="lineNum">     183 </span>                :<span class="lineCov">    2132212 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     183 </span>                :<span class="lineCov">    1066106 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">     184 </span>                :            : 
-<span class="lineNum">     185 </span>                :<span class="lineCov">    2132212 :     return snap_util_get_address_size( ptr-&gt;local_address );</span>
+<span class="lineNum">     185 </span>                :<span class="lineCov">    1066106 :     return snap_util_get_address_size( ptr-&gt;local_address );</span>
 <span class="lineNum">     186 </span>                :            : }
 <a name="187"><span class="lineNum">     187 </span>                :            : </a>
 <span class="lineNum">     188 </span>                :            : 
-<span class="lineNum">     189 </span>                :<span class="lineCov">     967756 : uint32_t snap_get_local_address(snap_t *ptr)</span>
+<span class="lineNum">     189 </span>                :<span class="lineCov">     483878 : uint32_t snap_get_local_address(snap_t *ptr)</span>
 <span class="lineNum">     190 </span>                :            : {
-<span class="lineNum">     191 </span>                :<span class="lineCov">     967756 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     191 </span>                :<span class="lineCov">     483878 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">     192 </span>                :            : 
-<span class="lineNum">     193 </span>                :<span class="lineCov">     967756 :     return ptr-&gt;local_address;</span>
+<span class="lineNum">     193 </span>                :<span class="lineCov">     483878 :     return ptr-&gt;local_address;</span>
 <span class="lineNum">     194 </span>                :            : }
 <a name="195"><span class="lineNum">     195 </span>                :            : </a>
 <span class="lineNum">     196 </span>                :            : 
-<span class="lineNum">     197 </span>                :<span class="lineCov">     638316 : void snap_set_local_address(snap_t *ptr, uint32_t address)</span>
+<span class="lineNum">     197 </span>                :<span class="lineCov">     319158 : void snap_set_local_address(snap_t *ptr, uint32_t address)</span>
 <span class="lineNum">     198 </span>                :            : {
-<span class="lineNum">     199 </span>                :<span class="lineCov">     638316 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     199 </span>                :<span class="lineCov">     319158 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">     200 </span>                :            : 
-<span class="lineNum">     201 </span>                :<span class="lineCov">     638316 :     ptr-&gt;local_address = address;</span>
-<span class="lineNum">     202 </span>                :<span class="lineCov">     638316 : }</span>
+<span class="lineNum">     201 </span>                :<span class="lineCov">     319158 :     ptr-&gt;local_address = address;</span>
+<span class="lineNum">     202 </span>                :<span class="lineCov">     319158 : }</span>
 <a name="203"><span class="lineNum">     203 </span>                :            : </a>
 <span class="lineNum">     204 </span>                :            : 
-<span class="lineNum">     205 </span>                :<span class="lineCov">    2132212 : size_t snap_get_peer_address_size(snap_t *ptr)</span>
+<span class="lineNum">     205 </span>                :<span class="lineCov">    1066106 : size_t snap_get_peer_address_size(snap_t *ptr)</span>
 <span class="lineNum">     206 </span>                :            : {
-<span class="lineNum">     207 </span>                :<span class="lineCov">    2132212 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     207 </span>                :<span class="lineCov">    1066106 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">     208 </span>                :            : 
-<span class="lineNum">     209 </span>                :<span class="lineCov">    2132212 :     return snap_util_get_address_size( ptr-&gt;peer_address );</span>
+<span class="lineNum">     209 </span>                :<span class="lineCov">    1066106 :     return snap_util_get_address_size( ptr-&gt;peer_address );</span>
 <span class="lineNum">     210 </span>                :            : }
 <a name="211"><span class="lineNum">     211 </span>                :            : </a>
 <span class="lineNum">     212 </span>                :            : 
-<span class="lineNum">     213 </span>                :<span class="lineCov">     967756 : uint32_t snap_get_peer_address(snap_t *ptr)</span>
+<span class="lineNum">     213 </span>                :<span class="lineCov">     483878 : uint32_t snap_get_peer_address(snap_t *ptr)</span>
 <span class="lineNum">     214 </span>                :            : {
-<span class="lineNum">     215 </span>                :<span class="lineCov">     967756 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     215 </span>                :<span class="lineCov">     483878 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">     216 </span>                :            : 
-<span class="lineNum">     217 </span>                :<span class="lineCov">     967756 :     return ptr-&gt;peer_address;</span>
+<span class="lineNum">     217 </span>                :<span class="lineCov">     483878 :     return ptr-&gt;peer_address;</span>
 <span class="lineNum">     218 </span>                :            : }
 <a name="219"><span class="lineNum">     219 </span>                :            : </a>
 <span class="lineNum">     220 </span>                :            : 
-<span class="lineNum">     221 </span>                :<span class="lineCov">     638312 : void snap_set_peer_address(snap_t *ptr, uint32_t address)</span>
+<span class="lineNum">     221 </span>                :<span class="lineCov">     319156 : void snap_set_peer_address(snap_t *ptr, uint32_t address)</span>
 <span class="lineNum">     222 </span>                :            : {
-<span class="lineNum">     223 </span>                :<span class="lineCov">     638312 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     223 </span>                :<span class="lineCov">     319156 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">     224 </span>                :            : 
-<span class="lineNum">     225 </span>                :<span class="lineCov">     638312 :     ptr-&gt;peer_address = address;</span>
-<span class="lineNum">     226 </span>                :<span class="lineCov">     638312 : }</span>
+<span class="lineNum">     225 </span>                :<span class="lineCov">     319156 :     ptr-&gt;peer_address = address;</span>
+<span class="lineNum">     226 </span>                :<span class="lineCov">     319156 : }</span>
 <a name="227"><span class="lineNum">     227 </span>                :            : </a>
 <span class="lineNum">     228 </span>                :            : 
-<span class="lineNum">     229 </span>                :<span class="lineCov">       2052 : uint16_t snap_get_header(snap_t *ptr, size_t in_data_size)</span>
+<span class="lineNum">     229 </span>                :<span class="lineCov">       1026 : uint16_t snap_get_header(snap_t *ptr, size_t in_data_size)</span>
 <span class="lineNum">     230 </span>                :            : {
-<span class="lineNum">     231 </span>                :<span class="lineCov">       2052 :     const uint16_t result = snap_get_hdb2( ptr, in_data_size ) &lt;&lt; 8u;</span>
+<span class="lineNum">     231 </span>                :<span class="lineCov">       1026 :     const uint16_t result = snap_get_hdb2( ptr, in_data_size ) &lt;&lt; 8u;</span>
 <span class="lineNum">     232 </span>                :            : 
-<span class="lineNum">     233 </span>                :<span class="lineCov">       2052 :     return result + snap_get_hdb1( ptr, in_data_size );</span>
+<span class="lineNum">     233 </span>                :<span class="lineCov">       1026 :     return result + snap_get_hdb1( ptr, in_data_size );</span>
 <span class="lineNum">     234 </span>                :            : }
 <a name="235"><span class="lineNum">     235 </span>                :            : </a>
 <span class="lineNum">     236 </span>                :            : 
-<span class="lineNum">     237 </span>                :<span class="lineCov">     432704 : uint8_t snap_get_hdb1(snap_t *ptr, size_t in_data_size)</span>
+<span class="lineNum">     237 </span>                :<span class="lineCov">     216352 : uint8_t snap_get_hdb1(snap_t *ptr, size_t in_data_size)</span>
 <span class="lineNum">     238 </span>                :            : {
-<span class="lineNum">     239 </span>                :<span class="lineCov">     432704 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     239 </span>                :<span class="lineCov">     216352 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">     240 </span>                :            : 
-<span class="lineNum">     241 </span>                :<span class="lineCov">     432704 :     uint8_t hdb1 = snap_util_get_edm_size_value( snap_get_error_detection_mode( ptr ) );</span>
+<span class="lineNum">     241 </span>                :<span class="lineCov">     216352 :     uint8_t hdb1 = snap_util_get_edm_size_value( snap_get_error_detection_mode( ptr ) );</span>
 <span class="lineNum">     242 </span>                :            :     //hdb1 += ( snap_is_command_mode_enabled( ptr ) ? 1 : 0 ) &lt;&lt; 7;
 <span class="lineNum">     243 </span>                :            : 
-<span class="lineNum">     244 </span>                :<span class="lineCov">     432704 :     return hdb1 + snap_util_map_ndb_to_value( in_data_size );</span>
+<span class="lineNum">     244 </span>                :<span class="lineCov">     216352 :     return hdb1 + snap_util_map_ndb_to_value( in_data_size );</span>
 <span class="lineNum">     245 </span>                :            : }
 <a name="246"><span class="lineNum">     246 </span>                :            : </a>
 <span class="lineNum">     247 </span>                :            : 
-<span class="lineNum">     248 </span>                :<span class="lineCov">     845156 : uint8_t snap_get_hdb2(snap_t *ptr, size_t in_data_size)</span>
+<span class="lineNum">     248 </span>                :<span class="lineCov">     422578 : uint8_t snap_get_hdb2(snap_t *ptr, size_t in_data_size)</span>
 <span class="lineNum">     249 </span>                :            : {
-<span class="lineNum">     250 </span>                :<span class="lineCov">     845156 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     250 </span>                :<span class="lineCov">     422578 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">     251 </span>                :            :     SNAP_UNUSED( in_data_size );
 <span class="lineNum">     252 </span>                :            : 
-<span class="lineNum">     253 </span>                :<span class="lineCov">     845156 :     uint8_t hdb2 = 0;</span>
-<span class="lineNum">     254 </span>                :<span class="lineCov">     845156 :     hdb2 += snap_get_peer_address_size( ptr ) &lt;&lt; 6;</span>
-<span class="lineNum">     255 </span>                :<span class="lineCov">     845156 :     hdb2 += snap_get_local_address_size( ptr ) &lt;&lt; 4;</span>
+<span class="lineNum">     253 </span>                :<span class="lineCov">     422578 :     uint8_t hdb2 = 0;</span>
+<span class="lineNum">     254 </span>                :<span class="lineCov">     422578 :     hdb2 += snap_get_peer_address_size( ptr ) &lt;&lt; 6;</span>
+<span class="lineNum">     255 </span>                :<span class="lineCov">     422578 :     hdb2 += snap_get_local_address_size( ptr ) &lt;&lt; 4;</span>
 <span class="lineNum">     256 </span>                :            :     //hdb2 += snap_get_protocol_specify_flag_size( ptr ) &lt;&lt; 2;
 <span class="lineNum">     257 </span>                :            : 
-<span class="lineNum">     258 </span>                :<span class="lineCov">     845156 :     hdb2 += snap_get_acknowledgement( ptr ) ? 1 : 0;</span>
+<span class="lineNum">     258 </span>                :<span class="lineCov">     422578 :     hdb2 += snap_get_acknowledgement( ptr ) ? 1 : 0;</span>
 <span class="lineNum">     259 </span>                :            : 
-<span class="lineNum">     260 </span>                :<span class="lineCov">     845156 :     return hdb2;</span>
+<span class="lineNum">     260 </span>                :<span class="lineCov">     422578 :     return hdb2;</span>
 <span class="lineNum">     261 </span>                :            : }
 <a name="262"><span class="lineNum">     262 </span>                :            : </a>
 <span class="lineNum">     263 </span>                :            : 
-<span class="lineNum">     264 </span>                :<span class="lineCov">     665464 : size_t snap_encode_bound(snap_t *ptr, size_t in_data_size)</span>
+<span class="lineNum">     264 </span>                :<span class="lineCov">     332732 : size_t snap_encode_bound(snap_t *ptr, size_t in_data_size)</span>
 <span class="lineNum">     265 </span>                :            : {
-<span class="lineNum">     266 </span>                :<span class="lineCov">     665464 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     266 </span>                :<span class="lineCov">     332732 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">     267 </span>                :            : 
-<span class="lineNum">     268 </span>                :<span class="lineCov">     665464 :     size_t size = snap_get_metadata_size( ptr ) + snap_util_get_ndb_total_bytes( in_data_size );</span>
+<span class="lineNum">     268 </span>                :<span class="lineCov">     332732 :     size_t size = snap_get_metadata_size( ptr ) + snap_util_get_ndb_total_bytes( in_data_size );</span>
 <span class="lineNum">     269 </span>                :            : 
-<span class="lineNum">     270 </span>        [<span class="branchCov" title="Branch 1 was taken 83688 times"> + </span><span class="branchCov" title="Branch 2 was taken 581776 times"> + </span>]:<span class="lineCov">     665464 :     if( snap_get_error_detection_mode( ptr ) == EDM_THREETIMES ) {</span>
-<span class="lineNum">     271 </span>                :<span class="lineCov">      83688 :         size *= 3;</span>
+<span class="lineNum">     270 </span>        [<span class="branchCov" title="Branch 1 was taken 41844 times"> + </span><span class="branchCov" title="Branch 2 was taken 290888 times"> + </span>]:<span class="lineCov">     332732 :     if( snap_get_error_detection_mode( ptr ) == EDM_THREETIMES ) {</span>
+<span class="lineNum">     271 </span>                :<span class="lineCov">      41844 :         size *= 3;</span>
 <span class="lineNum">     272 </span>                :            :     }
 <span class="lineNum">     273 </span>                :            : 
-<span class="lineNum">     274 </span>                :<span class="lineCov">     665464 :     return size;</span>
+<span class="lineNum">     274 </span>                :<span class="lineCov">     332732 :     return size;</span>
 <span class="lineNum">     275 </span>                :            : }
 <a name="276"><span class="lineNum">     276 </span>                :            : </a>
 <span class="lineNum">     277 </span>                :            : 
-<span class="lineNum">     278 </span>                :<span class="lineCov">     761716 : bool snap_encode(snap_t *ptr, const uint8_t *in_data, size_t in_data_size, uint8_t *out_data, size_t *out_data_pos, size_t out_data_size)</span>
+<span class="lineNum">     278 </span>                :<span class="lineCov">     380858 : bool snap_encode(snap_t *ptr, const uint8_t *in_data, size_t in_data_size, uint8_t *out_data, size_t *out_data_pos, size_t out_data_size)</span>
 <span class="lineNum">     279 </span>                :            : {
-<span class="lineNum">     280 </span>                :<span class="lineCov">     761716 :     SNAP_CHECK_PTR( ptr );</span>
-<span class="lineNum">     281 </span>                :<span class="lineCov">     761716 :     SNAP_CHECK_PTR( out_data );</span>
-<span class="lineNum">     282 </span>                :<span class="lineCov">     761716 :     SNAP_CHECK_PTR( out_data_pos );</span>
+<span class="lineNum">     280 </span>                :<span class="lineCov">     380858 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     281 </span>                :<span class="lineCov">     380858 :     SNAP_CHECK_PTR( out_data );</span>
+<span class="lineNum">     282 </span>                :<span class="lineCov">     380858 :     SNAP_CHECK_PTR( out_data_pos );</span>
 <span class="lineNum">     283 </span>                :            : 
-<span class="lineNum">     284 </span>                :<span class="lineCov">     761716 :     const size_t in_bytes = in_data_size &lt;= 512 ? in_data_size : 512;</span>
+<span class="lineNum">     284 </span>                :<span class="lineCov">     380858 :     const size_t in_bytes = in_data_size &lt;= 512 ? in_data_size : 512;</span>
 <span class="lineNum">     285 </span>                :            : 
-<span class="lineNum">     286 </span>        [<span class="branchCov" title="Branch 1 was taken 326416 times"> + </span><span class="branchCov" title="Branch 2 was taken 435300 times"> + </span>]:<span class="lineCov">     761716 :     if( !snap_is_ready( ptr ) ) {</span>
-<span class="lineNum">     287 </span>                :<span class="lineCov">     326416 :         ptr-&gt;last_error = SNAP_ERROR_STATE;</span>
-<span class="lineNum">     288 </span>                :<span class="lineCov">     326416 :         return false;</span>
+<span class="lineNum">     286 </span>        [<span class="branchCov" title="Branch 1 was taken 163208 times"> + </span><span class="branchCov" title="Branch 2 was taken 217650 times"> + </span>]:<span class="lineCov">     380858 :     if( !snap_is_ready( ptr ) ) {</span>
+<span class="lineNum">     287 </span>                :<span class="lineCov">     163208 :         ptr-&gt;last_error = SNAP_ERROR_STATE;</span>
+<span class="lineNum">     288 </span>                :<span class="lineCov">     163208 :         return false;</span>
 <span class="lineNum">     289 </span>                :            :     }
 <span class="lineNum">     290 </span>                :            : 
-<span class="lineNum">     291 </span>                :<span class="lineCov">     435300 :     ptr-&gt;last_error = SNAP_ERROR_NONE;</span>
+<span class="lineNum">     291 </span>                :<span class="lineCov">     217650 :     ptr-&gt;last_error = SNAP_ERROR_NONE;</span>
 <span class="lineNum">     292 </span>                :            : 
-<span class="lineNum">     293 </span>[<span class="branchCov" title="Branch 0 was taken 435292 times"> + </span><span class="branchCov" title="Branch 1 was taken 8 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchCov" title="Branch 3 was taken 435288 times"> + </span>]:<span class="lineCov">     435300 :     if( in_data == NULL || in_bytes &lt;= 0 ) {</span>
-<span class="lineNum">     294 </span>                :<span class="lineCov">         12 :         return true;</span>
+<span class="lineNum">     293 </span>[<span class="branchCov" title="Branch 0 was taken 217646 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchCov" title="Branch 3 was taken 217644 times"> + </span>]:<span class="lineCov">     217650 :     if( in_data == NULL || in_bytes &lt;= 0 ) {</span>
+<span class="lineNum">     294 </span>                :<span class="lineCov">          6 :         return true;</span>
 <span class="lineNum">     295 </span>                :            :     }
 <span class="lineNum">     296 </span>                :            : 
-<span class="lineNum">     297 </span>                :<span class="lineCov">     435288 :     ptr-&gt;last_decode_error_pos = 0;</span>
+<span class="lineNum">     297 </span>                :<span class="lineCov">     217644 :     ptr-&gt;last_decode_error_pos = 0;</span>
 <span class="lineNum">     298 </span>                :            : 
-<span class="lineNum">     299 </span>                :<span class="lineCov">     435288 :     const size_t initialOutDataPos = *out_data_pos;</span>
+<span class="lineNum">     299 </span>                :<span class="lineCov">     217644 :     const size_t initialOutDataPos = *out_data_pos;</span>
 <span class="lineNum">     300 </span>                :            : 
-<span class="lineNum">     301 </span>                :<span class="lineCov">     435288 :     const size_t bound = snap_encode_bound( ptr, in_data_size );</span>
+<span class="lineNum">     301 </span>                :<span class="lineCov">     217644 :     const size_t bound = snap_encode_bound( ptr, in_data_size );</span>
 <span class="lineNum">     302 </span>                :            : 
-<span class="lineNum">     303 </span>        [<span class="branchCov" title="Branch 0 was taken 108808 times"> + </span><span class="branchCov" title="Branch 1 was taken 326480 times"> + </span>]:<span class="lineCov">     435288 :     if( ( out_data_size - *out_data_pos ) &lt; bound ) {</span>
-<span class="lineNum">     304 </span>                :<span class="lineCov">     108808 :         ptr-&gt;last_error = SNAP_ERROR_BOUND;</span>
-<span class="lineNum">     305 </span>                :<span class="lineCov">     108808 :         return false;</span>
+<span class="lineNum">     303 </span>        [<span class="branchCov" title="Branch 0 was taken 54404 times"> + </span><span class="branchCov" title="Branch 1 was taken 163240 times"> + </span>]:<span class="lineCov">     217644 :     if( ( out_data_size - *out_data_pos ) &lt; bound ) {</span>
+<span class="lineNum">     304 </span>                :<span class="lineCov">      54404 :         ptr-&gt;last_error = SNAP_ERROR_BOUND;</span>
+<span class="lineNum">     305 </span>                :<span class="lineCov">      54404 :         return false;</span>
 <span class="lineNum">     306 </span>                :            :     }
 <span class="lineNum">     307 </span>                :            : 
-<span class="lineNum">     308 </span>        [<span class="branchCov" title="Branch 0 was taken 408080 times"> + </span><span class="branchCov" title="Branch 1 was taken 40800 times"> + </span>]:<span class="lineCov">     448880 :     for(int i = 0; i &lt; 3; ++i) {</span>
-<span class="lineNum">     309 </span>                :<span class="lineCov">     408080 :         out_data[ (*out_data_pos)++ ] = snap_util_get_sync_byte();</span>
-<span class="lineNum">     310 </span>                :<span class="lineCov">     408080 :         out_data[ (*out_data_pos)++ ] = snap_get_hdb2( ptr, in_data_size );</span>
-<span class="lineNum">     311 </span>                :<span class="lineCov">     408080 :         out_data[ (*out_data_pos)++ ] = snap_get_hdb1( ptr, in_data_size );</span>
+<span class="lineNum">     308 </span>        [<span class="branchCov" title="Branch 0 was taken 204040 times"> + </span><span class="branchCov" title="Branch 1 was taken 20400 times"> + </span>]:<span class="lineCov">     224440 :     for(int i = 0; i &lt; 3; ++i) {</span>
+<span class="lineNum">     309 </span>                :<span class="lineCov">     204040 :         out_data[ (*out_data_pos)++ ] = snap_util_get_sync_byte();</span>
+<span class="lineNum">     310 </span>                :<span class="lineCov">     204040 :         out_data[ (*out_data_pos)++ ] = snap_get_hdb2( ptr, in_data_size );</span>
+<span class="lineNum">     311 </span>                :<span class="lineCov">     204040 :         out_data[ (*out_data_pos)++ ] = snap_get_hdb1( ptr, in_data_size );</span>
 <span class="lineNum">     312 </span>                :            : 
-<span class="lineNum">     313 </span>  [<span class="branchCov" title="Branch 1 was taken 81600 times"> + </span><span class="branchCov" title="Branch 2 was taken 122400 times"> + </span><span class="branchCov" title="Branch 3 was taken 163212 times"> + </span><span class="branchCov" title="Branch 4 was taken 40868 times"> + </span>]:<span class="lineCov">     408080 :         switch( snap_get_peer_address_size( ptr ) ) {</span>
+<span class="lineNum">     313 </span>  [<span class="branchCov" title="Branch 1 was taken 40800 times"> + </span><span class="branchCov" title="Branch 2 was taken 61200 times"> + </span><span class="branchCov" title="Branch 3 was taken 81606 times"> + </span><span class="branchCov" title="Branch 4 was taken 20434 times"> + </span>]:<span class="lineCov">     204040 :         switch( snap_get_peer_address_size( ptr ) ) {</span>
 <span class="lineNum">     314 </span>                :            :         case 3:
-<span class="lineNum">     315 </span>                :<span class="lineCov">      81600 :             out_data[ (*out_data_pos)++ ] =</span>
-<span class="lineNum">     316 </span>                :<span class="lineCov">      81600 :                 (uint8_t) ( snap_get_peer_address( ptr ) &gt;&gt; 16 );</span>
+<span class="lineNum">     315 </span>                :<span class="lineCov">      40800 :             out_data[ (*out_data_pos)++ ] =</span>
+<span class="lineNum">     316 </span>                :<span class="lineCov">      40800 :                 (uint8_t) ( snap_get_peer_address( ptr ) &gt;&gt; 16 );</span>
 <span class="lineNum">     317 </span>                :            :         case 2:
-<span class="lineNum">     318 </span>                :<span class="lineCov">     204000 :             out_data[ (*out_data_pos)++ ] =</span>
-<span class="lineNum">     319 </span>                :<span class="lineCov">     204000 :                 (uint8_t) ( snap_get_peer_address( ptr ) &gt;&gt; 8 );</span>
+<span class="lineNum">     318 </span>                :<span class="lineCov">     102000 :             out_data[ (*out_data_pos)++ ] =</span>
+<span class="lineNum">     319 </span>                :<span class="lineCov">     102000 :                 (uint8_t) ( snap_get_peer_address( ptr ) &gt;&gt; 8 );</span>
 <span class="lineNum">     320 </span>                :            :         case 1:
-<span class="lineNum">     321 </span>                :<span class="lineCov">     367212 :             out_data[ (*out_data_pos)++ ] =</span>
-<span class="lineNum">     322 </span>                :<span class="lineCov">     367212 :                 (uint8_t) snap_get_peer_address( ptr );</span>
+<span class="lineNum">     321 </span>                :<span class="lineCov">     183606 :             out_data[ (*out_data_pos)++ ] =</span>
+<span class="lineNum">     322 </span>                :<span class="lineCov">     183606 :                 (uint8_t) snap_get_peer_address( ptr );</span>
 <span class="lineNum">     323 </span>                :            :         default:
 <span class="lineNum">     324 </span>                :            :             break;
 <span class="lineNum">     325 </span>                :            :         }
 <span class="lineNum">     326 </span>                :            : 
-<span class="lineNum">     327 </span>  [<span class="branchCov" title="Branch 1 was taken 81600 times"> + </span><span class="branchCov" title="Branch 2 was taken 122400 times"> + </span><span class="branchCov" title="Branch 3 was taken 163212 times"> + </span><span class="branchCov" title="Branch 4 was taken 40868 times"> + </span>]:<span class="lineCov">     408080 :         switch( snap_get_local_address_size( ptr ) ) {</span>
+<span class="lineNum">     327 </span>  [<span class="branchCov" title="Branch 1 was taken 40800 times"> + </span><span class="branchCov" title="Branch 2 was taken 61200 times"> + </span><span class="branchCov" title="Branch 3 was taken 81606 times"> + </span><span class="branchCov" title="Branch 4 was taken 20434 times"> + </span>]:<span class="lineCov">     204040 :         switch( snap_get_local_address_size( ptr ) ) {</span>
 <span class="lineNum">     328 </span>                :            :         case 3:
-<span class="lineNum">     329 </span>                :<span class="lineCov">      81600 :             out_data[ (*out_data_pos)++ ] =</span>
-<span class="lineNum">     330 </span>                :<span class="lineCov">      81600 :                 (uint8_t) ( snap_get_local_address( ptr ) &gt;&gt; 16 );</span>
+<span class="lineNum">     329 </span>                :<span class="lineCov">      40800 :             out_data[ (*out_data_pos)++ ] =</span>
+<span class="lineNum">     330 </span>                :<span class="lineCov">      40800 :                 (uint8_t) ( snap_get_local_address( ptr ) &gt;&gt; 16 );</span>
 <span class="lineNum">     331 </span>                :            :         case 2:
-<span class="lineNum">     332 </span>                :<span class="lineCov">     204000 :             out_data[ (*out_data_pos)++ ] =</span>
-<span class="lineNum">     333 </span>                :<span class="lineCov">     204000 :                 (uint8_t) ( snap_get_local_address( ptr ) &gt;&gt; 8 );</span>
+<span class="lineNum">     332 </span>                :<span class="lineCov">     102000 :             out_data[ (*out_data_pos)++ ] =</span>
+<span class="lineNum">     333 </span>                :<span class="lineCov">     102000 :                 (uint8_t) ( snap_get_local_address( ptr ) &gt;&gt; 8 );</span>
 <span class="lineNum">     334 </span>                :            :         case 1:
-<span class="lineNum">     335 </span>                :<span class="lineCov">     367212 :             out_data[ (*out_data_pos)++ ] =</span>
-<span class="lineNum">     336 </span>                :<span class="lineCov">     367212 :                 (uint8_t) snap_get_local_address( ptr );</span>
+<span class="lineNum">     335 </span>                :<span class="lineCov">     183606 :             out_data[ (*out_data_pos)++ ] =</span>
+<span class="lineNum">     336 </span>                :<span class="lineCov">     183606 :                 (uint8_t) snap_get_local_address( ptr );</span>
 <span class="lineNum">     337 </span>                :            :         default:
 <span class="lineNum">     338 </span>                :            :             break;
 <span class="lineNum">     339 </span>                :            :         }
 <span class="lineNum">     340 </span>                :            : 
 <span class="lineNum">     341 </span>                :            : 
 <span class="lineNum">     342 </span>                :            :         // copy data
-<span class="lineNum">     343 </span>        [<span class="branchCov" title="Branch 0 was taken 53473688 times"> + </span><span class="branchCov" title="Branch 1 was taken 408080 times"> + </span>]:<span class="lineCov">   53881768 :         for(size_t i = 0; i &lt; in_bytes; ++i) {</span>
-<span class="lineNum">     344 </span>                :<span class="lineCov">   53473688 :             out_data[ (*out_data_pos)++ ] = in_data[ i ];</span>
+<span class="lineNum">     343 </span>        [<span class="branchCov" title="Branch 0 was taken 26736844 times"> + </span><span class="branchCov" title="Branch 1 was taken 204040 times"> + </span>]:<span class="lineCov">   26940884 :         for(size_t i = 0; i &lt; in_bytes; ++i) {</span>
+<span class="lineNum">     344 </span>                :<span class="lineCov">   26736844 :             out_data[ (*out_data_pos)++ ] = in_data[ i ];</span>
 <span class="lineNum">     345 </span>                :            :         }
 <span class="lineNum">     346 </span>                :            : 
 <span class="lineNum">     347 </span>                :            :         // fill
-<span class="lineNum">     348 </span>        [<span class="branchCov" title="Branch 1 was taken 6096860 times"> + </span><span class="branchCov" title="Branch 2 was taken 408080 times"> + </span>]:<span class="lineCov">    6504940 :         for(size_t i = 0; i &lt; snap_util_get_ndb_fill_bytes( in_data_size ); ++i) {</span>
-<span class="lineNum">     349 </span>                :<span class="lineCov">    6096860 :             out_data[ (*out_data_pos)++ ] = snap_util_get_fill_byte();</span>
+<span class="lineNum">     348 </span>        [<span class="branchCov" title="Branch 1 was taken 3048430 times"> + </span><span class="branchCov" title="Branch 2 was taken 204040 times"> + </span>]:<span class="lineCov">    3252470 :         for(size_t i = 0; i &lt; snap_util_get_ndb_fill_bytes( in_data_size ); ++i) {</span>
+<span class="lineNum">     349 </span>                :<span class="lineCov">    3048430 :             out_data[ (*out_data_pos)++ ] = snap_util_get_fill_byte();</span>
 <span class="lineNum">     350 </span>                :            :         }
 <span class="lineNum">     351 </span>                :            : 
-<span class="lineNum">     352 </span>[<span class="branchCov" title="Branch 1 was taken 122400 times"> + </span><span class="branchCov" title="Branch 2 was taken 40800 times"> + </span><span class="branchCov" title="Branch 3 was taken 40800 times"> + </span><span class="branchCov" title="Branch 4 was taken 40812 times"> + </span><span class="branchCov" title="Branch 5 was taken 40800 times"> + </span>:<span class="lineCov">     408080 :         switch( snap_get_error_detection_mode( ptr ) ) {</span>
-<span class="lineNum">         </span>         <span class="branchCov" title="Branch 6 was taken 81600 times"> + </span><span class="branchCov" title="Branch 7 was taken 40868 times"> + </span>]
+<span class="lineNum">     352 </span>[<span class="branchCov" title="Branch 1 was taken 61200 times"> + </span><span class="branchCov" title="Branch 2 was taken 20400 times"> + </span><span class="branchCov" title="Branch 3 was taken 20400 times"> + </span><span class="branchCov" title="Branch 4 was taken 20406 times"> + </span><span class="branchCov" title="Branch 5 was taken 20400 times"> + </span>:<span class="lineCov">     204040 :         switch( snap_get_error_detection_mode( ptr ) ) {</span>
+<span class="lineNum">         </span>         <span class="branchCov" title="Branch 6 was taken 40800 times"> + </span><span class="branchCov" title="Branch 7 was taken 20434 times"> + </span>]
 <span class="lineNum">     353 </span>                :            :         case EDM_THREETIMES:
-<span class="lineNum">     354 </span>                :<span class="lineCov">     122400 :             break;</span>
+<span class="lineNum">     354 </span>                :<span class="lineCov">      61200 :             break;</span>
 <span class="lineNum">     355 </span>                :            : 
 <span class="lineNum">     356 </span>                :            :         case EDM_CHECKSUM:
-<span class="lineNum">     357 </span>                :<span class="lineCov">      81600 :             out_data[ *out_data_pos ] =</span>
-<span class="lineNum">     358 </span>                :<span class="lineCov">      40800 :                 snap_checksum( &amp;out_data[ initialOutDataPos + 1 ],</span>
-<span class="lineNum">     359 </span>                :<span class="lineCov">      40800 :                                *out_data_pos - initialOutDataPos - 1</span>
+<span class="lineNum">     357 </span>                :<span class="lineCov">      40800 :             out_data[ *out_data_pos ] =</span>
+<span class="lineNum">     358 </span>                :<span class="lineCov">      20400 :                 snap_checksum( &amp;out_data[ initialOutDataPos + 1 ],</span>
+<span class="lineNum">     359 </span>                :<span class="lineCov">      20400 :                                *out_data_pos - initialOutDataPos - 1</span>
 <span class="lineNum">     360 </span>                :            :                              );
-<span class="lineNum">     361 </span>                :<span class="lineCov">      40800 :             (*out_data_pos)++;</span>
-<span class="lineNum">     362 </span>                :<span class="lineCov">      40800 :             break;</span>
+<span class="lineNum">     361 </span>                :<span class="lineCov">      20400 :             (*out_data_pos)++;</span>
+<span class="lineNum">     362 </span>                :<span class="lineCov">      20400 :             break;</span>
 <span class="lineNum">     363 </span>                :            : 
 <span class="lineNum">     364 </span>                :            :         case EDM_CRC8:
-<span class="lineNum">     365 </span>                :<span class="lineCov">      81600 :             out_data[ *out_data_pos ] =</span>
-<span class="lineNum">     366 </span>                :<span class="lineCov">      40800 :                 snap_crc8( &amp;out_data[ initialOutDataPos + 1 ],</span>
-<span class="lineNum">     367 </span>                :<span class="lineCov">      40800 :                            *out_data_pos - initialOutDataPos - 1</span>
+<span class="lineNum">     365 </span>                :<span class="lineCov">      40800 :             out_data[ *out_data_pos ] =</span>
+<span class="lineNum">     366 </span>                :<span class="lineCov">      20400 :                 snap_crc8( &amp;out_data[ initialOutDataPos + 1 ],</span>
+<span class="lineNum">     367 </span>                :<span class="lineCov">      20400 :                            *out_data_pos - initialOutDataPos - 1</span>
 <span class="lineNum">     368 </span>                :            :                          );
-<span class="lineNum">     369 </span>                :<span class="lineCov">      40800 :             (*out_data_pos)++;</span>
-<span class="lineNum">     370 </span>                :<span class="lineCov">      40800 :             break;</span>
+<span class="lineNum">     369 </span>                :<span class="lineCov">      20400 :             (*out_data_pos)++;</span>
+<span class="lineNum">     370 </span>                :<span class="lineCov">      20400 :             break;</span>
 <span class="lineNum">     371 </span>                :            : 
 <span class="lineNum">     372 </span>                :            :         case EDM_CRC16:
 <span class="lineNum">     373 </span>                :            :             {
-<span class="lineNum">     374 </span>                :<span class="lineCov">      40812 :                 uint16_t value = snap_crc16( &amp;out_data[ initialOutDataPos + 1 ],</span>
-<span class="lineNum">     375 </span>                :<span class="lineCov">      40812 :                                              *out_data_pos - initialOutDataPos - 1</span>
+<span class="lineNum">     374 </span>                :<span class="lineCov">      20406 :                 uint16_t value = snap_crc16( &amp;out_data[ initialOutDataPos + 1 ],</span>
+<span class="lineNum">     375 </span>                :<span class="lineCov">      20406 :                                              *out_data_pos - initialOutDataPos - 1</span>
 <span class="lineNum">     376 </span>                :            :                                            );
 <span class="lineNum">     377 </span>                :            : 
-<span class="lineNum">     378 </span>                :<span class="lineCov">      40812 :                 out_data[ (*out_data_pos)++ ] = (uint8_t) ( value &gt;&gt; 8 );</span>
-<span class="lineNum">     379 </span>                :<span class="lineCov">      40812 :                 out_data[ (*out_data_pos)++ ] = (uint8_t) value;</span>
+<span class="lineNum">     378 </span>                :<span class="lineCov">      20406 :                 out_data[ (*out_data_pos)++ ] = (uint8_t) ( value &gt;&gt; 8 );</span>
+<span class="lineNum">     379 </span>                :<span class="lineCov">      20406 :                 out_data[ (*out_data_pos)++ ] = (uint8_t) value;</span>
 <span class="lineNum">     380 </span>                :            :             }
-<span class="lineNum">     381 </span>                :<span class="lineCov">      40812 :             break;</span>
+<span class="lineNum">     381 </span>                :<span class="lineCov">      20406 :             break;</span>
 <span class="lineNum">     382 </span>                :            :         case EDM_CRC32:
 <span class="lineNum">     383 </span>                :            :             {
-<span class="lineNum">     384 </span>                :<span class="lineCov">      40800 :                 uint32_t value =  snap_crc32( &amp;out_data[ initialOutDataPos + 1 ],</span>
-<span class="lineNum">     385 </span>                :<span class="lineCov">      40800 :                                             *out_data_pos - initialOutDataPos - 1</span>
+<span class="lineNum">     384 </span>                :<span class="lineCov">      20400 :                 uint32_t value =  snap_crc32( &amp;out_data[ initialOutDataPos + 1 ],</span>
+<span class="lineNum">     385 </span>                :<span class="lineCov">      20400 :                                             *out_data_pos - initialOutDataPos - 1</span>
 <span class="lineNum">     386 </span>                :            :                                             );
 <span class="lineNum">     387 </span>                :            : 
-<span class="lineNum">     388 </span>                :<span class="lineCov">      40800 :                 out_data[ (*out_data_pos)++ ] = (uint8_t) ( value &gt;&gt; 24 );</span>
-<span class="lineNum">     389 </span>                :<span class="lineCov">      40800 :                 out_data[ (*out_data_pos)++ ] = (uint8_t) ( value &gt;&gt; 16 );</span>
-<span class="lineNum">     390 </span>                :<span class="lineCov">      40800 :                 out_data[ (*out_data_pos)++ ] = (uint8_t) ( value &gt;&gt; 8 );</span>
-<span class="lineNum">     391 </span>                :<span class="lineCov">      40800 :                 out_data[ (*out_data_pos)++ ] = (uint8_t) value;</span>
+<span class="lineNum">     388 </span>                :<span class="lineCov">      20400 :                 out_data[ (*out_data_pos)++ ] = (uint8_t) ( value &gt;&gt; 24 );</span>
+<span class="lineNum">     389 </span>                :<span class="lineCov">      20400 :                 out_data[ (*out_data_pos)++ ] = (uint8_t) ( value &gt;&gt; 16 );</span>
+<span class="lineNum">     390 </span>                :<span class="lineCov">      20400 :                 out_data[ (*out_data_pos)++ ] = (uint8_t) ( value &gt;&gt; 8 );</span>
+<span class="lineNum">     391 </span>                :<span class="lineCov">      20400 :                 out_data[ (*out_data_pos)++ ] = (uint8_t) value;</span>
 <span class="lineNum">     392 </span>                :            :             }
-<span class="lineNum">     393 </span>                :<span class="lineCov">      40800 :             break;</span>
+<span class="lineNum">     393 </span>                :<span class="lineCov">      20400 :             break;</span>
 <span class="lineNum">     394 </span>                :            :         case EDM_FEC:
 <span class="lineNum">     395 </span>                :            :         case EDM_USER:
-<span class="lineNum">     396 </span>                :<span class="lineCov">      81600 :             break;</span>
+<span class="lineNum">     396 </span>                :<span class="lineCov">      40800 :             break;</span>
 <span class="lineNum">     397 </span>                :            : 
 <span class="lineNum">     398 </span>                :            :         default:
-<span class="lineNum">     399 </span>                :<span class="lineCov">      40868 :             SNAP_ASSERT( snap_get_error_detection_mode( ptr ) == EDM_NONE );</span>
-<span class="lineNum">     400 </span>                :<span class="lineCov">      40868 :             break;</span>
+<span class="lineNum">     399 </span>                :<span class="lineCov">      20434 :             SNAP_ASSERT( snap_get_error_detection_mode( ptr ) == EDM_NONE );</span>
+<span class="lineNum">     400 </span>                :<span class="lineCov">      20434 :             break;</span>
 <span class="lineNum">     401 </span>                :            :         }
 <span class="lineNum">     402 </span>                :            : 
-<span class="lineNum">     403 </span>        [<span class="branchCov" title="Branch 1 was taken 285680 times"> + </span><span class="branchCov" title="Branch 2 was taken 122400 times"> + </span>]:<span class="lineCov">     408080 :         if( snap_get_error_detection_mode( ptr ) != EDM_THREETIMES ) {</span>
-<span class="lineNum">     404 </span>                :<span class="lineCov">     285680 :             break;</span>
+<span class="lineNum">     403 </span>        [<span class="branchCov" title="Branch 1 was taken 142840 times"> + </span><span class="branchCov" title="Branch 2 was taken 61200 times"> + </span>]:<span class="lineCov">     204040 :         if( snap_get_error_detection_mode( ptr ) != EDM_THREETIMES ) {</span>
+<span class="lineNum">     404 </span>                :<span class="lineCov">     142840 :             break;</span>
 <span class="lineNum">     405 </span>                :            :         }
 <span class="lineNum">     406 </span>                :            :     }
 <span class="lineNum">     407 </span>                :            : 
-<span class="lineNum">     408 </span>                :<span class="lineCov">     326480 :     ptr-&gt;stat.transmitted_payload_bytes = 0;</span>
-<span class="lineNum">     409 </span>                :<span class="lineCov">     326480 :     ptr-&gt;stat.transmitted_fill_bytes = 0;</span>
+<span class="lineNum">     408 </span>                :<span class="lineCov">     163240 :     ptr-&gt;stat.transmitted_payload_bytes = 0;</span>
+<span class="lineNum">     409 </span>                :<span class="lineCov">     163240 :     ptr-&gt;stat.transmitted_fill_bytes = 0;</span>
 <span class="lineNum">     410 </span>                :            : 
-<span class="lineNum">     411 </span>                :<span class="lineCov">     326480 :     ptr-&gt;stat.total_packets++;</span>
-<span class="lineNum">     412 </span>                :<span class="lineCov">     326480 :     ptr-&gt;stat.total_bytes += (*out_data_pos) - initialOutDataPos;</span>
-<span class="lineNum">     413 </span>                :<span class="lineCov">     326480 :     ptr-&gt;stat.total_payload_bytes += in_bytes;</span>
-<span class="lineNum">     414 </span>                :<span class="lineCov">     326480 :     ptr-&gt;stat.total_fill_bytes += snap_util_get_ndb_fill_bytes( in_data_size );</span>
+<span class="lineNum">     411 </span>                :<span class="lineCov">     163240 :     ptr-&gt;stat.total_packets++;</span>
+<span class="lineNum">     412 </span>                :<span class="lineCov">     163240 :     ptr-&gt;stat.total_bytes += (*out_data_pos) - initialOutDataPos;</span>
+<span class="lineNum">     413 </span>                :<span class="lineCov">     163240 :     ptr-&gt;stat.total_payload_bytes += in_bytes;</span>
+<span class="lineNum">     414 </span>                :<span class="lineCov">     163240 :     ptr-&gt;stat.total_fill_bytes += snap_util_get_ndb_fill_bytes( in_data_size );</span>
 <span class="lineNum">     415 </span>                :            : 
 <span class="lineNum">     416 </span>                :            : 
-<span class="lineNum">     417 </span>        [<span class="branchCov" title="Branch 1 was taken 108808 times"> + </span><span class="branchCov" title="Branch 2 was taken 217672 times"> + </span>]:<span class="lineCov">     326480 :     if( snap_get_acknowledgement( ptr ) ) {</span>
-<span class="lineNum">     418 </span>                :<span class="lineCov">     108808 :         ptr-&gt;packet.bound = bound;</span>
-<span class="lineNum">     419 </span>                :<span class="lineCov">     108808 :         ptr-&gt;packet.edm = snap_get_error_detection_mode( ptr );</span>
-<span class="lineNum">     420 </span>                :<span class="lineCov">     108808 :         ptr-&gt;packet.local_address = snap_get_local_address( ptr );</span>
-<span class="lineNum">     421 </span>                :<span class="lineCov">     108808 :         ptr-&gt;packet.peer_address = snap_get_peer_address( ptr );</span>
-<span class="lineNum">     422 </span>                :<span class="lineCov">     108808 :         ptr-&gt;packet.size = in_bytes;</span>
+<span class="lineNum">     417 </span>        [<span class="branchCov" title="Branch 1 was taken 54404 times"> + </span><span class="branchCov" title="Branch 2 was taken 108836 times"> + </span>]:<span class="lineCov">     163240 :     if( snap_get_acknowledgement( ptr ) ) {</span>
+<span class="lineNum">     418 </span>                :<span class="lineCov">      54404 :         ptr-&gt;packet.bound = bound;</span>
+<span class="lineNum">     419 </span>                :<span class="lineCov">      54404 :         ptr-&gt;packet.edm = snap_get_error_detection_mode( ptr );</span>
+<span class="lineNum">     420 </span>                :<span class="lineCov">      54404 :         ptr-&gt;packet.local_address = snap_get_local_address( ptr );</span>
+<span class="lineNum">     421 </span>                :<span class="lineCov">      54404 :         ptr-&gt;packet.peer_address = snap_get_peer_address( ptr );</span>
+<span class="lineNum">     422 </span>                :<span class="lineCov">      54404 :         ptr-&gt;packet.size = in_bytes;</span>
 <span class="lineNum">     423 </span>                :            : 
-<span class="lineNum">     424 </span>                :<span class="lineCov">     108808 :         snap_util_memcpy( ptr-&gt;packet.data, in_data, in_bytes );</span>
+<span class="lineNum">     424 </span>                :<span class="lineCov">      54404 :         snap_util_memcpy( ptr-&gt;packet.data, in_data, in_bytes );</span>
 <span class="lineNum">     425 </span>                :            :     }
 <span class="lineNum">     426 </span>                :            :     else {
-<span class="lineNum">     427 </span>                :<span class="lineCov">     217672 :         ptr-&gt;stat.transmitted_packets++;</span>
-<span class="lineNum">     428 </span>                :<span class="lineCov">     217672 :         ptr-&gt;stat.transmitted_bytes += (*out_data_pos) - initialOutDataPos;</span>
-<span class="lineNum">     429 </span>                :<span class="lineCov">     217672 :         ptr-&gt;stat.transmitted_payload_bytes += in_bytes;</span>
-<span class="lineNum">     430 </span>                :<span class="lineCov">     217672 :         ptr-&gt;stat.transmitted_fill_bytes += snap_util_get_ndb_fill_bytes( in_data_size );</span>
+<span class="lineNum">     427 </span>                :<span class="lineCov">     108836 :         ptr-&gt;stat.transmitted_packets++;</span>
+<span class="lineNum">     428 </span>                :<span class="lineCov">     108836 :         ptr-&gt;stat.transmitted_bytes += (*out_data_pos) - initialOutDataPos;</span>
+<span class="lineNum">     429 </span>                :<span class="lineCov">     108836 :         ptr-&gt;stat.transmitted_payload_bytes += in_bytes;</span>
+<span class="lineNum">     430 </span>                :<span class="lineCov">     108836 :         ptr-&gt;stat.transmitted_fill_bytes += snap_util_get_ndb_fill_bytes( in_data_size );</span>
 <span class="lineNum">     431 </span>                :            :     }
 <span class="lineNum">     432 </span>                :            : 
 <span class="lineNum">     433 </span>                :            :     // out data pos should point to the next not yet written byte
-<span class="lineNum">     434 </span>                :<span class="lineCov">     326480 :     (*out_data_pos)++;</span>
+<span class="lineNum">     434 </span>                :<span class="lineCov">     163240 :     (*out_data_pos)++;</span>
 <span class="lineNum">     435 </span>                :            : 
-<span class="lineNum">     436 </span>                :<span class="lineCov">     761716 :     return true;</span>
+<span class="lineNum">     436 </span>                :<span class="lineCov">     380858 :     return true;</span>
 <span class="lineNum">     437 </span>                :            : }
 <a name="438"><span class="lineNum">     438 </span>                :            : </a>
 <span class="lineNum">     439 </span>                :            : 
-<span class="lineNum">     440 </span>                :<span class="lineCov">       2152 : size_t snap_decode_result_bound(snap_t *ptr, size_t in_data_size)</span>
+<span class="lineNum">     440 </span>                :<span class="lineCov">       1076 : size_t snap_decode_result_bound(snap_t *ptr, size_t in_data_size)</span>
 <span class="lineNum">     441 </span>                :            : {
-<span class="lineNum">     442 </span>                :<span class="lineCov">       2152 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     442 </span>                :<span class="lineCov">       1076 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">     443 </span>                :            :     SNAP_UNUSED( ptr );
 <span class="lineNum">     444 </span>                :            : 
-<span class="lineNum">     445 </span>        [<span class="branchCov" title="Branch 0 was taken 24 times"> + </span><span class="branchCov" title="Branch 1 was taken 2128 times"> + </span>]:<span class="lineCov">       2152 :     if( in_data_size &gt;= 512 ) {</span>
-<span class="lineNum">     446 </span>                :<span class="lineCov">         24 :         return 512;</span>
+<span class="lineNum">     445 </span>        [<span class="branchCov" title="Branch 0 was taken 12 times"> + </span><span class="branchCov" title="Branch 1 was taken 1064 times"> + </span>]:<span class="lineCov">       1076 :     if( in_data_size &gt;= 512 ) {</span>
+<span class="lineNum">     446 </span>                :<span class="lineCov">         12 :         return 512;</span>
 <span class="lineNum">     447 </span>                :            :     }
 <span class="lineNum">     448 </span>                :            : 
-<span class="lineNum">     449 </span>                :<span class="lineCov">       2152 :     return in_data_size;</span>
+<span class="lineNum">     449 </span>                :<span class="lineCov">       1076 :     return in_data_size;</span>
 <span class="lineNum">     450 </span>                :            : }
 <a name="451"><span class="lineNum">     451 </span>                :            : </a>
 <span class="lineNum">     452 </span>                :            : 
-<span class="lineNum">     453 </span>                :<span class="lineCov">    6181280 : size_t snap_decode_response_bound(snap_t *ptr, size_t in_data_size)</span>
+<span class="lineNum">     453 </span>                :<span class="lineCov">    3090640 : size_t snap_decode_response_bound(snap_t *ptr, size_t in_data_size)</span>
 <span class="lineNum">     454 </span>                :            : {
-<span class="lineNum">     455 </span>                :<span class="lineCov">    6181280 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     455 </span>                :<span class="lineCov">    3090640 :     SNAP_CHECK_PTR( ptr );</span>
 <span class="lineNum">     456 </span>                :            :     SNAP_UNUSED( in_data_size );
 <span class="lineNum">     457 </span>                :            : 
 <span class="lineNum">     458 </span>                :            :     // We need at least 3 bytes (one packet is at least 3 bytes without any data).
-<span class="lineNum">     459 </span>        [<span class="branchCov" title="Branch 0 was taken 1216 times"> + </span><span class="branchCov" title="Branch 1 was taken 6180064 times"> + </span>]:<span class="lineCov">    6181280 :     if( in_data_size &lt; 3 ) {</span>
-<span class="lineNum">     460 </span>                :<span class="lineCov">       1216 :         return 0;</span>
+<span class="lineNum">     459 </span>        [<span class="branchCov" title="Branch 0 was taken 608 times"> + </span><span class="branchCov" title="Branch 1 was taken 3090032 times"> + </span>]:<span class="lineCov">    3090640 :     if( in_data_size &lt; 3 ) {</span>
+<span class="lineNum">     460 </span>                :<span class="lineCov">        608 :         return 0;</span>
 <span class="lineNum">     461 </span>                :            :     }
 <span class="lineNum">     462 </span>                :            : 
-<span class="lineNum">     463 </span>        [<span class="branchCov" title="Branch 1 was taken 5974000 times"> + </span><span class="branchCov" title="Branch 2 was taken 206064 times"> + </span>]:<span class="lineCov">    6180064 :     if( !snap_is_ready( ptr ) ) {</span>
+<span class="lineNum">     463 </span>        [<span class="branchCov" title="Branch 1 was taken 2987000 times"> + </span><span class="branchCov" title="Branch 2 was taken 103032 times"> + </span>]:<span class="lineCov">    3090032 :     if( !snap_is_ready( ptr ) ) {</span>
 <span class="lineNum">     464 </span>                :            :         // the bound of the last packet can't be less then 3 (sync + hdb2 + hdb1 )
-<span class="lineNum">     465 </span>                :<span class="lineCov">    5974000 :         SNAP_ASSERT( ptr-&gt;packet.bound &gt;= 3 );</span>
+<span class="lineNum">     465 </span>                :<span class="lineCov">    2987000 :         SNAP_ASSERT( ptr-&gt;packet.bound &gt;= 3 );</span>
 <span class="lineNum">     466 </span>                :            : 
 <span class="lineNum">     467 </span>                :            :         // 3 * ( sync byte + header bytes + max address bytes (3 local + 3 peer) + max data bytes + max edm bytes )
-<span class="lineNum">     468 </span>                :<span class="lineCov">    5974000 :         SNAP_ASSERT( ptr-&gt;packet.bound &lt;= ( 3 * ( 1 + 2 + 6 + 512 + 2 ) ) ); // == 1569</span>
+<span class="lineNum">     468 </span>                :<span class="lineCov">    2987000 :         SNAP_ASSERT( ptr-&gt;packet.bound &lt;= ( 3 * ( 1 + 2 + 6 + 512 + 2 ) ) ); // == 1569</span>
 <span class="lineNum">     469 </span>                :            : 
 <span class="lineNum">     470 </span>                :            :         // if we wait for an ACK, the max. response can be the last packet (in case of NAK)
-<span class="lineNum">     471 </span>                :<span class="lineCov">    5974000 :         return ptr-&gt;packet.bound;</span>
+<span class="lineNum">     471 </span>                :<span class="lineCov">    2987000 :         return ptr-&gt;packet.bound;</span>
 <span class="lineNum">     472 </span>                :            :     }
 <span class="lineNum">     473 </span>                :            : 
-<span class="lineNum">     474 </span>                :<span class="lineCov">     206064 :     const uint32_t l = snap_get_local_address( ptr );</span>
-<span class="lineNum">     475 </span>                :<span class="lineCov">     206064 :     const uint32_t p = snap_get_peer_address( ptr );</span>
+<span class="lineNum">     474 </span>                :<span class="lineCov">     103032 :     const uint32_t l = snap_get_local_address( ptr );</span>
+<span class="lineNum">     475 </span>                :<span class="lineCov">     103032 :     const uint32_t p = snap_get_peer_address( ptr );</span>
 <span class="lineNum">     476 </span>                :            : 
-<span class="lineNum">     477 </span>                :<span class="lineCov">     206064 :     const size_t a = snap_util_ack_response_bound( l, p );</span>
-<span class="lineNum">     478 </span>                :<span class="lineCov">     206064 :     const size_t n = snap_util_nak_response_bound( l, p );</span>
+<span class="lineNum">     477 </span>                :<span class="lineCov">     103032 :     const size_t a = snap_util_ack_response_bound( l, p );</span>
+<span class="lineNum">     478 </span>                :<span class="lineCov">     103032 :     const size_t n = snap_util_nak_response_bound( l, p );</span>
 <span class="lineNum">     479 </span>                :            : 
 <span class="lineNum">     480 </span>                :            :     // in all other cases the response can only be an ACK/NAK packet, if at all.
-<span class="lineNum">     481 </span>                :<span class="lineCov">    6181280 :     return a &gt;= n ? a : n;</span>
+<span class="lineNum">     481 </span>                :<span class="lineCov">    3090640 :     return a &gt;= n ? a : n;</span>
 <span class="lineNum">     482 </span>                :            : }
 <a name="483"><span class="lineNum">     483 </span>                :            : </a>
 <span class="lineNum">     484 </span>                :            : 
-<span class="lineNum">     485 </span>                :<span class="lineCov">         80 : bool snap_decode(snap_t *ptr,</span>
+<span class="lineNum">     485 </span>                :<span class="lineCov">         40 : bool snap_decode(snap_t *ptr,</span>
 <span class="lineNum">     486 </span>                :            :         const uint8_t *in_data, size_t *in_data_pos, size_t in_data_size,
 <span class="lineNum">     487 </span>                :            :               uint8_t *result, size_t *result_pos, size_t result_size,
 <span class="lineNum">     488 </span>                :            :               uint8_t *response, size_t *response_pos, size_t response_size)
 <span class="lineNum">     489 </span>                :            : {
-<span class="lineNum">     490 </span>                :<span class="lineCov">         80 :     SNAP_CHECK_PTR( ptr );</span>
-<span class="lineNum">     491 </span>                :<span class="lineCov">         80 :     SNAP_CHECK_PTR( in_data );</span>
-<span class="lineNum">     492 </span>                :<span class="lineCov">         80 :     SNAP_CHECK_PTR( in_data_pos );</span>
-<span class="lineNum">     493 </span>                :<span class="lineCov">         80 :     SNAP_CHECK_PTR( result );</span>
-<span class="lineNum">     494 </span>                :<span class="lineCov">         80 :     SNAP_CHECK_PTR( result_pos );</span>
-<span class="lineNum">     495 </span>                :<span class="lineCov">         80 :     SNAP_CHECK_PTR( response );</span>
-<span class="lineNum">     496 </span>                :<span class="lineCov">         80 :     SNAP_CHECK_PTR( response_pos );</span>
+<span class="lineNum">     490 </span>                :<span class="lineCov">         40 :     SNAP_CHECK_PTR( ptr );</span>
+<span class="lineNum">     491 </span>                :<span class="lineCov">         40 :     SNAP_CHECK_PTR( in_data );</span>
+<span class="lineNum">     492 </span>                :<span class="lineCov">         40 :     SNAP_CHECK_PTR( in_data_pos );</span>
+<span class="lineNum">     493 </span>                :<span class="lineCov">         40 :     SNAP_CHECK_PTR( result );</span>
+<span class="lineNum">     494 </span>                :<span class="lineCov">         40 :     SNAP_CHECK_PTR( result_pos );</span>
+<span class="lineNum">     495 </span>                :<span class="lineCov">         40 :     SNAP_CHECK_PTR( response );</span>
+<span class="lineNum">     496 </span>                :<span class="lineCov">         40 :     SNAP_CHECK_PTR( response_pos );</span>
 <span class="lineNum">     497 </span>                :            : 
-<span class="lineNum">     498 </span>                :<span class="lineCov">         80 :     SNAP_ASSERT( in_data_size &gt;= *in_data_pos );</span>
-<span class="lineNum">     499 </span>                :<span class="lineCov">         80 :     SNAP_ASSERT( result_size &gt;= *result_pos );</span>
-<span class="lineNum">     500 </span>                :<span class="lineCov">         80 :     SNAP_ASSERT( response_size &gt;= *response_pos );</span>
+<span class="lineNum">     498 </span>                :<span class="lineCov">         40 :     SNAP_ASSERT( in_data_size &gt;= *in_data_pos );</span>
+<span class="lineNum">     499 </span>                :<span class="lineCov">         40 :     SNAP_ASSERT( result_size &gt;= *result_pos );</span>
+<span class="lineNum">     500 </span>                :<span class="lineCov">         40 :     SNAP_ASSERT( response_size &gt;= *response_pos );</span>
 <span class="lineNum">     501 </span>                :            : 
-<span class="lineNum">     502 </span>                :<span class="lineCov">         80 :     SNAP_ASSERT( ( result_size - *result_pos ) &gt;= snap_decode_result_bound( ptr, in_data_size - *in_data_pos ) );</span>
-<span class="lineNum">     503 </span>                :<span class="lineCov">         80 :     SNAP_ASSERT( ( response_size - *response_pos ) &gt;= snap_decode_response_bound( ptr, in_data_size - *in_data_pos ) );</span>
+<span class="lineNum">     502 </span>                :<span class="lineCov">         40 :     SNAP_ASSERT( ( result_size - *result_pos ) &gt;= snap_decode_result_bound( ptr, in_data_size - *in_data_pos ) );</span>
+<span class="lineNum">     503 </span>                :<span class="lineCov">         40 :     SNAP_ASSERT( ( response_size - *response_pos ) &gt;= snap_decode_response_bound( ptr, in_data_size - *in_data_pos ) );</span>
 <span class="lineNum">     504 </span>                :            : 
-<span class="lineNum">     505 </span>                :<span class="lineCov">         80 :     ptr-&gt;last_error = SNAP_ERROR_NONE;</span>
-<span class="lineNum">     506 </span>                :<span class="lineCov">         80 :     ptr-&gt;last_decode_error_pos = 0;</span>
+<span class="lineNum">     505 </span>                :<span class="lineCov">         40 :     ptr-&gt;last_error = SNAP_ERROR_NONE;</span>
+<span class="lineNum">     506 </span>                :<span class="lineCov">         40 :     ptr-&gt;last_decode_error_pos = 0;</span>
 <span class="lineNum">     507 </span>                :            : 
-<span class="lineNum">     508 </span>                :<span class="lineCov">         80 :     size_t real_pos = *in_data_pos;</span>
-<span class="lineNum">     509 </span>                :<span class="lineCov">         80 :     size_t skip_preamble = real_pos;</span>
+<span class="lineNum">     508 </span>                :<span class="lineCov">         40 :     size_t real_pos = *in_data_pos;</span>
+<span class="lineNum">     509 </span>                :<span class="lineCov">         40 :     size_t skip_preamble = real_pos;</span>
 <span class="lineNum">     510 </span>                :            : 
 <span class="lineNum">     511 </span>                :            :     // if there are really no data...
-<span class="lineNum">     512 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 76 times"> + </span>]:<span class="lineCov">         80 :     if( ( in_data_size - *in_data_pos ) &lt;= 0 ) {</span>
-<span class="lineNum">     513 </span>                :<span class="lineCov">          4 :         return true; // not enough data</span>
+<span class="lineNum">     512 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 38 times"> + </span>]:<span class="lineCov">         40 :     if( ( in_data_size - *in_data_pos ) &lt;= 0 ) {</span>
+<span class="lineNum">     513 </span>                :<span class="lineCov">          2 :         return true; // not enough data</span>
 <span class="lineNum">     514 </span>                :            :     }
 <span class="lineNum">     515 </span>                :            : 
 <span class="lineNum">     516 </span>                :            :     // skip the codswallop
-<span class="lineNum">     517 </span>        [<span class="branchCov" title="Branch 1 was taken 88 times"> + </span><span class="branchCov" title="Branch 2 was taken 64 times"> + </span>]:<span class="lineCov">        152 :     while( in_data[ real_pos ] != snap_util_get_sync_byte() ) {</span>
-<span class="lineNum">     518 </span>                :<span class="lineCov">         88 :         real_pos++;</span>
-<span class="lineNum">     519 </span>                :<span class="lineCov">         88 :         skip_preamble++;</span>
-<span class="lineNum">     520 </span>                :<span class="lineCov">         88 :         (*in_data_pos)++;</span>
+<span class="lineNum">     517 </span>        [<span class="branchCov" title="Branch 1 was taken 44 times"> + </span><span class="branchCov" title="Branch 2 was taken 32 times"> + </span>]:<span class="lineCov">         76 :     while( in_data[ real_pos ] != snap_util_get_sync_byte() ) {</span>
+<span class="lineNum">     518 </span>                :<span class="lineCov">         44 :         real_pos++;</span>
+<span class="lineNum">     519 </span>                :<span class="lineCov">         44 :         skip_preamble++;</span>
+<span class="lineNum">     520 </span>                :<span class="lineCov">         44 :         (*in_data_pos)++;</span>
 <span class="lineNum">     521 </span>                :            : 
-<span class="lineNum">     522 </span>        [<span class="branchCov" title="Branch 0 was taken 12 times"> + </span><span class="branchCov" title="Branch 1 was taken 76 times"> + </span>]:<span class="lineCov">         88 :         if( ( in_data_size - *in_data_pos ) &lt;= 0 ) {</span>
-<span class="lineNum">     523 </span>                :<span class="lineCov">         12 :             return true; // not enough data</span>
+<span class="lineNum">     522 </span>        [<span class="branchCov" title="Branch 0 was taken 6 times"> + </span><span class="branchCov" title="Branch 1 was taken 38 times"> + </span>]:<span class="lineCov">         44 :         if( ( in_data_size - *in_data_pos ) &lt;= 0 ) {</span>
+<span class="lineNum">     523 </span>                :<span class="lineCov">          6 :             return true; // not enough data</span>
 <span class="lineNum">     524 </span>                :            :         }
 <span class="lineNum">     525 </span>                :            :     }
 <span class="lineNum">     526 </span>                :            : 
-<span class="lineNum">     527 </span>                :<span class="lineCov">         64 :     SNAP_ASSERT( in_data[ real_pos ] == snap_util_get_sync_byte() );</span>
-<span class="lineNum">     528 </span>                :<span class="lineCov">         64 :     SNAP_ASSERT( in_data[ skip_preamble ] == snap_util_get_sync_byte() );</span>
+<span class="lineNum">     527 </span>                :<span class="lineCov">         32 :     SNAP_ASSERT( in_data[ real_pos ] == snap_util_get_sync_byte() );</span>
+<span class="lineNum">     528 </span>                :<span class="lineCov">         32 :     SNAP_ASSERT( in_data[ skip_preamble ] == snap_util_get_sync_byte() );</span>
 <span class="lineNum">     529 </span>                :            : 
 <span class="lineNum">     530 </span>                :            :     // min packet size is 3 byte (1 sync byte, 2 header bytes).
-<span class="lineNum">     531 </span>        [<span class="branchCov" title="Branch 0 was taken 12 times"> + </span><span class="branchCov" title="Branch 1 was taken 52 times"> + </span>]:<span class="lineCov">         64 :     if( ( in_data_size - *in_data_pos ) &lt; 3 ) {</span>
-<span class="lineNum">     532 </span>                :<span class="lineCov">         12 :         return true; // not enough data</span>
+<span class="lineNum">     531 </span>        [<span class="branchCov" title="Branch 0 was taken 6 times"> + </span><span class="branchCov" title="Branch 1 was taken 26 times"> + </span>]:<span class="lineCov">         32 :     if( ( in_data_size - *in_data_pos ) &lt; 3 ) {</span>
+<span class="lineNum">     532 </span>                :<span class="lineCov">          6 :         return true; // not enough data</span>
 <span class="lineNum">     533 </span>                :            :     }
 <span class="lineNum">     534 </span>                :            : 
-<span class="lineNum">     535 </span>                :<span class="lineCov">         52 :     real_pos++; // skip sync byte</span>
+<span class="lineNum">     535 </span>                :<span class="lineCov">         26 :     real_pos++; // skip sync byte</span>
 <span class="lineNum">     536 </span>                :            : 
-<span class="lineNum">     537 </span>                :<span class="lineCov">         52 :     const uint8_t hdb2 = in_data[ real_pos++ ];  // header byte 2</span>
-<span class="lineNum">     538 </span>                :<span class="lineCov">         52 :     const uint8_t hdb1 = in_data[ real_pos++ ];  // header byte 1</span>
+<span class="lineNum">     537 </span>                :<span class="lineCov">         26 :     const uint8_t hdb2 = in_data[ real_pos++ ];  // header byte 2</span>
+<span class="lineNum">     538 </span>                :<span class="lineCov">         26 :     const uint8_t hdb1 = in_data[ real_pos++ ];  // header byte 1</span>
 <span class="lineNum">     539 </span>                :            : 
-<span class="lineNum">     540 </span>                :<span class="lineCov">         52 :     const bool cmdmode               = ( hdb1 &amp; 0x80 ) &gt;&gt; 7u;  // 10000000</span>
-<span class="lineNum">     541 </span>                :<span class="lineCov">         52 :     const SnapErrorDetectionMode edm = ( hdb1 &amp; 0x70 ) &gt;&gt; 4u;  // 01110000</span>
-<span class="lineNum">     542 </span>                :<span class="lineCov">         52 :     uint16_t ndb                     = hdb1 &amp; 0x0F;            // 00001111</span>
+<span class="lineNum">     540 </span>                :<span class="lineCov">         26 :     const bool cmdmode               = ( hdb1 &amp; 0x80 ) &gt;&gt; 7u;  // 10000000</span>
+<span class="lineNum">     541 </span>                :<span class="lineCov">         26 :     const SnapErrorDetectionMode edm = ( hdb1 &amp; 0x70 ) &gt;&gt; 4u;  // 01110000</span>
+<span class="lineNum">     542 </span>                :<span class="lineCov">         26 :     uint16_t ndb                     = hdb1 &amp; 0x0F;            // 00001111</span>
 <span class="lineNum">     543 </span>                :            : 
-<span class="lineNum">     544 </span>                :<span class="lineCov">         52 :     const uint8_t dab                = ( hdb2 &amp; 0xC0 ) &gt;&gt; 6u;  // 11000000</span>
-<span class="lineNum">     545 </span>                :<span class="lineCov">         52 :     const uint8_t sab                = ( hdb2 &amp; 0x30 ) &gt;&gt; 4u;  // 00110000</span>
-<span class="lineNum">     546 </span>                :<span class="lineCov">         52 :     const uint8_t pfb                = ( hdb2 &amp; 0x0C ) &gt;&gt; 2u;  // 00001100</span>
-<span class="lineNum">     547 </span>                :<span class="lineCov">         52 :     const uint8_t ack                = hdb2 &amp; 0x03;            // 00000011</span>
+<span class="lineNum">     544 </span>                :<span class="lineCov">         26 :     const uint8_t dab                = ( hdb2 &amp; 0xC0 ) &gt;&gt; 6u;  // 11000000</span>
+<span class="lineNum">     545 </span>                :<span class="lineCov">         26 :     const uint8_t sab                = ( hdb2 &amp; 0x30 ) &gt;&gt; 4u;  // 00110000</span>
+<span class="lineNum">     546 </span>                :<span class="lineCov">         26 :     const uint8_t pfb                = ( hdb2 &amp; 0x0C ) &gt;&gt; 2u;  // 00001100</span>
+<span class="lineNum">     547 </span>                :<span class="lineCov">         26 :     const uint8_t ack                = hdb2 &amp; 0x03;            // 00000011</span>
 <span class="lineNum">     548 </span>                :            : 
 <span class="lineNum">     549 </span>                :            :     // NOTE not implemented yet (usefull but optional feature)
 <span class="lineNum">     550 </span>                :            :     SNAP_UNUSED( cmdmode );
@@ -633,92 +633,92 @@
 <span class="lineNum">     555 </span>                :            : 
 <span class="lineNum">     556 </span>                :            : 
 <span class="lineNum">     557 </span>                :            :     // calculate size of edm
-<span class="lineNum">     558 </span>                :<span class="lineCov">         52 :     uint8_t edm_size = 0;</span>
-<span class="lineNum">     559 </span>  [<span class="branchCov" title="Branch 0 was taken 24 times"> + </span><span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchCov" title="Branch 2 was taken 12 times"> + </span><span class="branchCov" title="Branch 3 was taken 4 times"> + </span> :<span class="lineCov">         52 :     switch( edm ) {</span>
-<span class="lineNum">         </span>            <span class="branchCov" title="Branch 4 was taken 4 times"> + </span>]
+<span class="lineNum">     558 </span>                :<span class="lineCov">         26 :     uint8_t edm_size = 0;</span>
+<span class="lineNum">     559 </span>  [<span class="branchCov" title="Branch 0 was taken 12 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span><span class="branchCov" title="Branch 2 was taken 6 times"> + </span><span class="branchCov" title="Branch 3 was taken 2 times"> + </span> :<span class="lineCov">         26 :     switch( edm ) {</span>
+<span class="lineNum">         </span>            <span class="branchCov" title="Branch 4 was taken 2 times"> + </span>]
 <span class="lineNum">     560 </span>                :            :         case EDM_NONE:
 <span class="lineNum">     561 </span>                :            :         case EDM_THREETIMES:
 <span class="lineNum">     562 </span>                :            :         case EDM_FEC:
 <span class="lineNum">     563 </span>                :            :         case EDM_USER:
-<span class="lineNum">     564 </span>                :<span class="lineCov">         24 :             break;</span>
+<span class="lineNum">     564 </span>                :<span class="lineCov">         12 :             break;</span>
 <span class="lineNum">     565 </span>                :            : 
 <span class="lineNum">     566 </span>                :            :         case EDM_CHECKSUM:
 <span class="lineNum">     567 </span>                :            :         case EDM_CRC8:
-<span class="lineNum">     568 </span>                :<span class="lineCov">          8 :             edm_size = 1;</span>
-<span class="lineNum">     569 </span>                :<span class="lineCov">          8 :             break;</span>
+<span class="lineNum">     568 </span>                :<span class="lineCov">          4 :             edm_size = 1;</span>
+<span class="lineNum">     569 </span>                :<span class="lineCov">          4 :             break;</span>
 <span class="lineNum">     570 </span>                :            : 
 <span class="lineNum">     571 </span>                :            :         case EDM_CRC16:
-<span class="lineNum">     572 </span>                :<span class="lineCov">         12 :             edm_size = 2;</span>
-<span class="lineNum">     573 </span>                :<span class="lineCov">         12 :             break;</span>
+<span class="lineNum">     572 </span>                :<span class="lineCov">          6 :             edm_size = 2;</span>
+<span class="lineNum">     573 </span>                :<span class="lineCov">          6 :             break;</span>
 <span class="lineNum">     574 </span>                :            : 
 <span class="lineNum">     575 </span>                :            :         case EDM_CRC32:
-<span class="lineNum">     576 </span>                :<span class="lineCov">          4 :             edm_size = 4;</span>
-<span class="lineNum">     577 </span>                :<span class="lineCov">          4 :             break;</span>
+<span class="lineNum">     576 </span>                :<span class="lineCov">          2 :             edm_size = 4;</span>
+<span class="lineNum">     577 </span>                :<span class="lineCov">          2 :             break;</span>
 <span class="lineNum">     578 </span>                :            : 
 <span class="lineNum">     579 </span>                :            :         default:
 <span class="lineNum">     580 </span>                :            :             // bullshit...
-<span class="lineNum">     581 </span>                :<span class="lineCov">          4 :             ptr-&gt;last_decode_error_pos = real_pos;</span>
-<span class="lineNum">     582 </span>                :<span class="lineCov">          4 :             ptr-&gt;last_error = SNAP_ERROR_UNKNOWN_EDM_TYPE;</span>
+<span class="lineNum">     581 </span>                :<span class="lineCov">          2 :             ptr-&gt;last_decode_error_pos = real_pos;</span>
+<span class="lineNum">     582 </span>                :<span class="lineCov">          2 :             ptr-&gt;last_error = SNAP_ERROR_UNKNOWN_EDM_TYPE;</span>
 <span class="lineNum">     583 </span>                :            : 
 <span class="lineNum">     584 </span>                :            :             // Because this looks like a broken packet, we only skip the preamble,
 <span class="lineNum">     585 </span>                :            :             // the sync byte and the 2 header bytes. All the other crap will be
 <span class="lineNum">     586 </span>                :            :             // skipped anyway when calling snap_decode again.
-<span class="lineNum">     587 </span>                :<span class="lineCov">          4 :             *in_data_pos += skip_preamble + 1 + 2;</span>
+<span class="lineNum">     587 </span>                :<span class="lineCov">          2 :             *in_data_pos += skip_preamble + 1 + 2;</span>
 <span class="lineNum">     588 </span>                :            : 
 <span class="lineNum">     589 </span>                :            :             // We can't send an ACK. We do not know who sent the package.
 <span class="lineNum">     590 </span>                :            :             // We even do not know who are the recipient.
-<span class="lineNum">     591 </span>                :<span class="lineCov">          4 :             return false;</span>
+<span class="lineNum">     591 </span>                :<span class="lineCov">          2 :             return false;</span>
 <span class="lineNum">     592 </span>                :            :     }
 <span class="lineNum">     593 </span>                :            : 
 <span class="lineNum">     594 </span>                :            :     // retranslate ndb
-<span class="lineNum">     595 </span>        [<span class="branchCov" title="Branch 0 was taken 44 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         48 :     if( ndb &lt;= 14 ) {</span>
-<span class="lineNum">     596 </span>                :<span class="lineCov">         44 :         ndb = snap_util_map_value_to_ndb( ndb );</span>
+<span class="lineNum">     595 </span>        [<span class="branchCov" title="Branch 0 was taken 22 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         24 :     if( ndb &lt;= 14 ) {</span>
+<span class="lineNum">     596 </span>                :<span class="lineCov">         22 :         ndb = snap_util_map_value_to_ndb( ndb );</span>
 <span class="lineNum">     597 </span>                :            :     }
 <span class="lineNum">     598 </span>                :            :     else {
 <span class="lineNum">     599 </span>                :            :         // illegal ndb value...
-<span class="lineNum">     600 </span>                :<span class="lineCov">          4 :         ptr-&gt;last_decode_error_pos = real_pos;</span>
-<span class="lineNum">     601 </span>                :<span class="lineCov">          4 :         ptr-&gt;last_error = SNAP_ERROR_UNKNOWN_NDB_VALUE;</span>
+<span class="lineNum">     600 </span>                :<span class="lineCov">          2 :         ptr-&gt;last_decode_error_pos = real_pos;</span>
+<span class="lineNum">     601 </span>                :<span class="lineCov">          2 :         ptr-&gt;last_error = SNAP_ERROR_UNKNOWN_NDB_VALUE;</span>
 <span class="lineNum">     602 </span>                :            : 
 <span class="lineNum">     603 </span>                :            :         // Because this looks like a broken packet, we only skip the preamble,
 <span class="lineNum">     604 </span>                :            :         // the sync byte and the 2 header bytes. All the other crap will be
 <span class="lineNum">     605 </span>                :            :         // skipped anyway when calling snap_decode again.
-<span class="lineNum">     606 </span>                :<span class="lineCov">          4 :         *in_data_pos += skip_preamble + 1 + 2;</span>
+<span class="lineNum">     606 </span>                :<span class="lineCov">          2 :         *in_data_pos += skip_preamble + 1 + 2;</span>
 <span class="lineNum">     607 </span>                :            : 
 <span class="lineNum">     608 </span>                :            :         // We can't send an ACK. We do not know who sent the package.
 <span class="lineNum">     609 </span>                :            :         // We even do not know who are the recipient.
-<span class="lineNum">     610 </span>                :<span class="lineCov">          4 :         return false;</span>
+<span class="lineNum">     610 </span>                :<span class="lineCov">          2 :         return false;</span>
 <span class="lineNum">     611 </span>                :            :     }
 <span class="lineNum">     612 </span>                :            : 
 <span class="lineNum">     613 </span>                :            :     // calculate some significant packet sizes
-<span class="lineNum">     614 </span>                :<span class="lineCov">         44 :     const uint16_t packet_size = 1 + 2 + ndb + dab + sab + edm_size;</span>
-<span class="lineNum">     615 </span>                :<span class="lineCov">         44 :     const uint16_t begin_of_packet = skip_preamble;</span>
-<span class="lineNum">     616 </span>                :<span class="lineCov">         44 :     const uint16_t begin_of_data = begin_of_packet + 1 + 2 + dab + sab;</span>
-<span class="lineNum">     617 </span>                :<span class="lineCov">         44 :     const uint16_t end_of_data = begin_of_data + ndb;</span>
-<span class="lineNum">     618 </span>                :<span class="lineCov">         44 :     const uint16_t end_of_packet = end_of_data + edm_size;</span>
+<span class="lineNum">     614 </span>                :<span class="lineCov">         22 :     const uint16_t packet_size = 1 + 2 + ndb + dab + sab + edm_size;</span>
+<span class="lineNum">     615 </span>                :<span class="lineCov">         22 :     const uint16_t begin_of_packet = skip_preamble;</span>
+<span class="lineNum">     616 </span>                :<span class="lineCov">         22 :     const uint16_t begin_of_data = begin_of_packet + 1 + 2 + dab + sab;</span>
+<span class="lineNum">     617 </span>                :<span class="lineCov">         22 :     const uint16_t end_of_data = begin_of_data + ndb;</span>
+<span class="lineNum">     618 </span>                :<span class="lineCov">         22 :     const uint16_t end_of_packet = end_of_data + edm_size;</span>
 <span class="lineNum">     619 </span>                :            : 
-<span class="lineNum">     620 </span>                :<span class="lineCov">         44 :     SNAP_ASSERT( packet_size == end_of_packet - begin_of_packet );</span>
-<span class="lineNum">     621 </span>                :<span class="lineCov">         44 :     SNAP_ASSERT( ndb == end_of_data - begin_of_data );</span>
+<span class="lineNum">     620 </span>                :<span class="lineCov">         22 :     SNAP_ASSERT( packet_size == end_of_packet - begin_of_packet );</span>
+<span class="lineNum">     621 </span>                :<span class="lineCov">         22 :     SNAP_ASSERT( ndb == end_of_data - begin_of_data );</span>
 <span class="lineNum">     622 </span>                :            : 
 <span class="lineNum">     623 </span>                :            :     // check if we have enough data
-<span class="lineNum">     624 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 40 times"> + </span>]:<span class="lineCov">         44 :     const uint16_t required_data_bytes = edm == EDM_THREETIMES</span>
+<span class="lineNum">     624 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 20 times"> + </span>]:<span class="lineCov">         22 :     const uint16_t required_data_bytes = edm == EDM_THREETIMES</span>
 <span class="lineNum">     625 </span>                :            :                                            ? 3 * packet_size
 <span class="lineNum">     626 </span>                :            :                                             : packet_size;
 <span class="lineNum">     627 </span>                :            : 
-<span class="lineNum">     628 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 40 times"> + </span>]:<span class="lineCov">         44 :     if( in_data_size &lt; required_data_bytes ) {</span>
+<span class="lineNum">     628 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 20 times"> + </span>]:<span class="lineCov">         22 :     if( in_data_size &lt; required_data_bytes ) {</span>
 <span class="lineNum">     629 </span>                :            :         // not enough data. That's okay, we just have to wait for more data.
-<span class="lineNum">     630 </span>                :<span class="lineCov">          4 :         return true;</span>
+<span class="lineNum">     630 </span>                :<span class="lineCov">          2 :         return true;</span>
 <span class="lineNum">     631 </span>                :            :     }
 <span class="lineNum">     632 </span>                :            : 
 <span class="lineNum">     633 </span>                :            :     // read destination address bytes, if any
-<span class="lineNum">     634 </span>                :<span class="lineCov">         40 :     uint32_t dest_address = 0;</span>
-<span class="lineNum">     635 </span>        [<span class="branchCov" title="Branch 0 was taken 44 times"> + </span><span class="branchCov" title="Branch 1 was taken 40 times"> + </span>]:<span class="lineCov">         84 :     for(uint8_t i = dab; i &gt; 0; --i) {</span>
-<span class="lineNum">     636 </span>                :<span class="lineCov">         44 :         dest_address += ( in_data[ real_pos++ ] &lt;&lt; ( ( i - 1u ) * 8u ) );</span>
+<span class="lineNum">     634 </span>                :<span class="lineCov">         20 :     uint32_t dest_address = 0;</span>
+<span class="lineNum">     635 </span>        [<span class="branchCov" title="Branch 0 was taken 22 times"> + </span><span class="branchCov" title="Branch 1 was taken 20 times"> + </span>]:<span class="lineCov">         42 :     for(uint8_t i = dab; i &gt; 0; --i) {</span>
+<span class="lineNum">     636 </span>                :<span class="lineCov">         22 :         dest_address += ( in_data[ real_pos++ ] &lt;&lt; ( ( i - 1u ) * 8u ) );</span>
 <span class="lineNum">     637 </span>                :            :     }
 <span class="lineNum">     638 </span>                :            : 
 <span class="lineNum">     639 </span>                :            :     // read source address bytes, if any
-<span class="lineNum">     640 </span>                :<span class="lineCov">         40 :     uint32_t source_address = 0;</span>
-<span class="lineNum">     641 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 40 times"> + </span>]:<span class="lineCov">         44 :     for(uint8_t i = sab; i &gt; 0; --i) {</span>
-<span class="lineNum">     642 </span>                :<span class="lineCov">          4 :         source_address += ( in_data[ real_pos++ ] &lt;&lt; ( ( i - 1u ) * 8u ) );</span>
+<span class="lineNum">     640 </span>                :<span class="lineCov">         20 :     uint32_t source_address = 0;</span>
+<span class="lineNum">     641 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 20 times"> + </span>]:<span class="lineCov">         22 :     for(uint8_t i = sab; i &gt; 0; --i) {</span>
+<span class="lineNum">     642 </span>                :<span class="lineCov">          2 :         source_address += ( in_data[ real_pos++ ] &lt;&lt; ( ( i - 1u ) * 8u ) );</span>
 <span class="lineNum">     643 </span>                :            :     }
 <span class="lineNum">     644 </span>                :            : 
 <span class="lineNum">     645 </span>                :            : #ifdef SNAP_REJECT_PACKETS_WITH_WRONG_ADDRESS
@@ -736,99 +736,99 @@
 <span class="lineNum">     657 </span>                :            : #endif
 <span class="lineNum">     658 </span>                :            : 
 <span class="lineNum">     659 </span>                :            :     // calculate current packet checksum
-<span class="lineNum">     660 </span>                :<span class="lineCov">         40 :     uint32_t edm_code_expected = 0;</span>
-<span class="lineNum">     661 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span><span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchCov" title="Branch 3 was taken 12 times"> + </span><span class="branchCov" title="Branch 4 was taken 4 times"> + </span>:<span class="lineCov">         40 :     switch( edm ) {</span>
-<span class="lineNum">         </span>            <span class="branchCov" title="Branch 5 was taken 12 times"> + </span>]
+<span class="lineNum">     660 </span>                :<span class="lineCov">         20 :     uint32_t edm_code_expected = 0;</span>
+<span class="lineNum">     661 </span>[<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchCov" title="Branch 3 was taken 6 times"> + </span><span class="branchCov" title="Branch 4 was taken 2 times"> + </span>:<span class="lineCov">         20 :     switch( edm ) {</span>
+<span class="lineNum">         </span>            <span class="branchCov" title="Branch 5 was taken 6 times"> + </span>]
 <span class="lineNum">     662 </span>                :            :         case EDM_THREETIMES:
 <span class="lineNum">     663 </span>                :            :         case EDM_FEC:
 <span class="lineNum">     664 </span>                :            :         case EDM_USER:
-<span class="lineNum">     665 </span>                :<span class="lineCov">          4 :             break;</span>
+<span class="lineNum">     665 </span>                :<span class="lineCov">          2 :             break;</span>
 <span class="lineNum">     666 </span>                :            : 
 <span class="lineNum">     667 </span>                :            :         case EDM_CHECKSUM:
-<span class="lineNum">     668 </span>                :<span class="lineCov">          4 :             edm_code_expected = snap_checksum( in_data + begin_of_packet + 1,</span>
-<span class="lineNum">     669 </span>                :<span class="lineCov">          4 :                                             end_of_data - 1</span>
+<span class="lineNum">     668 </span>                :<span class="lineCov">          2 :             edm_code_expected = snap_checksum( in_data + begin_of_packet + 1,</span>
+<span class="lineNum">     669 </span>                :<span class="lineCov">          2 :                                             end_of_data - 1</span>
 <span class="lineNum">     670 </span>                :            :                                              );
-<span class="lineNum">     671 </span>                :<span class="lineCov">          4 :             break;</span>
+<span class="lineNum">     671 </span>                :<span class="lineCov">          2 :             break;</span>
 <span class="lineNum">     672 </span>                :            : 
 <span class="lineNum">     673 </span>                :            :         case EDM_CRC8:
-<span class="lineNum">     674 </span>                :<span class="lineCov">          4 :             edm_code_expected = snap_crc8( in_data + begin_of_packet + 1,</span>
-<span class="lineNum">     675 </span>                :<span class="lineCov">          4 :                                             end_of_data - 1</span>
+<span class="lineNum">     674 </span>                :<span class="lineCov">          2 :             edm_code_expected = snap_crc8( in_data + begin_of_packet + 1,</span>
+<span class="lineNum">     675 </span>                :<span class="lineCov">          2 :                                             end_of_data - 1</span>
 <span class="lineNum">     676 </span>                :            :                                          );
-<span class="lineNum">     677 </span>                :<span class="lineCov">          4 :             break;</span>
+<span class="lineNum">     677 </span>                :<span class="lineCov">          2 :             break;</span>
 <span class="lineNum">     678 </span>                :            : 
 <span class="lineNum">     679 </span>                :            :         case EDM_CRC16:
-<span class="lineNum">     680 </span>                :<span class="lineCov">         12 :             edm_code_expected = snap_crc16( in_data + begin_of_packet + 1,</span>
-<span class="lineNum">     681 </span>                :<span class="lineCov">         12 :                                             end_of_data - 1</span>
+<span class="lineNum">     680 </span>                :<span class="lineCov">          6 :             edm_code_expected = snap_crc16( in_data + begin_of_packet + 1,</span>
+<span class="lineNum">     681 </span>                :<span class="lineCov">          6 :                                             end_of_data - 1</span>
 <span class="lineNum">     682 </span>                :            :                                            );
-<span class="lineNum">     683 </span>                :<span class="lineCov">         12 :             break;</span>
+<span class="lineNum">     683 </span>                :<span class="lineCov">          6 :             break;</span>
 <span class="lineNum">     684 </span>                :            : 
 <span class="lineNum">     685 </span>                :            :         case EDM_CRC32:
-<span class="lineNum">     686 </span>                :<span class="lineCov">          4 :             edm_code_expected = snap_crc32( in_data + begin_of_packet + 1,</span>
-<span class="lineNum">     687 </span>                :<span class="lineCov">          4 :                                             end_of_data - 1</span>
+<span class="lineNum">     686 </span>                :<span class="lineCov">          2 :             edm_code_expected = snap_crc32( in_data + begin_of_packet + 1,</span>
+<span class="lineNum">     687 </span>                :<span class="lineCov">          2 :                                             end_of_data - 1</span>
 <span class="lineNum">     688 </span>                :            :                                           );
-<span class="lineNum">     689 </span>                :<span class="lineCov">          4 :             break;</span>
+<span class="lineNum">     689 </span>                :<span class="lineCov">          2 :             break;</span>
 <span class="lineNum">     690 </span>                :            : 
 <span class="lineNum">     691 </span>                :            :         default: // (No EDM)
-<span class="lineNum">     692 </span>                :<span class="lineCov">         12 :             SNAP_ASSERT( edm == EDM_NONE );</span>
-<span class="lineNum">     693 </span>                :<span class="lineCov">         12 :             break;</span>
+<span class="lineNum">     692 </span>                :<span class="lineCov">          6 :             SNAP_ASSERT( edm == EDM_NONE );</span>
+<span class="lineNum">     693 </span>                :<span class="lineCov">          6 :             break;</span>
 <span class="lineNum">     694 </span>                :            :     }
 <span class="lineNum">     695 </span>                :            : 
 <span class="lineNum">     696 </span>                :            :     // check error detection code
-<span class="lineNum">     697 </span>                :<span class="lineCov">         40 :     SNAP_ASSERT( end_of_packet - end_of_data == edm_size );</span>
+<span class="lineNum">     697 </span>                :<span class="lineCov">         20 :     SNAP_ASSERT( end_of_packet - end_of_data == edm_size );</span>
 <span class="lineNum">     698 </span>                :            : 
-<span class="lineNum">     699 </span>                :<span class="lineCov">         40 :     uint32_t edm_code = 0;</span>
-<span class="lineNum">     700 </span>                :<span class="lineCov">         40 :     size_t edm_pos = end_of_data;</span>
-<span class="lineNum">     701 </span>        [<span class="branchCov" title="Branch 0 was taken 48 times"> + </span><span class="branchCov" title="Branch 1 was taken 40 times"> + </span>]:<span class="lineCov">         88 :     for(size_t i = edm_size; i &gt; 0; --i) {</span>
-<span class="lineNum">     702 </span>                :<span class="lineCov">         48 :         edm_code += in_data[ edm_pos++ ] &lt;&lt; ( ( i - 1u ) * 8u );</span>
+<span class="lineNum">     699 </span>                :<span class="lineCov">         20 :     uint32_t edm_code = 0;</span>
+<span class="lineNum">     700 </span>                :<span class="lineCov">         20 :     size_t edm_pos = end_of_data;</span>
+<span class="lineNum">     701 </span>        [<span class="branchCov" title="Branch 0 was taken 24 times"> + </span><span class="branchCov" title="Branch 1 was taken 20 times"> + </span>]:<span class="lineCov">         44 :     for(size_t i = edm_size; i &gt; 0; --i) {</span>
+<span class="lineNum">     702 </span>                :<span class="lineCov">         24 :         edm_code += in_data[ edm_pos++ ] &lt;&lt; ( ( i - 1u ) * 8u );</span>
 <span class="lineNum">     703 </span>                :            :     }
 <span class="lineNum">     704 </span>                :            : 
-<span class="lineNum">     705 </span>        [<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchCov" title="Branch 1 was taken 32 times"> + </span>]:<span class="lineCov">         40 :     if( edm_code != edm_code_expected ) {</span>
-<span class="lineNum">     706 </span>                :<span class="lineCov">          8 :         ptr-&gt;last_decode_error_pos = end_of_data;</span>
-<span class="lineNum">     707 </span>                :<span class="lineCov">          8 :         ptr-&gt;last_error = SNAP_ERROR_INVALID_EDM;</span>
+<span class="lineNum">     705 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 16 times"> + </span>]:<span class="lineCov">         20 :     if( edm_code != edm_code_expected ) {</span>
+<span class="lineNum">     706 </span>                :<span class="lineCov">          4 :         ptr-&gt;last_decode_error_pos = end_of_data;</span>
+<span class="lineNum">     707 </span>                :<span class="lineCov">          4 :         ptr-&gt;last_error = SNAP_ERROR_INVALID_EDM;</span>
 <span class="lineNum">     708 </span>                :            : 
-<span class="lineNum">     709 </span>                :<span class="lineCov">          8 :         *in_data_pos += end_of_packet;</span>
+<span class="lineNum">     709 </span>                :<span class="lineCov">          4 :         *in_data_pos += end_of_packet;</span>
 <span class="lineNum">     710 </span>                :            : 
-<span class="lineNum">     711 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">          8 :         if( ack == 1 ) {</span>
-<span class="lineNum">     712 </span>                :<span class="lineCov">          4 :             snap_util_create_nak_response( dest_address, source_address,</span>
+<span class="lineNum">     711 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">          4 :         if( ack == 1 ) {</span>
+<span class="lineNum">     712 </span>                :<span class="lineCov">          2 :             snap_util_create_nak_response( dest_address, source_address,</span>
 <span class="lineNum">     713 </span>                :            :                                          response, response_pos, response_size
 <span class="lineNum">     714 </span>                :            :                                        );
 <span class="lineNum">     715 </span>                :            :         }
 <span class="lineNum">     716 </span>                :            : 
-<span class="lineNum">     717 </span>                :<span class="lineCov">          8 :         return false;</span>
+<span class="lineNum">     717 </span>                :<span class="lineCov">          4 :         return false;</span>
 <span class="lineNum">     718 </span>                :            :     }
 <span class="lineNum">     719 </span>                :            : 
 <span class="lineNum">     720 </span>                :            :     // calculate number of fill bytes (0-bytes) we can/have to skip from the end.
-<span class="lineNum">     721 </span>                :<span class="lineCov">         32 :     size_t skip_byte_count = 0;</span>
-<span class="lineNum">     722 </span>        [<span class="branchCov" title="Branch 0 was taken 1412 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">       1412 :     for(size_t i = end_of_data - 1; i &gt; begin_of_data; --i) {</span>
-<span class="lineNum">     723 </span>        [<span class="branchCov" title="Branch 1 was taken 32 times"> + </span><span class="branchCov" title="Branch 2 was taken 1380 times"> + </span>]:<span class="lineCov">       1412 :         if( in_data[ i ] != snap_util_get_fill_byte() ) {</span>
-<span class="lineNum">     724 </span>                :<span class="lineCov">         32 :             break;</span>
+<span class="lineNum">     721 </span>                :<span class="lineCov">         16 :     size_t skip_byte_count = 0;</span>
+<span class="lineNum">     722 </span>        [<span class="branchCov" title="Branch 0 was taken 706 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        706 :     for(size_t i = end_of_data - 1; i &gt; begin_of_data; --i) {</span>
+<span class="lineNum">     723 </span>        [<span class="branchCov" title="Branch 1 was taken 16 times"> + </span><span class="branchCov" title="Branch 2 was taken 690 times"> + </span>]:<span class="lineCov">        706 :         if( in_data[ i ] != snap_util_get_fill_byte() ) {</span>
+<span class="lineNum">     724 </span>                :<span class="lineCov">         16 :             break;</span>
 <span class="lineNum">     725 </span>                :            :         }
 <span class="lineNum">     726 </span>                :            : 
-<span class="lineNum">     727 </span>                :<span class="lineCov">       1380 :         skip_byte_count++;</span>
+<span class="lineNum">     727 </span>                :<span class="lineCov">        690 :         skip_byte_count++;</span>
 <span class="lineNum">     728 </span>                :            :     }
 <span class="lineNum">     729 </span>                :            : 
 <span class="lineNum">     730 </span>                :            :     // read significant data bytes
-<span class="lineNum">     731 </span>        [<span class="branchCov" title="Branch 0 was taken 2236 times"> + </span><span class="branchCov" title="Branch 1 was taken 32 times"> + </span>]:<span class="lineCov">       2268 :     for(size_t i = begin_of_data; i &lt; end_of_data - skip_byte_count; ++i) {</span>
-<span class="lineNum">     732 </span>                :<span class="lineCov">       2236 :         uint8_t value = in_data[ i ];</span>
-<span class="lineNum">     733 </span>                :<span class="lineCov">       2236 :         result[ *result_pos ] = value;</span>
-<span class="lineNum">     734 </span>                :<span class="lineCov">       2236 :         (*result_pos)++;</span>
-<span class="lineNum">     735 </span>                :<span class="lineCov">       2236 :         real_pos++;</span>
+<span class="lineNum">     731 </span>        [<span class="branchCov" title="Branch 0 was taken 1118 times"> + </span><span class="branchCov" title="Branch 1 was taken 16 times"> + </span>]:<span class="lineCov">       1134 :     for(size_t i = begin_of_data; i &lt; end_of_data - skip_byte_count; ++i) {</span>
+<span class="lineNum">     732 </span>                :<span class="lineCov">       1118 :         uint8_t value = in_data[ i ];</span>
+<span class="lineNum">     733 </span>                :<span class="lineCov">       1118 :         result[ *result_pos ] = value;</span>
+<span class="lineNum">     734 </span>                :<span class="lineCov">       1118 :         (*result_pos)++;</span>
+<span class="lineNum">     735 </span>                :<span class="lineCov">       1118 :         real_pos++;</span>
 <span class="lineNum">     736 </span>                :            :     }
 <span class="lineNum">     737 </span>                :            : 
-<span class="lineNum">     738 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 28 times"> + </span>]:<span class="lineCov">         32 :     if( ack == 1 ) {</span>
-<span class="lineNum">     739 </span>                :<span class="lineCov">          4 :         snap_util_create_ack_response( dest_address, source_address,</span>
+<span class="lineNum">     738 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 14 times"> + </span>]:<span class="lineCov">         16 :     if( ack == 1 ) {</span>
+<span class="lineNum">     739 </span>                :<span class="lineCov">          2 :         snap_util_create_ack_response( dest_address, source_address,</span>
 <span class="lineNum">     740 </span>                :            :                                      response, response_pos, response_size
 <span class="lineNum">     741 </span>                :            :                                    );
 <span class="lineNum">     742 </span>                :            :     }
 <span class="lineNum">     743 </span>                :            : 
-<span class="lineNum">     744 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 28 times"> + </span>]:<span class="lineCov">         32 :     if( edm == EDM_THREETIMES ) {</span>
-<span class="lineNum">     745 </span>                :<span class="lineCov">          4 :         *in_data_pos += 3 * end_of_packet;</span>
+<span class="lineNum">     744 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 14 times"> + </span>]:<span class="lineCov">         16 :     if( edm == EDM_THREETIMES ) {</span>
+<span class="lineNum">     745 </span>                :<span class="lineCov">          2 :         *in_data_pos += 3 * end_of_packet;</span>
 <span class="lineNum">     746 </span>                :            :     }
 <span class="lineNum">     747 </span>                :            :     else {
-<span class="lineNum">     748 </span>                :<span class="lineCov">         28 :         *in_data_pos += end_of_packet;</span>
+<span class="lineNum">     748 </span>                :<span class="lineCov">         14 :         *in_data_pos += end_of_packet;</span>
 <span class="lineNum">     749 </span>                :            :     }
 <span class="lineNum">     750 </span>                :            : 
-<span class="lineNum">     751 </span>                :<span class="lineCov">         80 :     return true;</span>
+<span class="lineNum">     751 </span>                :<span class="lineCov">         40 :     return true;</span>
 <span class="lineNum">     752 </span>                :            : }
 <span class="lineNum">     753 </span>                :            : 
 <span class="lineNum">     754 </span>                :            : 

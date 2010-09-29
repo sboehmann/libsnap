@@ -116,297 +116,297 @@
 <span class="lineNum">      39 </span>                :            : #define POWEROF2(x) ( (1ull) &lt;&lt; (x) )
 <a name="40"><span class="lineNum">      40 </span>                :            : </a>
 <span class="lineNum">      41 </span>                :            : 
-<span class="lineNum">      42 </span>                :<span class="lineCov">          8 : void* priv_snap_utils_test_allocator_alloc(size_t size, long opaque)</span>
+<span class="lineNum">      42 </span>                :<span class="lineCov">          4 : void* priv_snap_utils_test_allocator_alloc(size_t size, long opaque)</span>
 <span class="lineNum">      43 </span>                :            : {
-<span class="lineNum">      44 </span>                :<span class="lineCov">          8 :     SNAP_ASSERT( size == 23 );</span>
-<span class="lineNum">      45 </span>                :<span class="lineCov">          8 :     SNAP_ASSERT( opaque == 42 );</span>
+<span class="lineNum">      44 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( size == 23 );</span>
+<span class="lineNum">      45 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( opaque == 42 );</span>
 <span class="lineNum">      46 </span>                :            : 
-<span class="lineNum">      47 </span>                :<span class="lineCov">          8 :     return NULL;</span>
+<span class="lineNum">      47 </span>                :<span class="lineCov">          4 :     return NULL;</span>
 <span class="lineNum">      48 </span>                :            : }
 <a name="49"><span class="lineNum">      49 </span>                :            : </a>
 <span class="lineNum">      50 </span>                :            : 
-<span class="lineNum">      51 </span>                :<span class="lineCov">          8 : void priv_snap_utils_test_allocator_free(void *ptr, long opaque)</span>
+<span class="lineNum">      51 </span>                :<span class="lineCov">          4 : void priv_snap_utils_test_allocator_free(void *ptr, long opaque)</span>
 <span class="lineNum">      52 </span>                :            : {
-<span class="lineNum">      53 </span>                :<span class="lineCov">          8 :     SNAP_ASSERT( ptr == NULL );</span>
-<span class="lineNum">      54 </span>                :<span class="lineCov">          8 :     SNAP_ASSERT( opaque == 23 );</span>
-<span class="lineNum">      55 </span>                :<span class="lineCov">          8 : }</span>
+<span class="lineNum">      53 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( ptr == NULL );</span>
+<span class="lineNum">      54 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( opaque == 23 );</span>
+<span class="lineNum">      55 </span>                :<span class="lineCov">          4 : }</span>
 <a name="56"><span class="lineNum">      56 </span>                :            : </a>
 <span class="lineNum">      57 </span>                :            : 
-<span class="lineNum">      58 </span>                :<span class="lineCov">          4 : void snap_utils_test_alloc()</span>
+<span class="lineNum">      58 </span>                :<span class="lineCov">          2 : void snap_utils_test_alloc()</span>
 <span class="lineNum">      59 </span>                :            : {
 <span class="lineNum">      60 </span>                :            :     {
 <span class="lineNum">      61 </span>                :            :         // This test is nothing to write home about. But no crash (SegFault) is
 <span class="lineNum">      62 </span>                :            :         // also a realization and Valgrind can also say something about it.
-<span class="lineNum">      63 </span>                :<span class="lineCov">          4 :         char *c = snap_util_alloc( NULL, 3 );</span>
-<span class="lineNum">      64 </span>                :<span class="lineCov">          4 :         c[ 0 ] = 'A';</span>
-<span class="lineNum">      65 </span>                :<span class="lineCov">          4 :         c[ 1 ] = 'B';</span>
-<span class="lineNum">      66 </span>                :<span class="lineCov">          4 :         c[ 2 ] = 'C';</span>
-<span class="lineNum">      67 </span>                :<span class="lineCov">          4 :         snap_util_free( NULL, c );</span>
+<span class="lineNum">      63 </span>                :<span class="lineCov">          2 :         char *c = snap_util_alloc( NULL, 3 );</span>
+<span class="lineNum">      64 </span>                :<span class="lineCov">          2 :         c[ 0 ] = 'A';</span>
+<span class="lineNum">      65 </span>                :<span class="lineCov">          2 :         c[ 1 ] = 'B';</span>
+<span class="lineNum">      66 </span>                :<span class="lineCov">          2 :         c[ 2 ] = 'C';</span>
+<span class="lineNum">      67 </span>                :<span class="lineCov">          2 :         snap_util_free( NULL, c );</span>
 <span class="lineNum">      68 </span>                :            :     }
 <span class="lineNum">      69 </span>                :            : 
 <span class="lineNum">      70 </span>                :            :     snap_allocator_t a;
-<span class="lineNum">      71 </span>                :<span class="lineCov">          4 :     a.opaque = 42;</span>
-<span class="lineNum">      72 </span>                :<span class="lineCov">          4 :     a.alloc = priv_snap_utils_test_allocator_alloc;</span>
+<span class="lineNum">      71 </span>                :<span class="lineCov">          2 :     a.opaque = 42;</span>
+<span class="lineNum">      72 </span>                :<span class="lineCov">          2 :     a.alloc = priv_snap_utils_test_allocator_alloc;</span>
 <span class="lineNum">      73 </span>                :            : 
-<span class="lineNum">      74 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_alloc( &amp;a, 23 ) == NULL );</span>
+<span class="lineNum">      74 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_alloc( &amp;a, 23 ) == NULL );</span>
 <span class="lineNum">      75 </span>                :            : 
-<span class="lineNum">      76 </span>                :<span class="lineCov">          4 :     a.free = priv_snap_utils_test_allocator_free;</span>
-<span class="lineNum">      77 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_alloc( &amp;a, 23 ) == NULL );</span>
-<span class="lineNum">      78 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">      76 </span>                :<span class="lineCov">          2 :     a.free = priv_snap_utils_test_allocator_free;</span>
+<span class="lineNum">      77 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_alloc( &amp;a, 23 ) == NULL );</span>
+<span class="lineNum">      78 </span>                :<span class="lineCov">          2 : }</span>
 <a name="79"><span class="lineNum">      79 </span>                :            : </a>
 <span class="lineNum">      80 </span>                :            : 
-<span class="lineNum">      81 </span>                :<span class="lineCov">          4 : void snap_utils_test_free()</span>
+<span class="lineNum">      81 </span>                :<span class="lineCov">          2 : void snap_utils_test_free()</span>
 <span class="lineNum">      82 </span>                :            : {
 <span class="lineNum">      83 </span>                :            :     snap_allocator_t a;
-<span class="lineNum">      84 </span>                :<span class="lineCov">          4 :     a.opaque = 23;</span>
-<span class="lineNum">      85 </span>                :<span class="lineCov">          4 :     a.free = priv_snap_utils_test_allocator_free;</span>
+<span class="lineNum">      84 </span>                :<span class="lineCov">          2 :     a.opaque = 23;</span>
+<span class="lineNum">      85 </span>                :<span class="lineCov">          2 :     a.free = priv_snap_utils_test_allocator_free;</span>
 <span class="lineNum">      86 </span>                :            : 
-<span class="lineNum">      87 </span>                :<span class="lineCov">          4 :     snap_util_free( &amp;a, NULL );</span>
+<span class="lineNum">      87 </span>                :<span class="lineCov">          2 :     snap_util_free( &amp;a, NULL );</span>
 <span class="lineNum">      88 </span>                :            : 
-<span class="lineNum">      89 </span>                :<span class="lineCov">          4 :     a.alloc = priv_snap_utils_test_allocator_alloc;</span>
-<span class="lineNum">      90 </span>                :<span class="lineCov">          4 :     snap_util_free( &amp;a, NULL );</span>
-<span class="lineNum">      91 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">      89 </span>                :<span class="lineCov">          2 :     a.alloc = priv_snap_utils_test_allocator_alloc;</span>
+<span class="lineNum">      90 </span>                :<span class="lineCov">          2 :     snap_util_free( &amp;a, NULL );</span>
+<span class="lineNum">      91 </span>                :<span class="lineCov">          2 : }</span>
 <a name="92"><span class="lineNum">      92 </span>                :            : </a>
 <span class="lineNum">      93 </span>                :            : 
-<span class="lineNum">      94 </span>                :<span class="lineCov">          4 : void snap_utils_test_test_bit()</span>
+<span class="lineNum">      94 </span>                :<span class="lineCov">          2 : void snap_utils_test_test_bit()</span>
 <span class="lineNum">      95 </span>                :            : {
-<span class="lineNum">      96 </span>        [<span class="branchCov" title="Branch 0 was taken 32 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         36 :     for( uint8_t i = 0; i &lt; 8; ++i ) {</span>
-<span class="lineNum">      97 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_test_bit( 0xAA, i ) == ( i % 2 == 1 ) );</span>
-<span class="lineNum">      98 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_test_bit16( 0xAA, i ) == ( i % 2 == 1 ) );</span>
-<span class="lineNum">      99 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_test_bit32( 0xAA, i ) == ( i % 2 == 1 ) );</span>
-<span class="lineNum">     100 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_test_bit64( 0xAA, i ) == ( i % 2 == 1 ) );</span>
+<span class="lineNum">      96 </span>        [<span class="branchCov" title="Branch 0 was taken 16 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         18 :     for( uint8_t i = 0; i &lt; 8; ++i ) {</span>
+<span class="lineNum">      97 </span>                :<span class="lineCov">         16 :         SNAP_ASSERT( snap_util_test_bit( 0xAA, i ) == ( i % 2 == 1 ) );</span>
+<span class="lineNum">      98 </span>                :<span class="lineCov">         16 :         SNAP_ASSERT( snap_util_test_bit16( 0xAA, i ) == ( i % 2 == 1 ) );</span>
+<span class="lineNum">      99 </span>                :<span class="lineCov">         16 :         SNAP_ASSERT( snap_util_test_bit32( 0xAA, i ) == ( i % 2 == 1 ) );</span>
+<span class="lineNum">     100 </span>                :<span class="lineCov">         16 :         SNAP_ASSERT( snap_util_test_bit64( 0xAA, i ) == ( i % 2 == 1 ) );</span>
 <span class="lineNum">     101 </span>                :            :     }
 <span class="lineNum">     102 </span>                :            : 
-<span class="lineNum">     103 </span>        [<span class="branchCov" title="Branch 0 was taken 64 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         68 :     for( uint8_t i = 0; i &lt; 16; ++i ) {</span>
-<span class="lineNum">     104 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_test_bit16( 0xAAAA, i ) == ( i % 2 == 1 ) );</span>
-<span class="lineNum">     105 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_test_bit32( 0xAAAA, i ) == ( i % 2 == 1 ) );</span>
-<span class="lineNum">     106 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_test_bit64( 0xAAAA, i ) == ( i % 2 == 1 ) );</span>
+<span class="lineNum">     103 </span>        [<span class="branchCov" title="Branch 0 was taken 32 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         34 :     for( uint8_t i = 0; i &lt; 16; ++i ) {</span>
+<span class="lineNum">     104 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_test_bit16( 0xAAAA, i ) == ( i % 2 == 1 ) );</span>
+<span class="lineNum">     105 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_test_bit32( 0xAAAA, i ) == ( i % 2 == 1 ) );</span>
+<span class="lineNum">     106 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_test_bit64( 0xAAAA, i ) == ( i % 2 == 1 ) );</span>
 <span class="lineNum">     107 </span>                :            :     }
 <span class="lineNum">     108 </span>                :            : 
-<span class="lineNum">     109 </span>        [<span class="branchCov" title="Branch 0 was taken 128 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">        132 :     for( uint8_t i = 0; i &lt; 32; ++i ) {</span>
-<span class="lineNum">     110 </span>                :<span class="lineCov">        128 :         SNAP_ASSERT( snap_util_test_bit32( 0xAAAAAAAA, i ) == ( i % 2 == 1 ) );</span>
-<span class="lineNum">     111 </span>                :<span class="lineCov">        128 :         SNAP_ASSERT( snap_util_test_bit64( 0xAAAAAAAA, i ) == ( i % 2 == 1 ) );</span>
+<span class="lineNum">     109 </span>        [<span class="branchCov" title="Branch 0 was taken 64 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         66 :     for( uint8_t i = 0; i &lt; 32; ++i ) {</span>
+<span class="lineNum">     110 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_test_bit32( 0xAAAAAAAA, i ) == ( i % 2 == 1 ) );</span>
+<span class="lineNum">     111 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_test_bit64( 0xAAAAAAAA, i ) == ( i % 2 == 1 ) );</span>
 <span class="lineNum">     112 </span>                :            :     }
 <span class="lineNum">     113 </span>                :            : 
-<span class="lineNum">     114 </span>        [<span class="branchCov" title="Branch 0 was taken 256 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">        260 :     for( uint8_t i = 0; i &lt; 64; ++i ) {</span>
-<span class="lineNum">     115 </span>                :<span class="lineCov">        256 :         SNAP_ASSERT( snap_util_test_bit64( 0xAAAAAAAAAAAAAAAA, i ) == ( i % 2 == 1 ) );</span>
+<span class="lineNum">     114 </span>        [<span class="branchCov" title="Branch 0 was taken 128 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">        130 :     for( uint8_t i = 0; i &lt; 64; ++i ) {</span>
+<span class="lineNum">     115 </span>                :<span class="lineCov">        128 :         SNAP_ASSERT( snap_util_test_bit64( 0xAAAAAAAAAAAAAAAA, i ) == ( i % 2 == 1 ) );</span>
 <span class="lineNum">     116 </span>                :            :     }
-<span class="lineNum">     117 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     117 </span>                :<span class="lineCov">          2 : }</span>
 <a name="118"><span class="lineNum">     118 </span>                :            : </a>
 <span class="lineNum">     119 </span>                :            : 
-<span class="lineNum">     120 </span>                :<span class="lineCov">          4 : void snap_utils_test_set_bit()</span>
+<span class="lineNum">     120 </span>                :<span class="lineCov">          2 : void snap_utils_test_set_bit()</span>
 <span class="lineNum">     121 </span>                :            : {
-<span class="lineNum">     122 </span>        [<span class="branchCov" title="Branch 0 was taken 32 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         36 :     for( uint8_t i = 0; i &lt; 8; ++i) {</span>
-<span class="lineNum">     123 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_set_bit( 0, i ) == 1 &lt;&lt; i );</span>
-<span class="lineNum">     124 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_set_bit16( 0, i ) == 1 &lt;&lt; i );</span>
-<span class="lineNum">     125 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_set_bit32( 0, i ) == 1u &lt;&lt; i );</span>
-<span class="lineNum">     126 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_set_bit64( 0, i ) == 1ull &lt;&lt; i );</span>
+<span class="lineNum">     122 </span>        [<span class="branchCov" title="Branch 0 was taken 16 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         18 :     for( uint8_t i = 0; i &lt; 8; ++i) {</span>
+<span class="lineNum">     123 </span>                :<span class="lineCov">         16 :         SNAP_ASSERT( snap_util_set_bit( 0, i ) == 1 &lt;&lt; i );</span>
+<span class="lineNum">     124 </span>                :<span class="lineCov">         16 :         SNAP_ASSERT( snap_util_set_bit16( 0, i ) == 1 &lt;&lt; i );</span>
+<span class="lineNum">     125 </span>                :<span class="lineCov">         16 :         SNAP_ASSERT( snap_util_set_bit32( 0, i ) == 1u &lt;&lt; i );</span>
+<span class="lineNum">     126 </span>                :<span class="lineCov">         16 :         SNAP_ASSERT( snap_util_set_bit64( 0, i ) == 1ull &lt;&lt; i );</span>
 <span class="lineNum">     127 </span>                :            :     }
 <span class="lineNum">     128 </span>                :            : 
-<span class="lineNum">     129 </span>        [<span class="branchCov" title="Branch 0 was taken 64 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         68 :     for( uint8_t i = 0; i &lt; 16; ++i) {</span>
-<span class="lineNum">     130 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_set_bit16( 0, i ) == 1 &lt;&lt; i );</span>
-<span class="lineNum">     131 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_set_bit32( 0, i ) == 1u &lt;&lt; i );</span>
-<span class="lineNum">     132 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_set_bit64( 0, i ) == 1ull &lt;&lt; i );</span>
+<span class="lineNum">     129 </span>        [<span class="branchCov" title="Branch 0 was taken 32 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         34 :     for( uint8_t i = 0; i &lt; 16; ++i) {</span>
+<span class="lineNum">     130 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_set_bit16( 0, i ) == 1 &lt;&lt; i );</span>
+<span class="lineNum">     131 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_set_bit32( 0, i ) == 1u &lt;&lt; i );</span>
+<span class="lineNum">     132 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_set_bit64( 0, i ) == 1ull &lt;&lt; i );</span>
 <span class="lineNum">     133 </span>                :            :     }
 <span class="lineNum">     134 </span>                :            : 
-<span class="lineNum">     135 </span>        [<span class="branchCov" title="Branch 0 was taken 128 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">        132 :     for( uint8_t i = 0; i &lt; 32; ++i) {</span>
-<span class="lineNum">     136 </span>                :<span class="lineCov">        128 :         SNAP_ASSERT( snap_util_set_bit32( 0, i ) == 1u &lt;&lt; i );</span>
-<span class="lineNum">     137 </span>                :<span class="lineCov">        128 :         SNAP_ASSERT( snap_util_set_bit64( 0, i ) == 1ull &lt;&lt; i );</span>
+<span class="lineNum">     135 </span>        [<span class="branchCov" title="Branch 0 was taken 64 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         66 :     for( uint8_t i = 0; i &lt; 32; ++i) {</span>
+<span class="lineNum">     136 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_set_bit32( 0, i ) == 1u &lt;&lt; i );</span>
+<span class="lineNum">     137 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_set_bit64( 0, i ) == 1ull &lt;&lt; i );</span>
 <span class="lineNum">     138 </span>                :            :     }
 <span class="lineNum">     139 </span>                :            : 
-<span class="lineNum">     140 </span>        [<span class="branchCov" title="Branch 0 was taken 256 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">        260 :     for( uint8_t i = 0; i &lt; 64; ++i) {</span>
-<span class="lineNum">     141 </span>                :<span class="lineCov">        256 :         SNAP_ASSERT( snap_util_set_bit64( 0, i ) == 1ull &lt;&lt; i );</span>
+<span class="lineNum">     140 </span>        [<span class="branchCov" title="Branch 0 was taken 128 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">        130 :     for( uint8_t i = 0; i &lt; 64; ++i) {</span>
+<span class="lineNum">     141 </span>                :<span class="lineCov">        128 :         SNAP_ASSERT( snap_util_set_bit64( 0, i ) == 1ull &lt;&lt; i );</span>
 <span class="lineNum">     142 </span>                :            :     }
-<span class="lineNum">     143 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     143 </span>                :<span class="lineCov">          2 : }</span>
 <a name="144"><span class="lineNum">     144 </span>                :            : </a>
 <span class="lineNum">     145 </span>                :            : 
-<span class="lineNum">     146 </span>                :<span class="lineCov">          4 : void snap_utils_test_clear_bit()</span>
+<span class="lineNum">     146 </span>                :<span class="lineCov">          2 : void snap_utils_test_clear_bit()</span>
 <span class="lineNum">     147 </span>                :            : {
-<span class="lineNum">     148 </span>        [<span class="branchCov" title="Branch 0 was taken 32 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         36 :     for( uint8_t i = 0; i &lt; 8; ++i) {</span>
-<span class="lineNum">     149 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_clear_bit( 0xFF, i ) == 0xFF - POWEROF2( i ) );</span>
-<span class="lineNum">     150 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_clear_bit16( 0xFFFF, i ) == 0xFFFF - POWEROF2( i ) );</span>
-<span class="lineNum">     151 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_clear_bit32( 0xFFFFFFFF, i ) == 0xFFFFFFFF - POWEROF2( i ) );</span>
-<span class="lineNum">     152 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_clear_bit64( 0xFFFFFFFFFFFFFFFF, i ) == 0xFFFFFFFFFFFFFFFF - POWEROF2( i ) );</span>
+<span class="lineNum">     148 </span>        [<span class="branchCov" title="Branch 0 was taken 16 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         18 :     for( uint8_t i = 0; i &lt; 8; ++i) {</span>
+<span class="lineNum">     149 </span>                :<span class="lineCov">         16 :         SNAP_ASSERT( snap_util_clear_bit( 0xFF, i ) == 0xFF - POWEROF2( i ) );</span>
+<span class="lineNum">     150 </span>                :<span class="lineCov">         16 :         SNAP_ASSERT( snap_util_clear_bit16( 0xFFFF, i ) == 0xFFFF - POWEROF2( i ) );</span>
+<span class="lineNum">     151 </span>                :<span class="lineCov">         16 :         SNAP_ASSERT( snap_util_clear_bit32( 0xFFFFFFFF, i ) == 0xFFFFFFFF - POWEROF2( i ) );</span>
+<span class="lineNum">     152 </span>                :<span class="lineCov">         16 :         SNAP_ASSERT( snap_util_clear_bit64( 0xFFFFFFFFFFFFFFFF, i ) == 0xFFFFFFFFFFFFFFFF - POWEROF2( i ) );</span>
 <span class="lineNum">     153 </span>                :            :     }
 <span class="lineNum">     154 </span>                :            : 
-<span class="lineNum">     155 </span>        [<span class="branchCov" title="Branch 0 was taken 64 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         68 :     for( uint8_t i = 0; i &lt; 16; ++i) {</span>
-<span class="lineNum">     156 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_clear_bit16( 0xFFFF, i ) == 0xFFFF - POWEROF2( i ) );</span>
-<span class="lineNum">     157 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_clear_bit32( 0xFFFFFFFF, i ) == 0xFFFFFFFF - POWEROF2( i ) );</span>
-<span class="lineNum">     158 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_clear_bit64( 0xFFFFFFFFFFFFFFFF, i ) == 0xFFFFFFFFFFFFFFFF - POWEROF2( i ) );</span>
+<span class="lineNum">     155 </span>        [<span class="branchCov" title="Branch 0 was taken 32 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         34 :     for( uint8_t i = 0; i &lt; 16; ++i) {</span>
+<span class="lineNum">     156 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_clear_bit16( 0xFFFF, i ) == 0xFFFF - POWEROF2( i ) );</span>
+<span class="lineNum">     157 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_clear_bit32( 0xFFFFFFFF, i ) == 0xFFFFFFFF - POWEROF2( i ) );</span>
+<span class="lineNum">     158 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_clear_bit64( 0xFFFFFFFFFFFFFFFF, i ) == 0xFFFFFFFFFFFFFFFF - POWEROF2( i ) );</span>
 <span class="lineNum">     159 </span>                :            :     }
 <span class="lineNum">     160 </span>                :            : 
-<span class="lineNum">     161 </span>        [<span class="branchCov" title="Branch 0 was taken 128 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">        132 :     for( uint8_t i = 0; i &lt; 32; ++i) {</span>
-<span class="lineNum">     162 </span>                :<span class="lineCov">        128 :         SNAP_ASSERT( snap_util_clear_bit32( 0xFFFFFFFF, i ) == 0xFFFFFFFF - POWEROF2( i ) );</span>
-<span class="lineNum">     163 </span>                :<span class="lineCov">        128 :         SNAP_ASSERT( snap_util_clear_bit64( 0xFFFFFFFFFFFFFFFF, i ) == 0xFFFFFFFFFFFFFFFF - POWEROF2( i ) );</span>
+<span class="lineNum">     161 </span>        [<span class="branchCov" title="Branch 0 was taken 64 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         66 :     for( uint8_t i = 0; i &lt; 32; ++i) {</span>
+<span class="lineNum">     162 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_clear_bit32( 0xFFFFFFFF, i ) == 0xFFFFFFFF - POWEROF2( i ) );</span>
+<span class="lineNum">     163 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_clear_bit64( 0xFFFFFFFFFFFFFFFF, i ) == 0xFFFFFFFFFFFFFFFF - POWEROF2( i ) );</span>
 <span class="lineNum">     164 </span>                :            :     }
 <span class="lineNum">     165 </span>                :            : 
-<span class="lineNum">     166 </span>        [<span class="branchCov" title="Branch 0 was taken 256 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">        260 :     for( uint8_t i = 0; i &lt; 64; ++i) {</span>
-<span class="lineNum">     167 </span>                :<span class="lineCov">        256 :         SNAP_ASSERT( snap_util_clear_bit64( 0xFFFFFFFFFFFFFFFF, i ) == 0xFFFFFFFFFFFFFFFF - POWEROF2( i ) );</span>
+<span class="lineNum">     166 </span>        [<span class="branchCov" title="Branch 0 was taken 128 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">        130 :     for( uint8_t i = 0; i &lt; 64; ++i) {</span>
+<span class="lineNum">     167 </span>                :<span class="lineCov">        128 :         SNAP_ASSERT( snap_util_clear_bit64( 0xFFFFFFFFFFFFFFFF, i ) == 0xFFFFFFFFFFFFFFFF - POWEROF2( i ) );</span>
 <span class="lineNum">     168 </span>                :            :     }
-<span class="lineNum">     169 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     169 </span>                :<span class="lineCov">          2 : }</span>
 <a name="170"><span class="lineNum">     170 </span>                :            : </a>
 <span class="lineNum">     171 </span>                :            : 
-<span class="lineNum">     172 </span>                :<span class="lineCov">          4 : void snap_utils_test_memcpy()</span>
+<span class="lineNum">     172 </span>                :<span class="lineCov">          2 : void snap_utils_test_memcpy()</span>
 <span class="lineNum">     173 </span>                :            : {
-<span class="lineNum">     174 </span>                :<span class="lineCov">          4 :     uint8_t b1[] = { 'A', 'B', 'C' };</span>
-<span class="lineNum">     175 </span>                :<span class="lineCov">          4 :     uint8_t b2[] = { '0', '1', '2' };</span>
+<span class="lineNum">     174 </span>                :<span class="lineCov">          2 :     uint8_t b1[] = { 'A', 'B', 'C' };</span>
+<span class="lineNum">     175 </span>                :<span class="lineCov">          2 :     uint8_t b2[] = { '0', '1', '2' };</span>
 <span class="lineNum">     176 </span>                :            : 
-<span class="lineNum">     177 </span>                :<span class="lineCov">          4 :     snap_util_memcpy( &amp;b2, &amp;b1, 0 );</span>
+<span class="lineNum">     177 </span>                :<span class="lineCov">          2 :     snap_util_memcpy( &amp;b2, &amp;b1, 0 );</span>
 <span class="lineNum">     178 </span>                :            : 
-<span class="lineNum">     179 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( b1[ 0 ] == 'A' );</span>
-<span class="lineNum">     180 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( b1[ 1 ] == 'B' );</span>
-<span class="lineNum">     181 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( b1[ 2 ] == 'C' );</span>
-<span class="lineNum">     182 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( b2[ 0 ] == '0' );</span>
-<span class="lineNum">     183 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( b2[ 1 ] == '1' );</span>
-<span class="lineNum">     184 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( b2[ 2 ] == '2' );</span>
+<span class="lineNum">     179 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( b1[ 0 ] == 'A' );</span>
+<span class="lineNum">     180 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( b1[ 1 ] == 'B' );</span>
+<span class="lineNum">     181 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( b1[ 2 ] == 'C' );</span>
+<span class="lineNum">     182 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( b2[ 0 ] == '0' );</span>
+<span class="lineNum">     183 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( b2[ 1 ] == '1' );</span>
+<span class="lineNum">     184 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( b2[ 2 ] == '2' );</span>
 <span class="lineNum">     185 </span>                :            : 
-<span class="lineNum">     186 </span>                :<span class="lineCov">          4 :     snap_util_memcpy( &amp;b2, &amp;b1, 3 );</span>
+<span class="lineNum">     186 </span>                :<span class="lineCov">          2 :     snap_util_memcpy( &amp;b2, &amp;b1, 3 );</span>
 <span class="lineNum">     187 </span>                :            : 
-<span class="lineNum">     188 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( b1[ 0 ] == 'A' );</span>
-<span class="lineNum">     189 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( b1[ 1 ] == 'B' );</span>
-<span class="lineNum">     190 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( b1[ 2 ] == 'C' );</span>
-<span class="lineNum">     191 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( b2[ 0 ] == 'A' );</span>
-<span class="lineNum">     192 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( b2[ 1 ] == 'B' );</span>
-<span class="lineNum">     193 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( b2[ 2 ] == 'C' );</span>
+<span class="lineNum">     188 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( b1[ 0 ] == 'A' );</span>
+<span class="lineNum">     189 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( b1[ 1 ] == 'B' );</span>
+<span class="lineNum">     190 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( b1[ 2 ] == 'C' );</span>
+<span class="lineNum">     191 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( b2[ 0 ] == 'A' );</span>
+<span class="lineNum">     192 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( b2[ 1 ] == 'B' );</span>
+<span class="lineNum">     193 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( b2[ 2 ] == 'C' );</span>
 <span class="lineNum">     194 </span>                :            : 
 <span class="lineNum">     195 </span>                :            :     //TODO (more tests)
-<span class="lineNum">     196 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     196 </span>                :<span class="lineCov">          2 : }</span>
 <a name="197"><span class="lineNum">     197 </span>                :            : </a>
 <span class="lineNum">     198 </span>                :            : 
-<span class="lineNum">     199 </span>                :<span class="lineCov">          4 : void snap_utils_test_get_ndb_total_bytes()</span>
+<span class="lineNum">     199 </span>                :<span class="lineCov">          2 : void snap_utils_test_get_ndb_total_bytes()</span>
 <span class="lineNum">     200 </span>                :            : {
-<span class="lineNum">     201 </span>                :<span class="lineCov">          4 :     unsigned int i = 0;</span>
-<span class="lineNum">     202 </span>        [<span class="branchCov" title="Branch 0 was taken 36 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         40 :     for(; i &lt;= 8; ++i) {</span>
-<span class="lineNum">     203 </span>                :<span class="lineCov">         36 :         SNAP_ASSERT( snap_util_get_ndb_total_bytes( i ) == i );</span>
+<span class="lineNum">     201 </span>                :<span class="lineCov">          2 :     unsigned int i = 0;</span>
+<span class="lineNum">     202 </span>        [<span class="branchCov" title="Branch 0 was taken 18 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         20 :     for(; i &lt;= 8; ++i) {</span>
+<span class="lineNum">     203 </span>                :<span class="lineCov">         18 :         SNAP_ASSERT( snap_util_get_ndb_total_bytes( i ) == i );</span>
 <span class="lineNum">     204 </span>                :            :     }
 <span class="lineNum">     205 </span>                :            : 
-<span class="lineNum">     206 </span>        [<span class="branchCov" title="Branch 0 was taken 32 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         36 :     for(; i &lt;= 16; ++i) {</span>
-<span class="lineNum">     207 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_get_ndb_total_bytes( i ) == 16 );</span>
+<span class="lineNum">     206 </span>        [<span class="branchCov" title="Branch 0 was taken 16 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         18 :     for(; i &lt;= 16; ++i) {</span>
+<span class="lineNum">     207 </span>                :<span class="lineCov">         16 :         SNAP_ASSERT( snap_util_get_ndb_total_bytes( i ) == 16 );</span>
 <span class="lineNum">     208 </span>                :            :     }
 <span class="lineNum">     209 </span>                :            : 
-<span class="lineNum">     210 </span>        [<span class="branchCov" title="Branch 0 was taken 64 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         68 :     for(; i &lt;= 32; ++i) {</span>
-<span class="lineNum">     211 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_get_ndb_total_bytes( i ) == 32 );</span>
+<span class="lineNum">     210 </span>        [<span class="branchCov" title="Branch 0 was taken 32 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         34 :     for(; i &lt;= 32; ++i) {</span>
+<span class="lineNum">     211 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_get_ndb_total_bytes( i ) == 32 );</span>
 <span class="lineNum">     212 </span>                :            :     }
 <span class="lineNum">     213 </span>                :            : 
-<span class="lineNum">     214 </span>        [<span class="branchCov" title="Branch 0 was taken 128 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">        132 :     for(; i &lt;= 64; ++i) {</span>
-<span class="lineNum">     215 </span>                :<span class="lineCov">        128 :         SNAP_ASSERT( snap_util_get_ndb_total_bytes( i ) == 64 );</span>
+<span class="lineNum">     214 </span>        [<span class="branchCov" title="Branch 0 was taken 64 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         66 :     for(; i &lt;= 64; ++i) {</span>
+<span class="lineNum">     215 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_get_ndb_total_bytes( i ) == 64 );</span>
 <span class="lineNum">     216 </span>                :            :     }
 <span class="lineNum">     217 </span>                :            : 
-<span class="lineNum">     218 </span>        [<span class="branchCov" title="Branch 0 was taken 256 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">        260 :     for(; i &lt;= 128; ++i) {</span>
-<span class="lineNum">     219 </span>                :<span class="lineCov">        256 :         SNAP_ASSERT( snap_util_get_ndb_total_bytes( i ) == 128 );</span>
+<span class="lineNum">     218 </span>        [<span class="branchCov" title="Branch 0 was taken 128 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">        130 :     for(; i &lt;= 128; ++i) {</span>
+<span class="lineNum">     219 </span>                :<span class="lineCov">        128 :         SNAP_ASSERT( snap_util_get_ndb_total_bytes( i ) == 128 );</span>
 <span class="lineNum">     220 </span>                :            :     }
 <span class="lineNum">     221 </span>                :            : 
-<span class="lineNum">     222 </span>        [<span class="branchCov" title="Branch 0 was taken 512 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">        516 :     for(; i &lt;= 256; ++i) {</span>
-<span class="lineNum">     223 </span>                :<span class="lineCov">        512 :         SNAP_ASSERT( snap_util_get_ndb_total_bytes( i ) == 256 );</span>
+<span class="lineNum">     222 </span>        [<span class="branchCov" title="Branch 0 was taken 256 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">        258 :     for(; i &lt;= 256; ++i) {</span>
+<span class="lineNum">     223 </span>                :<span class="lineCov">        256 :         SNAP_ASSERT( snap_util_get_ndb_total_bytes( i ) == 256 );</span>
 <span class="lineNum">     224 </span>                :            :     }
 <span class="lineNum">     225 </span>                :            : 
-<span class="lineNum">     226 </span>        [<span class="branchCov" title="Branch 0 was taken 1024 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">       1028 :     for(; i &lt;= 512; ++i) {</span>
-<span class="lineNum">     227 </span>                :<span class="lineCov">       1024 :         SNAP_ASSERT( snap_util_get_ndb_total_bytes( i ) == 512 );</span>
+<span class="lineNum">     226 </span>        [<span class="branchCov" title="Branch 0 was taken 512 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">        514 :     for(; i &lt;= 512; ++i) {</span>
+<span class="lineNum">     227 </span>                :<span class="lineCov">        512 :         SNAP_ASSERT( snap_util_get_ndb_total_bytes( i ) == 512 );</span>
 <span class="lineNum">     228 </span>                :            :     }
-<span class="lineNum">     229 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     229 </span>                :<span class="lineCov">          2 : }</span>
 <a name="230"><span class="lineNum">     230 </span>                :            : </a>
 <span class="lineNum">     231 </span>                :            : 
-<span class="lineNum">     232 </span>                :<span class="lineCov">          4 : void snap_utils_test_get_ndb_fill_bytes()</span>
+<span class="lineNum">     232 </span>                :<span class="lineCov">          2 : void snap_utils_test_get_ndb_fill_bytes()</span>
 <span class="lineNum">     233 </span>                :            : {
-<span class="lineNum">     234 </span>                :<span class="lineCov">          4 :     unsigned int i = 0;</span>
-<span class="lineNum">     235 </span>        [<span class="branchCov" title="Branch 0 was taken 36 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         40 :     for(; i &lt;= 8; ++i) {</span>
-<span class="lineNum">     236 </span>                :<span class="lineCov">         36 :         SNAP_ASSERT( snap_util_get_ndb_fill_bytes( i ) == 0 );</span>
+<span class="lineNum">     234 </span>                :<span class="lineCov">          2 :     unsigned int i = 0;</span>
+<span class="lineNum">     235 </span>        [<span class="branchCov" title="Branch 0 was taken 18 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         20 :     for(; i &lt;= 8; ++i) {</span>
+<span class="lineNum">     236 </span>                :<span class="lineCov">         18 :         SNAP_ASSERT( snap_util_get_ndb_fill_bytes( i ) == 0 );</span>
 <span class="lineNum">     237 </span>                :            :     }
 <span class="lineNum">     238 </span>                :            : 
-<span class="lineNum">     239 </span>        [<span class="branchCov" title="Branch 0 was taken 32 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         36 :     for(; i &lt;= 16; ++i) {</span>
-<span class="lineNum">     240 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_get_ndb_fill_bytes( i ) == 16 - i );</span>
+<span class="lineNum">     239 </span>        [<span class="branchCov" title="Branch 0 was taken 16 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         18 :     for(; i &lt;= 16; ++i) {</span>
+<span class="lineNum">     240 </span>                :<span class="lineCov">         16 :         SNAP_ASSERT( snap_util_get_ndb_fill_bytes( i ) == 16 - i );</span>
 <span class="lineNum">     241 </span>                :            :     }
 <span class="lineNum">     242 </span>                :            : 
-<span class="lineNum">     243 </span>        [<span class="branchCov" title="Branch 0 was taken 64 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         68 :     for(; i &lt;= 32; ++i) {</span>
-<span class="lineNum">     244 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_get_ndb_fill_bytes( i ) == 32 - i );</span>
+<span class="lineNum">     243 </span>        [<span class="branchCov" title="Branch 0 was taken 32 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         34 :     for(; i &lt;= 32; ++i) {</span>
+<span class="lineNum">     244 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_get_ndb_fill_bytes( i ) == 32 - i );</span>
 <span class="lineNum">     245 </span>                :            :     }
 <span class="lineNum">     246 </span>                :            : 
-<span class="lineNum">     247 </span>        [<span class="branchCov" title="Branch 0 was taken 128 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">        132 :     for(; i &lt;= 64; ++i) {</span>
-<span class="lineNum">     248 </span>                :<span class="lineCov">        128 :         SNAP_ASSERT( snap_util_get_ndb_fill_bytes( i ) == 64 - i );</span>
+<span class="lineNum">     247 </span>        [<span class="branchCov" title="Branch 0 was taken 64 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         66 :     for(; i &lt;= 64; ++i) {</span>
+<span class="lineNum">     248 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_get_ndb_fill_bytes( i ) == 64 - i );</span>
 <span class="lineNum">     249 </span>                :            :     }
 <span class="lineNum">     250 </span>                :            : 
-<span class="lineNum">     251 </span>        [<span class="branchCov" title="Branch 0 was taken 256 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">        260 :     for(; i &lt;= 128; ++i) {</span>
-<span class="lineNum">     252 </span>                :<span class="lineCov">        256 :         SNAP_ASSERT( snap_util_get_ndb_fill_bytes( i ) == 128 - i );</span>
+<span class="lineNum">     251 </span>        [<span class="branchCov" title="Branch 0 was taken 128 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">        130 :     for(; i &lt;= 128; ++i) {</span>
+<span class="lineNum">     252 </span>                :<span class="lineCov">        128 :         SNAP_ASSERT( snap_util_get_ndb_fill_bytes( i ) == 128 - i );</span>
 <span class="lineNum">     253 </span>                :            :     }
 <span class="lineNum">     254 </span>                :            : 
-<span class="lineNum">     255 </span>        [<span class="branchCov" title="Branch 0 was taken 512 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">        516 :     for(; i &lt;= 256; ++i) {</span>
-<span class="lineNum">     256 </span>                :<span class="lineCov">        512 :         SNAP_ASSERT( snap_util_get_ndb_fill_bytes( i ) == 256 - i );</span>
+<span class="lineNum">     255 </span>        [<span class="branchCov" title="Branch 0 was taken 256 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">        258 :     for(; i &lt;= 256; ++i) {</span>
+<span class="lineNum">     256 </span>                :<span class="lineCov">        256 :         SNAP_ASSERT( snap_util_get_ndb_fill_bytes( i ) == 256 - i );</span>
 <span class="lineNum">     257 </span>                :            :     }
 <span class="lineNum">     258 </span>                :            : 
-<span class="lineNum">     259 </span>        [<span class="branchCov" title="Branch 0 was taken 1024 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">       1028 :     for(; i &lt;= 512; ++i) {</span>
-<span class="lineNum">     260 </span>                :<span class="lineCov">       1024 :         SNAP_ASSERT( snap_util_get_ndb_fill_bytes( i ) == 512 - i );</span>
+<span class="lineNum">     259 </span>        [<span class="branchCov" title="Branch 0 was taken 512 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">        514 :     for(; i &lt;= 512; ++i) {</span>
+<span class="lineNum">     260 </span>                :<span class="lineCov">        512 :         SNAP_ASSERT( snap_util_get_ndb_fill_bytes( i ) == 512 - i );</span>
 <span class="lineNum">     261 </span>                :            :     }
-<span class="lineNum">     262 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     262 </span>                :<span class="lineCov">          2 : }</span>
 <a name="263"><span class="lineNum">     263 </span>                :            : </a>
 <span class="lineNum">     264 </span>                :            : 
-<span class="lineNum">     265 </span>                :<span class="lineCov">          4 : void snap_utils_test_map_ndb_to_value()</span>
+<span class="lineNum">     265 </span>                :<span class="lineCov">          2 : void snap_utils_test_map_ndb_to_value()</span>
 <span class="lineNum">     266 </span>                :            : {
-<span class="lineNum">     267 </span>                :<span class="lineCov">          4 :     unsigned int i = 0;</span>
-<span class="lineNum">     268 </span>        [<span class="branchCov" title="Branch 0 was taken 36 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         40 :     for(; i &lt;= 8; ++i) {</span>
-<span class="lineNum">     269 </span>                :<span class="lineCov">         36 :         SNAP_ASSERT( snap_util_map_ndb_to_value( i ) == i );</span>
+<span class="lineNum">     267 </span>                :<span class="lineCov">          2 :     unsigned int i = 0;</span>
+<span class="lineNum">     268 </span>        [<span class="branchCov" title="Branch 0 was taken 18 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         20 :     for(; i &lt;= 8; ++i) {</span>
+<span class="lineNum">     269 </span>                :<span class="lineCov">         18 :         SNAP_ASSERT( snap_util_map_ndb_to_value( i ) == i );</span>
 <span class="lineNum">     270 </span>                :            :     }
 <span class="lineNum">     271 </span>                :            : 
-<span class="lineNum">     272 </span>        [<span class="branchCov" title="Branch 0 was taken 32 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         36 :     for(; i &lt;= 16; ++i) {</span>
-<span class="lineNum">     273 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_map_ndb_to_value( i ) == 9 );</span>
+<span class="lineNum">     272 </span>        [<span class="branchCov" title="Branch 0 was taken 16 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         18 :     for(; i &lt;= 16; ++i) {</span>
+<span class="lineNum">     273 </span>                :<span class="lineCov">         16 :         SNAP_ASSERT( snap_util_map_ndb_to_value( i ) == 9 );</span>
 <span class="lineNum">     274 </span>                :            :     }
 <span class="lineNum">     275 </span>                :            : 
-<span class="lineNum">     276 </span>        [<span class="branchCov" title="Branch 0 was taken 64 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         68 :     for(; i &lt;= 32; ++i) {</span>
-<span class="lineNum">     277 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_map_ndb_to_value( i ) == 10 );</span>
+<span class="lineNum">     276 </span>        [<span class="branchCov" title="Branch 0 was taken 32 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         34 :     for(; i &lt;= 32; ++i) {</span>
+<span class="lineNum">     277 </span>                :<span class="lineCov">         32 :         SNAP_ASSERT( snap_util_map_ndb_to_value( i ) == 10 );</span>
 <span class="lineNum">     278 </span>                :            :     }
 <span class="lineNum">     279 </span>                :            : 
-<span class="lineNum">     280 </span>        [<span class="branchCov" title="Branch 0 was taken 128 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">        132 :     for(; i &lt;= 64; ++i) {</span>
-<span class="lineNum">     281 </span>                :<span class="lineCov">        128 :         SNAP_ASSERT( snap_util_map_ndb_to_value( i ) == 11 );</span>
+<span class="lineNum">     280 </span>        [<span class="branchCov" title="Branch 0 was taken 64 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         66 :     for(; i &lt;= 64; ++i) {</span>
+<span class="lineNum">     281 </span>                :<span class="lineCov">         64 :         SNAP_ASSERT( snap_util_map_ndb_to_value( i ) == 11 );</span>
 <span class="lineNum">     282 </span>                :            :     }
 <span class="lineNum">     283 </span>                :            : 
-<span class="lineNum">     284 </span>        [<span class="branchCov" title="Branch 0 was taken 256 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">        260 :     for(; i &lt;= 128; ++i) {</span>
-<span class="lineNum">     285 </span>                :<span class="lineCov">        256 :         SNAP_ASSERT( snap_util_map_ndb_to_value( i ) == 12 );</span>
+<span class="lineNum">     284 </span>        [<span class="branchCov" title="Branch 0 was taken 128 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">        130 :     for(; i &lt;= 128; ++i) {</span>
+<span class="lineNum">     285 </span>                :<span class="lineCov">        128 :         SNAP_ASSERT( snap_util_map_ndb_to_value( i ) == 12 );</span>
 <span class="lineNum">     286 </span>                :            :     }
 <span class="lineNum">     287 </span>                :            : 
-<span class="lineNum">     288 </span>        [<span class="branchCov" title="Branch 0 was taken 512 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">        516 :     for(; i &lt;= 256; ++i) {</span>
-<span class="lineNum">     289 </span>                :<span class="lineCov">        512 :         SNAP_ASSERT( snap_util_map_ndb_to_value( i ) == 13 );</span>
+<span class="lineNum">     288 </span>        [<span class="branchCov" title="Branch 0 was taken 256 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">        258 :     for(; i &lt;= 256; ++i) {</span>
+<span class="lineNum">     289 </span>                :<span class="lineCov">        256 :         SNAP_ASSERT( snap_util_map_ndb_to_value( i ) == 13 );</span>
 <span class="lineNum">     290 </span>                :            :     }
 <span class="lineNum">     291 </span>                :            : 
-<span class="lineNum">     292 </span>        [<span class="branchCov" title="Branch 0 was taken 1024 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">       1028 :     for(; i &lt;= 512; ++i) {</span>
-<span class="lineNum">     293 </span>                :<span class="lineCov">       1024 :         SNAP_ASSERT( snap_util_map_ndb_to_value( i ) == 14 );</span>
+<span class="lineNum">     292 </span>        [<span class="branchCov" title="Branch 0 was taken 512 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">        514 :     for(; i &lt;= 512; ++i) {</span>
+<span class="lineNum">     293 </span>                :<span class="lineCov">        512 :         SNAP_ASSERT( snap_util_map_ndb_to_value( i ) == 14 );</span>
 <span class="lineNum">     294 </span>                :            :     }
-<span class="lineNum">     295 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     295 </span>                :<span class="lineCov">          2 : }</span>
 <a name="296"><span class="lineNum">     296 </span>                :            : </a>
 <span class="lineNum">     297 </span>                :            : 
-<span class="lineNum">     298 </span>                :<span class="lineCov">          4 : void snap_utils_test_map_value_to_ndb()</span>
+<span class="lineNum">     298 </span>                :<span class="lineCov">          2 : void snap_utils_test_map_value_to_ndb()</span>
 <span class="lineNum">     299 </span>                :            : {
-<span class="lineNum">     300 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 0 ) == 0 );</span>
-<span class="lineNum">     301 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 1 ) == 1 );</span>
-<span class="lineNum">     302 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 2 ) == 2 );</span>
-<span class="lineNum">     303 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 3 ) == 3 );</span>
-<span class="lineNum">     304 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 4 ) == 4 );</span>
-<span class="lineNum">     305 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 5 ) == 5 );</span>
-<span class="lineNum">     306 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 6 ) == 6 );</span>
-<span class="lineNum">     307 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 7 ) == 7 );</span>
-<span class="lineNum">     308 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 8 ) == 8 );</span>
-<span class="lineNum">     309 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 9 ) == 16 );</span>
-<span class="lineNum">     310 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 10 ) == 32 );</span>
-<span class="lineNum">     311 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 11 ) == 64 );</span>
-<span class="lineNum">     312 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 12 ) == 128 );</span>
-<span class="lineNum">     313 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 13 ) == 256 );</span>
-<span class="lineNum">     314 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 14 ) == 512 );</span>
-<span class="lineNum">     315 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     300 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 0 ) == 0 );</span>
+<span class="lineNum">     301 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 1 ) == 1 );</span>
+<span class="lineNum">     302 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 2 ) == 2 );</span>
+<span class="lineNum">     303 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 3 ) == 3 );</span>
+<span class="lineNum">     304 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 4 ) == 4 );</span>
+<span class="lineNum">     305 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 5 ) == 5 );</span>
+<span class="lineNum">     306 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 6 ) == 6 );</span>
+<span class="lineNum">     307 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 7 ) == 7 );</span>
+<span class="lineNum">     308 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 8 ) == 8 );</span>
+<span class="lineNum">     309 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 9 ) == 16 );</span>
+<span class="lineNum">     310 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 10 ) == 32 );</span>
+<span class="lineNum">     311 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 11 ) == 64 );</span>
+<span class="lineNum">     312 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 12 ) == 128 );</span>
+<span class="lineNum">     313 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 13 ) == 256 );</span>
+<span class="lineNum">     314 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_map_value_to_ndb( 14 ) == 512 );</span>
+<span class="lineNum">     315 </span>                :<span class="lineCov">          2 : }</span>
 <a name="316"><span class="lineNum">     316 </span>                :            : </a>
 <span class="lineNum">     317 </span>                :            : 
-<span class="lineNum">     318 </span>                :<span class="lineCov">          4 : void snap_utils_test_get_sync_byte()</span>
+<span class="lineNum">     318 </span>                :<span class="lineCov">          2 : void snap_utils_test_get_sync_byte()</span>
 <span class="lineNum">     319 </span>                :            : {
-<span class="lineNum">     320 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_get_sync_byte() == 'T' );</span>
-<span class="lineNum">     321 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     320 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_get_sync_byte() == 'T' );</span>
+<span class="lineNum">     321 </span>                :<span class="lineCov">          2 : }</span>
 <a name="322"><span class="lineNum">     322 </span>                :            : </a>
 <span class="lineNum">     323 </span>                :            : 
-<span class="lineNum">     324 </span>                :<span class="lineCov">          4 : void snap_utils_test_get_fill_byte()</span>
+<span class="lineNum">     324 </span>                :<span class="lineCov">          2 : void snap_utils_test_get_fill_byte()</span>
 <span class="lineNum">     325 </span>                :            : {
-<span class="lineNum">     326 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_get_fill_byte() == '\0' );</span>
-<span class="lineNum">     327 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     326 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_get_fill_byte() == '\0' );</span>
+<span class="lineNum">     327 </span>                :<span class="lineCov">          2 : }</span>
 <a name="328"><span class="lineNum">     328 </span>                :            : </a>
 <span class="lineNum">     329 </span>                :            : 
-<span class="lineNum">     330 </span>                :<span class="lineCov">          4 : void snap_utils_test_get_address_size()</span>
+<span class="lineNum">     330 </span>                :<span class="lineCov">          2 : void snap_utils_test_get_address_size()</span>
 <span class="lineNum">     331 </span>                :            : {
-<span class="lineNum">     332 </span>                :<span class="lineCov">          4 :     size_t v[][2] = {</span>
+<span class="lineNum">     332 </span>                :<span class="lineCov">          2 :     size_t v[][2] = {</span>
 <span class="lineNum">     333 </span>                :            :         { 0, 0 },
 <span class="lineNum">     334 </span>                :            :         { 1, 1 },
 <span class="lineNum">     335 </span>                :            :         { 127, 1 },
@@ -422,199 +422,199 @@
 <span class="lineNum">     345 </span>                :            :         { 16777215, 3 }
 <span class="lineNum">     346 </span>                :            :     };
 <span class="lineNum">     347 </span>                :            : 
-<span class="lineNum">     348 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_get_address_size( 0 ) == 0 );</span>
-<span class="lineNum">     349 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_get_address_size( 1 ) == 1 );</span>
-<span class="lineNum">     350 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_get_address_size( 256 ) == 2 );</span>
-<span class="lineNum">     351 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_get_address_size( 65536 ) == 3 );</span>
+<span class="lineNum">     348 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_get_address_size( 0 ) == 0 );</span>
+<span class="lineNum">     349 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_get_address_size( 1 ) == 1 );</span>
+<span class="lineNum">     350 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_get_address_size( 256 ) == 2 );</span>
+<span class="lineNum">     351 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_get_address_size( 65536 ) == 3 );</span>
 <span class="lineNum">     352 </span>                :            : 
-<span class="lineNum">     353 </span>        [<span class="branchCov" title="Branch 0 was taken 52 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         56 :     for(size_t i = 0; i &lt; sizeof( v ) / sizeof( v[0] ); ++i) {</span>
-<span class="lineNum">     354 </span>                :<span class="lineCov">         52 :         SNAP_ASSERT( snap_util_get_address_size( v[ i ][ 0 ] ) == v[ i ][ 1 ] );</span>
+<span class="lineNum">     353 </span>        [<span class="branchCov" title="Branch 0 was taken 26 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         28 :     for(size_t i = 0; i &lt; sizeof( v ) / sizeof( v[0] ); ++i) {</span>
+<span class="lineNum">     354 </span>                :<span class="lineCov">         26 :         SNAP_ASSERT( snap_util_get_address_size( v[ i ][ 0 ] ) == v[ i ][ 1 ] );</span>
 <span class="lineNum">     355 </span>                :            :     }
-<span class="lineNum">     356 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     356 </span>                :<span class="lineCov">          2 : }</span>
 <a name="357"><span class="lineNum">     357 </span>                :            : </a>
 <span class="lineNum">     358 </span>                :            : 
-<span class="lineNum">     359 </span>                :<span class="lineCov">          4 : void snap_utils_test_get_edm_size()</span>
+<span class="lineNum">     359 </span>                :<span class="lineCov">          2 : void snap_utils_test_get_edm_size()</span>
 <span class="lineNum">     360 </span>                :            : {
 <span class="lineNum">     361 </span>                :            :     // FIXME
-<span class="lineNum">     362 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     362 </span>                :<span class="lineCov">          2 : }</span>
 <a name="363"><span class="lineNum">     363 </span>                :            : </a>
 <span class="lineNum">     364 </span>                :            : 
-<span class="lineNum">     365 </span>                :<span class="lineCov">          4 : void snap_utils_test_get_edm_size_value()</span>
+<span class="lineNum">     365 </span>                :<span class="lineCov">          2 : void snap_utils_test_get_edm_size_value()</span>
 <span class="lineNum">     366 </span>                :            : {
 <span class="lineNum">     367 </span>                :            :     // FIXME
-<span class="lineNum">     368 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     368 </span>                :<span class="lineCov">          2 : }</span>
 <a name="369"><span class="lineNum">     369 </span>                :            : </a>
 <span class="lineNum">     370 </span>                :            : 
-<span class="lineNum">     371 </span>                :<span class="lineCov">       2600 : void snap_utils_priv_create_ack_nak_response(bool ack, uint32_t lAddr, uint32_t pAddr)</span>
+<span class="lineNum">     371 </span>                :<span class="lineCov">       1300 : void snap_utils_priv_create_ack_nak_response(bool ack, uint32_t lAddr, uint32_t pAddr)</span>
 <span class="lineNum">     372 </span>                :            : {
-<span class="lineNum">     373 </span>                :<span class="lineCov">       2600 :     size_t (*bound)(uint32_t local_address, uint32_t peer_address) = NULL;</span>
-<span class="lineNum">     374 </span>                :<span class="lineCov">       2600 :     bool (*create)(uint32_t local_address, uint32_t peer_address, uint8_t *data, size_t *pos, size_t size) = NULL;</span>
+<span class="lineNum">     373 </span>                :<span class="lineCov">       1300 :     size_t (*bound)(uint32_t local_address, uint32_t peer_address) = NULL;</span>
+<span class="lineNum">     374 </span>                :<span class="lineCov">       1300 :     bool (*create)(uint32_t local_address, uint32_t peer_address, uint8_t *data, size_t *pos, size_t size) = NULL;</span>
 <span class="lineNum">     375 </span>                :            : 
-<span class="lineNum">     376 </span>        [<span class="branchCov" title="Branch 0 was taken 1300 times"> + </span><span class="branchCov" title="Branch 1 was taken 1300 times"> + </span>]:<span class="lineCov">       2600 :     if( ack ) {</span>
-<span class="lineNum">     377 </span>                :<span class="lineCov">       1300 :         bound = snap_util_ack_response_bound;</span>
-<span class="lineNum">     378 </span>                :<span class="lineCov">       1300 :         create = snap_util_create_ack_response;</span>
+<span class="lineNum">     376 </span>        [<span class="branchCov" title="Branch 0 was taken 650 times"> + </span><span class="branchCov" title="Branch 1 was taken 650 times"> + </span>]:<span class="lineCov">       1300 :     if( ack ) {</span>
+<span class="lineNum">     377 </span>                :<span class="lineCov">        650 :         bound = snap_util_ack_response_bound;</span>
+<span class="lineNum">     378 </span>                :<span class="lineCov">        650 :         create = snap_util_create_ack_response;</span>
 <span class="lineNum">     379 </span>                :            :     }
 <span class="lineNum">     380 </span>                :            :     else {
-<span class="lineNum">     381 </span>                :<span class="lineCov">       1300 :         bound = snap_util_nak_response_bound;</span>
-<span class="lineNum">     382 </span>                :<span class="lineCov">       1300 :         create = snap_util_create_nak_response;</span>
+<span class="lineNum">     381 </span>                :<span class="lineCov">        650 :         bound = snap_util_nak_response_bound;</span>
+<span class="lineNum">     382 </span>                :<span class="lineCov">        650 :         create = snap_util_create_nak_response;</span>
 <span class="lineNum">     383 </span>                :            :     }
 <span class="lineNum">     384 </span>                :            : 
-<span class="lineNum">     385 </span>                :<span class="lineCov">       2600 :     size_t size =  bound( lAddr, pAddr );</span>
-<span class="lineNum">     386 </span>                :<span class="lineCov">       2600 :     uint8_t *data = malloc( size );</span>
-<span class="lineNum">     387 </span>                :<span class="lineCov">       2600 :     uint8_t *data_2 = data;</span>
-<span class="lineNum">     388 </span>                :<span class="lineCov">       2600 :     size_t pos = 1;</span>
+<span class="lineNum">     385 </span>                :<span class="lineCov">       1300 :     size_t size =  bound( lAddr, pAddr );</span>
+<span class="lineNum">     386 </span>                :<span class="lineCov">       1300 :     uint8_t *data = malloc( size );</span>
+<span class="lineNum">     387 </span>                :<span class="lineCov">       1300 :     uint8_t *data_2 = data;</span>
+<span class="lineNum">     388 </span>                :<span class="lineCov">       1300 :     size_t pos = 1;</span>
 <span class="lineNum">     389 </span>                :            : 
-<span class="lineNum">     390 </span>                :<span class="lineCov">       2600 :     const size_t local_add_size = snap_util_get_address_size( lAddr );</span>
-<span class="lineNum">     391 </span>                :<span class="lineCov">       2600 :     const size_t peer_add_size = snap_util_get_address_size( pAddr );</span>
+<span class="lineNum">     390 </span>                :<span class="lineCov">       1300 :     const size_t local_add_size = snap_util_get_address_size( lAddr );</span>
+<span class="lineNum">     391 </span>                :<span class="lineCov">       1300 :     const size_t peer_add_size = snap_util_get_address_size( pAddr );</span>
 <span class="lineNum">     392 </span>                :            : 
-<span class="lineNum">     393 </span>                :<span class="lineCov">       2600 :     SNAP_ASSERT( !create( lAddr, pAddr, data, &amp;pos, size) );</span>
-<span class="lineNum">     394 </span>                :<span class="lineCov">       2600 :     SNAP_ASSERT( pos == 1 );</span>
-<span class="lineNum">     395 </span>                :<span class="lineCov">       2600 :     SNAP_ASSERT( data == data_2 );</span>
+<span class="lineNum">     393 </span>                :<span class="lineCov">       1300 :     SNAP_ASSERT( !create( lAddr, pAddr, data, &amp;pos, size) );</span>
+<span class="lineNum">     394 </span>                :<span class="lineCov">       1300 :     SNAP_ASSERT( pos == 1 );</span>
+<span class="lineNum">     395 </span>                :<span class="lineCov">       1300 :     SNAP_ASSERT( data == data_2 );</span>
 <span class="lineNum">     396 </span>                :            : 
-<span class="lineNum">     397 </span>                :<span class="lineCov">       2600 :     pos = 0;</span>
-<span class="lineNum">     398 </span>                :<span class="lineCov">       2600 :     size--;</span>
-<span class="lineNum">     399 </span>                :<span class="lineCov">       2600 :     SNAP_ASSERT( !create( lAddr, pAddr, data, &amp;pos, size) );</span>
-<span class="lineNum">     400 </span>                :<span class="lineCov">       2600 :     SNAP_ASSERT( pos == 0 );</span>
-<span class="lineNum">     401 </span>                :<span class="lineCov">       2600 :     SNAP_ASSERT( data == data_2 );</span>
+<span class="lineNum">     397 </span>                :<span class="lineCov">       1300 :     pos = 0;</span>
+<span class="lineNum">     398 </span>                :<span class="lineCov">       1300 :     size--;</span>
+<span class="lineNum">     399 </span>                :<span class="lineCov">       1300 :     SNAP_ASSERT( !create( lAddr, pAddr, data, &amp;pos, size) );</span>
+<span class="lineNum">     400 </span>                :<span class="lineCov">       1300 :     SNAP_ASSERT( pos == 0 );</span>
+<span class="lineNum">     401 </span>                :<span class="lineCov">       1300 :     SNAP_ASSERT( data == data_2 );</span>
 <span class="lineNum">     402 </span>                :            : 
-<span class="lineNum">     403 </span>                :<span class="lineCov">       2600 :     size++;</span>
+<span class="lineNum">     403 </span>                :<span class="lineCov">       1300 :     size++;</span>
 <span class="lineNum">     404 </span>                :            : 
-<span class="lineNum">     405 </span>                :<span class="lineCov">       2600 :     SNAP_ASSERT( create( lAddr, pAddr, data, &amp;pos, size) );</span>
-<span class="lineNum">     406 </span>                :<span class="lineCov">       2600 :     SNAP_ASSERT( pos == 4 + local_add_size + peer_add_size );</span>
-<span class="lineNum">     407 </span>                :<span class="lineCov">       2600 :     SNAP_ASSERT( pos == size );     // the bound function provides</span>
+<span class="lineNum">     405 </span>                :<span class="lineCov">       1300 :     SNAP_ASSERT( create( lAddr, pAddr, data, &amp;pos, size) );</span>
+<span class="lineNum">     406 </span>                :<span class="lineCov">       1300 :     SNAP_ASSERT( pos == 4 + local_add_size + peer_add_size );</span>
+<span class="lineNum">     407 </span>                :<span class="lineCov">       1300 :     SNAP_ASSERT( pos == size );     // the bound function provides</span>
 <span class="lineNum">     408 </span>                :            :                                     // accurate results in this case.
-<span class="lineNum">     409 </span>                :<span class="lineCov">       2600 :     SNAP_ASSERT( data == data_2 );</span>
+<span class="lineNum">     409 </span>                :<span class="lineCov">       1300 :     SNAP_ASSERT( data == data_2 );</span>
 <span class="lineNum">     410 </span>                :            : 
-<span class="lineNum">     411 </span>                :<span class="lineCov">       2600 :     SNAP_ASSERT( data[ 0 ] == snap_util_get_sync_byte() );</span>
-<span class="lineNum">     412 </span>        [<span class="branchCov" title="Branch 0 was taken 1300 times"> + </span><span class="branchCov" title="Branch 1 was taken 1300 times"> + </span>]:<span class="lineCov">       2600 :     SNAP_ASSERT( data[ 1 ] ==    ( peer_add_size * 64 )</span>
+<span class="lineNum">     411 </span>                :<span class="lineCov">       1300 :     SNAP_ASSERT( data[ 0 ] == snap_util_get_sync_byte() );</span>
+<span class="lineNum">     412 </span>        [<span class="branchCov" title="Branch 0 was taken 650 times"> + </span><span class="branchCov" title="Branch 1 was taken 650 times"> + </span>]:<span class="lineCov">       1300 :     SNAP_ASSERT( data[ 1 ] ==    ( peer_add_size * 64 )</span>
 <span class="lineNum">     413 </span>                :            :                                + ( local_add_size * 16 )
 <span class="lineNum">     414 </span>                :            :                                + (uint8_t) ( ack ? 2 : 3 ) ); //&lt; HDB2
-<span class="lineNum">     415 </span>                :<span class="lineCov">       2600 :     SNAP_ASSERT( data[ 2 ] == 32 ); // HDB1</span>
+<span class="lineNum">     415 </span>                :<span class="lineCov">       1300 :     SNAP_ASSERT( data[ 2 ] == 32 ); // HDB1</span>
 <span class="lineNum">     416 </span>                :            : 
-<span class="lineNum">     417 </span>                :<span class="lineCov">       2600 :     int index = 3;</span>
-<span class="lineNum">     418 </span>                :<span class="lineCov">       2600 :     uint8_t crc_data[ 3 + local_add_size + peer_add_size ];</span>
-<span class="lineNum">     419 </span>                :<span class="lineCov">       2600 :     crc_data[ 0 ] = snap_util_get_sync_byte(),</span>
-<span class="lineNum">     420 </span>                :<span class="lineCov">       2600 :     crc_data[ 1 ] = ( peer_add_size * 64 ) + ( local_add_size * 16 );</span>
+<span class="lineNum">     417 </span>                :<span class="lineCov">       1300 :     int index = 3;</span>
+<span class="lineNum">     418 </span>                :<span class="lineCov">       1300 :     uint8_t crc_data[ 3 + local_add_size + peer_add_size ];</span>
+<span class="lineNum">     419 </span>                :<span class="lineCov">       1300 :     crc_data[ 0 ] = snap_util_get_sync_byte(),</span>
+<span class="lineNum">     420 </span>                :<span class="lineCov">       1300 :     crc_data[ 1 ] = ( peer_add_size * 64 ) + ( local_add_size * 16 );</span>
 <span class="lineNum">     421 </span>                :            : 
-<span class="lineNum">     422 </span>        [<span class="branchCov" title="Branch 0 was taken 1300 times"> + </span><span class="branchCov" title="Branch 1 was taken 1300 times"> + </span>]:<span class="lineCov">       2600 :     if( ack ) {</span>
-<span class="lineNum">     423 </span>                :<span class="lineCov">       1300 :         crc_data[ 1 ] += (uint8_t) 2;</span>
+<span class="lineNum">     422 </span>        [<span class="branchCov" title="Branch 0 was taken 650 times"> + </span><span class="branchCov" title="Branch 1 was taken 650 times"> + </span>]:<span class="lineCov">       1300 :     if( ack ) {</span>
+<span class="lineNum">     423 </span>                :<span class="lineCov">        650 :         crc_data[ 1 ] += (uint8_t) 2;</span>
 <span class="lineNum">     424 </span>                :            :     }
 <span class="lineNum">     425 </span>                :            :     else {
-<span class="lineNum">     426 </span>                :<span class="lineCov">       1300 :         crc_data[ 1 ] += (uint8_t) 3;</span>
+<span class="lineNum">     426 </span>                :<span class="lineCov">        650 :         crc_data[ 1 ] += (uint8_t) 3;</span>
 <span class="lineNum">     427 </span>                :            :     }
 <span class="lineNum">     428 </span>                :            : 
-<span class="lineNum">     429 </span>                :<span class="lineCov">       2600 :     crc_data[ 2 ] = 32;</span>
+<span class="lineNum">     429 </span>                :<span class="lineCov">       1300 :     crc_data[ 2 ] = 32;</span>
 <span class="lineNum">     430 </span>                :            : 
-<span class="lineNum">     431 </span>  [<span class="branchCov" title="Branch 0 was taken 800 times"> + </span><span class="branchCov" title="Branch 1 was taken 800 times"> + </span><span class="branchCov" title="Branch 2 was taken 800 times"> + </span><span class="branchCov" title="Branch 3 was taken 200 times"> + </span>]:<span class="lineCov">       2600 :     switch( peer_add_size ) {</span>
+<span class="lineNum">     431 </span>  [<span class="branchCov" title="Branch 0 was taken 400 times"> + </span><span class="branchCov" title="Branch 1 was taken 400 times"> + </span><span class="branchCov" title="Branch 2 was taken 400 times"> + </span><span class="branchCov" title="Branch 3 was taken 100 times"> + </span>]:<span class="lineCov">       1300 :     switch( peer_add_size ) {</span>
 <span class="lineNum">     432 </span>                :            :     case 3:
-<span class="lineNum">     433 </span>                :<span class="lineCov">        800 :         SNAP_ASSERT( data[ index ] == (uint8_t) ( pAddr &gt;&gt; 16 ) );</span>
-<span class="lineNum">     434 </span>                :<span class="lineCov">        800 :         crc_data[ index ] = (uint8_t) ( pAddr &gt;&gt; 16 );</span>
-<span class="lineNum">     435 </span>                :<span class="lineCov">        800 :         index++;</span>
+<span class="lineNum">     433 </span>                :<span class="lineCov">        400 :         SNAP_ASSERT( data[ index ] == (uint8_t) ( pAddr &gt;&gt; 16 ) );</span>
+<span class="lineNum">     434 </span>                :<span class="lineCov">        400 :         crc_data[ index ] = (uint8_t) ( pAddr &gt;&gt; 16 );</span>
+<span class="lineNum">     435 </span>                :<span class="lineCov">        400 :         index++;</span>
 <span class="lineNum">     436 </span>                :            :     case 2:
-<span class="lineNum">     437 </span>                :<span class="lineCov">       1600 :         SNAP_ASSERT( data[ index ] == (uint8_t) ( pAddr &gt;&gt; 8 ) );</span>
-<span class="lineNum">     438 </span>                :<span class="lineCov">       1600 :         crc_data[ index ] = (uint8_t) ( pAddr &gt;&gt; 8 );</span>
-<span class="lineNum">     439 </span>                :<span class="lineCov">       1600 :         index++;</span>
+<span class="lineNum">     437 </span>                :<span class="lineCov">        800 :         SNAP_ASSERT( data[ index ] == (uint8_t) ( pAddr &gt;&gt; 8 ) );</span>
+<span class="lineNum">     438 </span>                :<span class="lineCov">        800 :         crc_data[ index ] = (uint8_t) ( pAddr &gt;&gt; 8 );</span>
+<span class="lineNum">     439 </span>                :<span class="lineCov">        800 :         index++;</span>
 <span class="lineNum">     440 </span>                :            :     case 1:
-<span class="lineNum">     441 </span>                :<span class="lineCov">       2400 :         SNAP_ASSERT( data[ index ] == (uint8_t) ( pAddr ) );</span>
-<span class="lineNum">     442 </span>                :<span class="lineCov">       2400 :         crc_data[ index ] = (uint8_t) ( pAddr );</span>
-<span class="lineNum">     443 </span>                :<span class="lineCov">       2400 :         index++;</span>
+<span class="lineNum">     441 </span>                :<span class="lineCov">       1200 :         SNAP_ASSERT( data[ index ] == (uint8_t) ( pAddr ) );</span>
+<span class="lineNum">     442 </span>                :<span class="lineCov">       1200 :         crc_data[ index ] = (uint8_t) ( pAddr );</span>
+<span class="lineNum">     443 </span>                :<span class="lineCov">       1200 :         index++;</span>
 <span class="lineNum">     444 </span>                :            :     default:
 <span class="lineNum">     445 </span>                :            :         break;
 <span class="lineNum">     446 </span>                :            :     }
 <span class="lineNum">     447 </span>                :            : 
-<span class="lineNum">     448 </span>  [<span class="branchCov" title="Branch 0 was taken 800 times"> + </span><span class="branchCov" title="Branch 1 was taken 800 times"> + </span><span class="branchCov" title="Branch 2 was taken 800 times"> + </span><span class="branchCov" title="Branch 3 was taken 200 times"> + </span>]:<span class="lineCov">       2600 :     switch( local_add_size ) {</span>
+<span class="lineNum">     448 </span>  [<span class="branchCov" title="Branch 0 was taken 400 times"> + </span><span class="branchCov" title="Branch 1 was taken 400 times"> + </span><span class="branchCov" title="Branch 2 was taken 400 times"> + </span><span class="branchCov" title="Branch 3 was taken 100 times"> + </span>]:<span class="lineCov">       1300 :     switch( local_add_size ) {</span>
 <span class="lineNum">     449 </span>                :            :     case 3:
-<span class="lineNum">     450 </span>                :<span class="lineCov">        800 :         SNAP_ASSERT( data[ index ] == (uint8_t) ( lAddr &gt;&gt; 16 ) );</span>
-<span class="lineNum">     451 </span>                :<span class="lineCov">        800 :         crc_data[ index ] = (uint8_t) ( lAddr &gt;&gt; 16 );</span>
-<span class="lineNum">     452 </span>                :<span class="lineCov">        800 :         index++;</span>
+<span class="lineNum">     450 </span>                :<span class="lineCov">        400 :         SNAP_ASSERT( data[ index ] == (uint8_t) ( lAddr &gt;&gt; 16 ) );</span>
+<span class="lineNum">     451 </span>                :<span class="lineCov">        400 :         crc_data[ index ] = (uint8_t) ( lAddr &gt;&gt; 16 );</span>
+<span class="lineNum">     452 </span>                :<span class="lineCov">        400 :         index++;</span>
 <span class="lineNum">     453 </span>                :            :     case 2:
-<span class="lineNum">     454 </span>                :<span class="lineCov">       1600 :         SNAP_ASSERT( data[ index ] == (uint8_t) ( lAddr &gt;&gt; 8 ) );</span>
-<span class="lineNum">     455 </span>                :<span class="lineCov">       1600 :         crc_data[ index ] = (uint8_t) ( lAddr &gt;&gt; 8 );</span>
-<span class="lineNum">     456 </span>                :<span class="lineCov">       1600 :         index++;</span>
+<span class="lineNum">     454 </span>                :<span class="lineCov">        800 :         SNAP_ASSERT( data[ index ] == (uint8_t) ( lAddr &gt;&gt; 8 ) );</span>
+<span class="lineNum">     455 </span>                :<span class="lineCov">        800 :         crc_data[ index ] = (uint8_t) ( lAddr &gt;&gt; 8 );</span>
+<span class="lineNum">     456 </span>                :<span class="lineCov">        800 :         index++;</span>
 <span class="lineNum">     457 </span>                :            :     case 1:
-<span class="lineNum">     458 </span>                :<span class="lineCov">       2400 :         SNAP_ASSERT( data[ index ] == ( (uint8_t) lAddr ) );</span>
-<span class="lineNum">     459 </span>                :<span class="lineCov">       2400 :         crc_data[ index ] = (uint8_t) lAddr;</span>
-<span class="lineNum">     460 </span>                :<span class="lineCov">       2400 :         index++;</span>
+<span class="lineNum">     458 </span>                :<span class="lineCov">       1200 :         SNAP_ASSERT( data[ index ] == ( (uint8_t) lAddr ) );</span>
+<span class="lineNum">     459 </span>                :<span class="lineCov">       1200 :         crc_data[ index ] = (uint8_t) lAddr;</span>
+<span class="lineNum">     460 </span>                :<span class="lineCov">       1200 :         index++;</span>
 <span class="lineNum">     461 </span>                :            :     default:
 <span class="lineNum">     462 </span>                :            :         break;
 <span class="lineNum">     463 </span>                :            :     }
 <span class="lineNum">     464 </span>                :            : 
-<span class="lineNum">     465 </span>        [<span class="branchCov" title="Branch 0 was taken 17400 times"> + </span><span class="branchCov" title="Branch 1 was taken 2600 times"> + </span>]:<span class="lineCov">      20000 :     for(int i = 0; i &lt; index; ++i) {</span>
-<span class="lineNum">     466 </span>                :<span class="lineCov">      17400 :         SNAP_ASSERT( data[ i ] == crc_data[ i ] );</span>
+<span class="lineNum">     465 </span>        [<span class="branchCov" title="Branch 0 was taken 8700 times"> + </span><span class="branchCov" title="Branch 1 was taken 1300 times"> + </span>]:<span class="lineCov">      10000 :     for(int i = 0; i &lt; index; ++i) {</span>
+<span class="lineNum">     466 </span>                :<span class="lineCov">       8700 :         SNAP_ASSERT( data[ i ] == crc_data[ i ] );</span>
 <span class="lineNum">     467 </span>                :            :     }
 <span class="lineNum">     468 </span>                :            : 
-<span class="lineNum">     469 </span>                :<span class="lineCov">       2600 :     SNAP_ASSERT( data[ index ] == snap_checksum( &amp;crc_data[ 0 ], index ) );</span>
+<span class="lineNum">     469 </span>                :<span class="lineCov">       1300 :     SNAP_ASSERT( data[ index ] == snap_checksum( &amp;crc_data[ 0 ], index ) );</span>
 <span class="lineNum">     470 </span>                :            : 
-<span class="lineNum">     471 </span>                :<span class="lineCov">       2600 :     free( data );</span>
-<span class="lineNum">     472 </span>                :<span class="lineCov">       2600 : }</span>
+<span class="lineNum">     471 </span>                :<span class="lineCov">       1300 :     free( data );</span>
+<span class="lineNum">     472 </span>                :<span class="lineCov">       1300 : }</span>
 <a name="473"><span class="lineNum">     473 </span>                :            : </a>
 <span class="lineNum">     474 </span>                :            : 
-<span class="lineNum">     475 </span>                :<span class="lineCov">        676 : void snap_utils_priv_create_ack_nak_response_mix(uint32_t lAddr, uint32_t pAddr)</span>
+<span class="lineNum">     475 </span>                :<span class="lineCov">        338 : void snap_utils_priv_create_ack_nak_response_mix(uint32_t lAddr, uint32_t pAddr)</span>
 <span class="lineNum">     476 </span>                :            : {
-<span class="lineNum">     477 </span>                :<span class="lineCov">        676 :     snap_utils_priv_create_ack_nak_response( true, lAddr, pAddr );</span>
-<span class="lineNum">     478 </span>                :<span class="lineCov">        676 :     snap_utils_priv_create_ack_nak_response( false, lAddr, pAddr );</span>
+<span class="lineNum">     477 </span>                :<span class="lineCov">        338 :     snap_utils_priv_create_ack_nak_response( true, lAddr, pAddr );</span>
+<span class="lineNum">     478 </span>                :<span class="lineCov">        338 :     snap_utils_priv_create_ack_nak_response( false, lAddr, pAddr );</span>
 <span class="lineNum">     479 </span>                :            : 
-<span class="lineNum">     480 </span>        [<span class="branchCov" title="Branch 0 was taken 624 times"> + </span><span class="branchCov" title="Branch 1 was taken 52 times"> + </span>]:<span class="lineCov">        676 :     if( pAddr != lAddr ) {</span>
-<span class="lineNum">     481 </span>                :<span class="lineCov">        624 :         snap_utils_priv_create_ack_nak_response( true, pAddr, lAddr );</span>
-<span class="lineNum">     482 </span>                :<span class="lineCov">        624 :         snap_utils_priv_create_ack_nak_response( false, pAddr, lAddr );</span>
+<span class="lineNum">     480 </span>        [<span class="branchCov" title="Branch 0 was taken 312 times"> + </span><span class="branchCov" title="Branch 1 was taken 26 times"> + </span>]:<span class="lineCov">        338 :     if( pAddr != lAddr ) {</span>
+<span class="lineNum">     481 </span>                :<span class="lineCov">        312 :         snap_utils_priv_create_ack_nak_response( true, pAddr, lAddr );</span>
+<span class="lineNum">     482 </span>                :<span class="lineCov">        312 :         snap_utils_priv_create_ack_nak_response( false, pAddr, lAddr );</span>
 <span class="lineNum">     483 </span>                :            :     }
-<span class="lineNum">     484 </span>                :<span class="lineCov">        676 : }</span>
+<span class="lineNum">     484 </span>                :<span class="lineCov">        338 : }</span>
 <a name="485"><span class="lineNum">     485 </span>                :            : </a>
 <span class="lineNum">     486 </span>                :            : 
-<span class="lineNum">     487 </span>                :<span class="lineCov">          4 : void snap_utils_test_create_ack_nak_response()</span>
+<span class="lineNum">     487 </span>                :<span class="lineCov">          2 : void snap_utils_test_create_ack_nak_response()</span>
 <span class="lineNum">     488 </span>                :            : {
-<span class="lineNum">     489 </span>                :<span class="lineCov">          4 :     const uint32_t v[] = {</span>
+<span class="lineNum">     489 </span>                :<span class="lineCov">          2 :     const uint32_t v[] = {</span>
 <span class="lineNum">     490 </span>                :            :         0, 1, 127, 128, 255, 256, 32767,
 <span class="lineNum">     491 </span>                :            :         32768, 65535, 65536, 8388607, 8388608, 16777215
 <span class="lineNum">     492 </span>                :            :     };
 <span class="lineNum">     493 </span>                :            : 
-<span class="lineNum">     494 </span>                :<span class="lineCov">          4 :     size_t size = sizeof( v ) / sizeof( v[ 0 ] );</span>
+<span class="lineNum">     494 </span>                :<span class="lineCov">          2 :     size_t size = sizeof( v ) / sizeof( v[ 0 ] );</span>
 <span class="lineNum">     495 </span>                :            : 
-<span class="lineNum">     496 </span>        [<span class="branchCov" title="Branch 0 was taken 52 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         56 :     for(size_t i = 0; i &lt; size; ++i ) {</span>
-<span class="lineNum">     497 </span>        [<span class="branchCov" title="Branch 0 was taken 676 times"> + </span><span class="branchCov" title="Branch 1 was taken 52 times"> + </span>]:<span class="lineCov">        728 :         for(size_t k = 0; k &lt; size; ++k ) {</span>
-<span class="lineNum">     498 </span>                :<span class="lineCov">        676 :             snap_utils_priv_create_ack_nak_response_mix( v[ i ], v[ k ] );</span>
+<span class="lineNum">     496 </span>        [<span class="branchCov" title="Branch 0 was taken 26 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         28 :     for(size_t i = 0; i &lt; size; ++i ) {</span>
+<span class="lineNum">     497 </span>        [<span class="branchCov" title="Branch 0 was taken 338 times"> + </span><span class="branchCov" title="Branch 1 was taken 26 times"> + </span>]:<span class="lineCov">        364 :         for(size_t k = 0; k &lt; size; ++k ) {</span>
+<span class="lineNum">     498 </span>                :<span class="lineCov">        338 :             snap_utils_priv_create_ack_nak_response_mix( v[ i ], v[ k ] );</span>
 <span class="lineNum">     499 </span>                :            :         }
 <span class="lineNum">     500 </span>                :            :     }
-<span class="lineNum">     501 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     501 </span>                :<span class="lineCov">          2 : }</span>
 <a name="502"><span class="lineNum">     502 </span>                :            : </a>
 <span class="lineNum">     503 </span>                :            : 
-<span class="lineNum">     504 </span>                :<span class="lineCov">          4 : void snap_utils_test_version()</span>
+<span class="lineNum">     504 </span>                :<span class="lineCov">          2 : void snap_utils_test_version()</span>
 <span class="lineNum">     505 </span>                :            : {
 <span class="lineNum">     506 </span>                :            :     // LOL
-<span class="lineNum">     507 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_util_get_version() ==</span>
+<span class="lineNum">     507 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_util_get_version() ==</span>
 <span class="lineNum">     508 </span>                :            :        ( SNAP_MAJOR_VERSION &lt;&lt; 16 ) + ( SNAP_MINOR_VERSION &lt;&lt; 8 ) + SNAP_PATCH_LEVEL
 <span class="lineNum">     509 </span>                :            :     );
-<span class="lineNum">     510 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     510 </span>                :<span class="lineCov">          2 : }</span>
 <span class="lineNum">     511 </span>                :            : 
 <span class="lineNum">     512 </span>                :            : 
 <span class="lineNum">     513 </span>                :            : 
 <a name="514"><span class="lineNum">     514 </span>                :            : char test_suite_name[] = &quot;utils&quot;;</a>
 <span class="lineNum">     515 </span>                :            : 
-<span class="lineNum">     516 </span>                :<span class="lineCov">          4 : void test_suite(CU_pSuite suite)</span>
+<span class="lineNum">     516 </span>                :<span class="lineCov">          2 : void test_suite(CU_pSuite suite)</span>
 <span class="lineNum">     517 </span>                :            : {
-<span class="lineNum">     518 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;snap_allocator alloc&quot;, snap_utils_test_alloc );</span>
-<span class="lineNum">     519 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;snap_allocator free&quot;,  snap_utils_test_free );</span>
+<span class="lineNum">     518 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;snap_allocator alloc&quot;, snap_utils_test_alloc );</span>
+<span class="lineNum">     519 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;snap_allocator free&quot;,  snap_utils_test_free );</span>
 <span class="lineNum">     520 </span>                :            : 
-<span class="lineNum">     521 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;test bit&quot;,  snap_utils_test_test_bit );</span>
-<span class="lineNum">     522 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;set bit&quot;,   snap_utils_test_set_bit );</span>
-<span class="lineNum">     523 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;clear bit&quot;, snap_utils_test_clear_bit );</span>
+<span class="lineNum">     521 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;test bit&quot;,  snap_utils_test_test_bit );</span>
+<span class="lineNum">     522 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;set bit&quot;,   snap_utils_test_set_bit );</span>
+<span class="lineNum">     523 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;clear bit&quot;, snap_utils_test_clear_bit );</span>
 <span class="lineNum">     524 </span>                :            : 
-<span class="lineNum">     525 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;memcpy&quot;, snap_utils_test_memcpy );</span>
+<span class="lineNum">     525 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;memcpy&quot;, snap_utils_test_memcpy );</span>
 <span class="lineNum">     526 </span>                :            : 
-<span class="lineNum">     527 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;ndb total bytes&quot;,  snap_utils_test_get_ndb_total_bytes );</span>
-<span class="lineNum">     528 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;ndb fill bytes&quot;,   snap_utils_test_get_ndb_fill_bytes );</span>
-<span class="lineNum">     529 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;map ndb to value&quot;, snap_utils_test_map_ndb_to_value );</span>
-<span class="lineNum">     530 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;map value to ndb&quot;, snap_utils_test_map_value_to_ndb );</span>
-<span class="lineNum">     531 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;address size&quot;,     snap_utils_test_get_address_size );</span>
-<span class="lineNum">     532 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;edm size&quot;,         snap_utils_test_get_edm_size );</span>
-<span class="lineNum">     533 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;edm size value&quot;,   snap_utils_test_get_edm_size_value );</span>
+<span class="lineNum">     527 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;ndb total bytes&quot;,  snap_utils_test_get_ndb_total_bytes );</span>
+<span class="lineNum">     528 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;ndb fill bytes&quot;,   snap_utils_test_get_ndb_fill_bytes );</span>
+<span class="lineNum">     529 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;map ndb to value&quot;, snap_utils_test_map_ndb_to_value );</span>
+<span class="lineNum">     530 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;map value to ndb&quot;, snap_utils_test_map_value_to_ndb );</span>
+<span class="lineNum">     531 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;address size&quot;,     snap_utils_test_get_address_size );</span>
+<span class="lineNum">     532 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;edm size&quot;,         snap_utils_test_get_edm_size );</span>
+<span class="lineNum">     533 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;edm size value&quot;,   snap_utils_test_get_edm_size_value );</span>
 <span class="lineNum">     534 </span>                :            : 
-<span class="lineNum">     535 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;create ACK/NAK response&quot;, snap_utils_test_create_ack_nak_response );</span>
+<span class="lineNum">     535 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;create ACK/NAK response&quot;, snap_utils_test_create_ack_nak_response );</span>
 <span class="lineNum">     536 </span>                :            : 
-<span class="lineNum">     537 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;sync byte&quot;,    snap_utils_test_get_sync_byte );</span>
-<span class="lineNum">     538 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;fill byte&quot;,    snap_utils_test_get_fill_byte );</span>
-<span class="lineNum">     539 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;snap version&quot;, snap_utils_test_version );</span>
-<span class="lineNum">     540 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     537 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;sync byte&quot;,    snap_utils_test_get_sync_byte );</span>
+<span class="lineNum">     538 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;fill byte&quot;,    snap_utils_test_get_fill_byte );</span>
+<span class="lineNum">     539 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;snap version&quot;, snap_utils_test_version );</span>
+<span class="lineNum">     540 </span>                :<span class="lineCov">          2 : }</span>
 <span class="lineNum">     541 </span>                :            : 
 <span class="lineNum">     542 </span>                :            : 
 <span class="lineNum">     543 </span>                :            : // kate: word-wrap off; encoding utf-8; indent-width 4; tab-width 4; line-numbers on; mixed-indent off; remove-trailing-space-save on; replace-tabs-save on; replace-tabs on; space-indent on;

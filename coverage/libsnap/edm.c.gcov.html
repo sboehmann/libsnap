@@ -157,128 +157,128 @@
 <span class="lineNum">      80 </span>                :            : 
 <a name="81"><span class="lineNum">      81 </span>                :            : // 8 Bit Checksum</a>
 <span class="lineNum">      82 </span>                :            : 
-<span class="lineNum">      83 </span>                :<span class="lineCov">      73236 : uint8_t snap_checksum(const uint8_t *data, size_t size)</span>
+<span class="lineNum">      83 </span>                :<span class="lineCov">      36618 : uint8_t snap_checksum(const uint8_t *data, size_t size)</span>
 <span class="lineNum">      84 </span>                :            : {
-<span class="lineNum">      85 </span>                :<span class="lineCov">      73236 :     uint8_t value = 0;</span>
+<span class="lineNum">      85 </span>                :<span class="lineCov">      36618 :     uint8_t value = 0;</span>
 <span class="lineNum">      86 </span>                :            : 
-<span class="lineNum">      87 </span>        [<span class="branchCov" title="Branch 0 was taken 10317576 times"> + </span><span class="branchCov" title="Branch 1 was taken 73236 times"> + </span>]:<span class="lineCov">   10390812 :     for(size_t i = 0; i &lt; size; ++i) {</span>
-<span class="lineNum">      88 </span>                :<span class="lineCov">   10317576 :         value += data[ i ];</span>
+<span class="lineNum">      87 </span>        [<span class="branchCov" title="Branch 0 was taken 5158788 times"> + </span><span class="branchCov" title="Branch 1 was taken 36618 times"> + </span>]:<span class="lineCov">    5195406 :     for(size_t i = 0; i &lt; size; ++i) {</span>
+<span class="lineNum">      88 </span>                :<span class="lineCov">    5158788 :         value += data[ i ];</span>
 <span class="lineNum">      89 </span>                :            :     }
 <span class="lineNum">      90 </span>                :            : 
-<span class="lineNum">      91 </span>                :<span class="lineCov">      73236 :     return value;</span>
+<span class="lineNum">      91 </span>                :<span class="lineCov">      36618 :     return value;</span>
 <span class="lineNum">      92 </span>                :            : }
 <a name="93"><span class="lineNum">      93 </span>                :            : </a>
 <span class="lineNum">      94 </span>                :            : 
-<span class="lineNum">      95 </span>                :<span class="lineCov">         12 : bool snap_checksum_is_valid(const uint8_t *data, size_t size, uint8_t checksum)</span>
+<span class="lineNum">      95 </span>                :<span class="lineCov">          6 : bool snap_checksum_is_valid(const uint8_t *data, size_t size, uint8_t checksum)</span>
 <span class="lineNum">      96 </span>                :            : {
-<span class="lineNum">      97 </span>                :<span class="lineCov">         12 :     return snap_checksum( data, size ) == checksum;</span>
+<span class="lineNum">      97 </span>                :<span class="lineCov">          6 :     return snap_checksum( data, size ) == checksum;</span>
 <span class="lineNum">      98 </span>                :            : }
 <span class="lineNum">      99 </span>                :            : 
 <span class="lineNum">     100 </span>                :            : 
 <a name="101"><span class="lineNum">     101 </span>                :            : // 8 Bit CRC</a>
 <span class="lineNum">     102 </span>                :            : 
-<span class="lineNum">     103 </span>                :<span class="lineCov">      68028 : uint8_t snap_crc8(const uint8_t *data, size_t size)</span>
+<span class="lineNum">     103 </span>                :<span class="lineCov">      34014 : uint8_t snap_crc8(const uint8_t *data, size_t size)</span>
 <span class="lineNum">     104 </span>                :            : {
-<span class="lineNum">     105 </span>                :<span class="lineCov">      68028 :     uint8_t value = CRC8_INIT;</span>
+<span class="lineNum">     105 </span>                :<span class="lineCov">      34014 :     uint8_t value = CRC8_INIT;</span>
 <span class="lineNum">     106 </span>                :            : 
-<span class="lineNum">     107 </span>        [<span class="branchCov" title="Branch 0 was taken 10282728 times"> + </span><span class="branchCov" title="Branch 1 was taken 68028 times"> + </span>]:<span class="lineCov">   10350756 :     for(size_t i = 0; i &lt; size; ++i) {</span>
-<span class="lineNum">     108 </span>                :<span class="lineCov">   10282728 :         uint8_t byte = data[ i ];</span>
+<span class="lineNum">     107 </span>        [<span class="branchCov" title="Branch 0 was taken 5141364 times"> + </span><span class="branchCov" title="Branch 1 was taken 34014 times"> + </span>]:<span class="lineCov">    5175378 :     for(size_t i = 0; i &lt; size; ++i) {</span>
+<span class="lineNum">     108 </span>                :<span class="lineCov">    5141364 :         uint8_t byte = data[ i ];</span>
 <span class="lineNum">     109 </span>                :            : 
-<span class="lineNum">     110 </span>        [<span class="branchCov" title="Branch 0 was taken 82261824 times"> + </span><span class="branchCov" title="Branch 1 was taken 10282728 times"> + </span>]:<span class="lineCov">   92544552 :         for(size_t k = 8; k &gt; 0; --k) {</span>
-<span class="lineNum">     111 </span>                :<span class="lineCov">   82261824 :             bool feedback_bit = ( ( value ^ byte ) &amp; 0x01 ) == 0x01;</span>
+<span class="lineNum">     110 </span>        [<span class="branchCov" title="Branch 0 was taken 41130912 times"> + </span><span class="branchCov" title="Branch 1 was taken 5141364 times"> + </span>]:<span class="lineCov">   46272276 :         for(size_t k = 8; k &gt; 0; --k) {</span>
+<span class="lineNum">     111 </span>                :<span class="lineCov">   41130912 :             bool feedback_bit = ( ( value ^ byte ) &amp; 0x01 ) == 0x01;</span>
 <span class="lineNum">     112 </span>                :            : 
-<span class="lineNum">     113 </span>        [<span class="branchCov" title="Branch 0 was taken 41050048 times"> + </span><span class="branchCov" title="Branch 1 was taken 41211776 times"> + </span>]:<span class="lineCov">   82261824 :             if( feedback_bit ) {</span>
-<span class="lineNum">     114 </span>                :<span class="lineCov">   41050048 :                 value ^= CRC8_POLYNOMIAL;</span>
+<span class="lineNum">     113 </span>        [<span class="branchCov" title="Branch 0 was taken 20503782 times"> + </span><span class="branchCov" title="Branch 1 was taken 20627130 times"> + </span>]:<span class="lineCov">   41130912 :             if( feedback_bit ) {</span>
+<span class="lineNum">     114 </span>                :<span class="lineCov">   20503782 :                 value ^= CRC8_POLYNOMIAL;</span>
 <span class="lineNum">     115 </span>                :            :             }
-<span class="lineNum">     116 </span>                :<span class="lineCov">   82261824 :             value = (value &gt;&gt; 1) &amp; 0x7F;</span>
+<span class="lineNum">     116 </span>                :<span class="lineCov">   41130912 :             value = (value &gt;&gt; 1) &amp; 0x7F;</span>
 <span class="lineNum">     117 </span>                :            : 
-<span class="lineNum">     118 </span>        [<span class="branchCov" title="Branch 0 was taken 41050048 times"> + </span><span class="branchCov" title="Branch 1 was taken 41211776 times"> + </span>]:<span class="lineCov">   82261824 :             if( feedback_bit ) {</span>
-<span class="lineNum">     119 </span>                :<span class="lineCov">   41050048 :                 value |= 0x80;</span>
+<span class="lineNum">     118 </span>        [<span class="branchCov" title="Branch 0 was taken 20503782 times"> + </span><span class="branchCov" title="Branch 1 was taken 20627130 times"> + </span>]:<span class="lineCov">   41130912 :             if( feedback_bit ) {</span>
+<span class="lineNum">     119 </span>                :<span class="lineCov">   20503782 :                 value |= 0x80;</span>
 <span class="lineNum">     120 </span>                :            :             }
 <span class="lineNum">     121 </span>                :            : 
-<span class="lineNum">     122 </span>                :<span class="lineCov">   82261824 :             byte = byte &gt;&gt; 1u;</span>
+<span class="lineNum">     122 </span>                :<span class="lineCov">   41130912 :             byte = byte &gt;&gt; 1u;</span>
 <span class="lineNum">     123 </span>                :            :         }
 <span class="lineNum">     124 </span>                :            :     }
 <span class="lineNum">     125 </span>                :            : 
-<span class="lineNum">     126 </span>                :<span class="lineCov">      68028 :     return value;</span>
+<span class="lineNum">     126 </span>                :<span class="lineCov">      34014 :     return value;</span>
 <span class="lineNum">     127 </span>                :            : }
 <a name="128"><span class="lineNum">     128 </span>                :            : </a>
 <span class="lineNum">     129 </span>                :            : 
-<span class="lineNum">     130 </span>                :<span class="lineCov">         12 : bool snap_crc8_is_valid(const uint8_t *data, size_t size, uint8_t checksum)</span>
+<span class="lineNum">     130 </span>                :<span class="lineCov">          6 : bool snap_crc8_is_valid(const uint8_t *data, size_t size, uint8_t checksum)</span>
 <span class="lineNum">     131 </span>                :            : {
-<span class="lineNum">     132 </span>                :<span class="lineCov">         12 :     return snap_crc8( data, size ) == checksum;</span>
+<span class="lineNum">     132 </span>                :<span class="lineCov">          6 :     return snap_crc8( data, size ) == checksum;</span>
 <span class="lineNum">     133 </span>                :            : }
 <span class="lineNum">     134 </span>                :            : 
 <span class="lineNum">     135 </span>                :            : 
 <a name="136"><span class="lineNum">     136 </span>                :            : // 16 Bit CRC</a>
 <span class="lineNum">     137 </span>                :            : 
-<span class="lineNum">     138 </span>                :<span class="lineCov">      68048 : uint16_t snap_crc16(const uint8_t *data, size_t size)</span>
+<span class="lineNum">     138 </span>                :<span class="lineCov">      34024 : uint16_t snap_crc16(const uint8_t *data, size_t size)</span>
 <span class="lineNum">     139 </span>                :            : {
-<span class="lineNum">     140 </span>                :<span class="lineCov">      68048 :     uint16_t value = CRC16_INIT;</span>
+<span class="lineNum">     140 </span>                :<span class="lineCov">      34024 :     uint16_t value = CRC16_INIT;</span>
 <span class="lineNum">     141 </span>                :            : 
-<span class="lineNum">     142 </span>        [<span class="branchCov" title="Branch 0 was taken 10282200 times"> + </span><span class="branchCov" title="Branch 1 was taken 68048 times"> + </span>]:<span class="lineCov">   10350248 :     for(size_t i = 0; i &lt; size; ++i) {</span>
-<span class="lineNum">     143 </span>                :<span class="lineCov">   10282200 :         value = ( data[ i ] &lt;&lt; 8u ) ^ value;</span>
+<span class="lineNum">     142 </span>        [<span class="branchCov" title="Branch 0 was taken 5141100 times"> + </span><span class="branchCov" title="Branch 1 was taken 34024 times"> + </span>]:<span class="lineCov">    5175124 :     for(size_t i = 0; i &lt; size; ++i) {</span>
+<span class="lineNum">     143 </span>                :<span class="lineCov">    5141100 :         value = ( data[ i ] &lt;&lt; 8u ) ^ value;</span>
 <span class="lineNum">     144 </span>                :            : 
-<span class="lineNum">     145 </span>        [<span class="branchCov" title="Branch 0 was taken 82257600 times"> + </span><span class="branchCov" title="Branch 1 was taken 10282200 times"> + </span>]:<span class="lineCov">   92539800 :         for(size_t k = 0; k &lt; 8; ++k) {</span>
-<span class="lineNum">     146 </span>        [<span class="branchCov" title="Branch 0 was taken 41157698 times"> + </span><span class="branchCov" title="Branch 1 was taken 41099902 times"> + </span>]:<span class="lineCov">   82257600 :             if( (value &amp; 0x8000) == 0x8000 ) { // if MSB is one</span>
-<span class="lineNum">     147 </span>                :<span class="lineCov">   41157698 :                 value = ( value &lt;&lt; 1u) ^ CRC16_POLYNOMIAL;</span>
+<span class="lineNum">     145 </span>        [<span class="branchCov" title="Branch 0 was taken 41128800 times"> + </span><span class="branchCov" title="Branch 1 was taken 5141100 times"> + </span>]:<span class="lineCov">   46269900 :         for(size_t k = 0; k &lt; 8; ++k) {</span>
+<span class="lineNum">     146 </span>        [<span class="branchCov" title="Branch 0 was taken 20565038 times"> + </span><span class="branchCov" title="Branch 1 was taken 20563762 times"> + </span>]:<span class="lineCov">   41128800 :             if( (value &amp; 0x8000) == 0x8000 ) { // if MSB is one</span>
+<span class="lineNum">     147 </span>                :<span class="lineCov">   20565038 :                 value = ( value &lt;&lt; 1u) ^ CRC16_POLYNOMIAL;</span>
 <span class="lineNum">     148 </span>                :            :             }
 <span class="lineNum">     149 </span>                :            :             else {
-<span class="lineNum">     150 </span>                :<span class="lineCov">   41099902 :                 value &lt;&lt;= 1u;</span>
+<span class="lineNum">     150 </span>                :<span class="lineCov">   20563762 :                 value &lt;&lt;= 1u;</span>
 <span class="lineNum">     151 </span>                :            :             }
 <span class="lineNum">     152 </span>                :            :         }
 <span class="lineNum">     153 </span>                :            :     }
 <span class="lineNum">     154 </span>                :            : 
-<span class="lineNum">     155 </span>                :<span class="lineCov">      68048 :     return value;</span>
+<span class="lineNum">     155 </span>                :<span class="lineCov">      34024 :     return value;</span>
 <span class="lineNum">     156 </span>                :            : }
 <a name="157"><span class="lineNum">     157 </span>                :            : </a>
 <span class="lineNum">     158 </span>                :            : 
-<span class="lineNum">     159 </span>                :<span class="lineCov">         12 : bool snap_crc16_is_valid(const uint8_t *data, size_t size, uint16_t checksum)</span>
+<span class="lineNum">     159 </span>                :<span class="lineCov">          6 : bool snap_crc16_is_valid(const uint8_t *data, size_t size, uint16_t checksum)</span>
 <span class="lineNum">     160 </span>                :            : {
-<span class="lineNum">     161 </span>                :<span class="lineCov">         12 :     return snap_crc16( data, size ) == checksum;</span>
+<span class="lineNum">     161 </span>                :<span class="lineCov">          6 :     return snap_crc16( data, size ) == checksum;</span>
 <span class="lineNum">     162 </span>                :            : }
 <span class="lineNum">     163 </span>                :            : 
 <span class="lineNum">     164 </span>                :            : 
 <a name="165"><span class="lineNum">     165 </span>                :            : // 32 Bit CRC</a>
 <span class="lineNum">     166 </span>                :            : 
-<span class="lineNum">     167 </span>                :<span class="lineCov">      68028 : uint32_t snap_crc32(const uint8_t *data, size_t size)</span>
+<span class="lineNum">     167 </span>                :<span class="lineCov">      34014 : uint32_t snap_crc32(const uint8_t *data, size_t size)</span>
 <span class="lineNum">     168 </span>                :            : {
-<span class="lineNum">     169 </span>                :<span class="lineCov">      68028 :     const uint8_t *p = data;</span>
-<span class="lineNum">     170 </span>                :<span class="lineCov">      68028 :     uint32_t value = ~0U;</span>
+<span class="lineNum">     169 </span>                :<span class="lineCov">      34014 :     const uint8_t *p = data;</span>
+<span class="lineNum">     170 </span>                :<span class="lineCov">      34014 :     uint32_t value = ~0U;</span>
 <span class="lineNum">     171 </span>                :            : 
-<span class="lineNum">     172 </span>        [<span class="branchCov" title="Branch 0 was taken 10281736 times"> + </span><span class="branchCov" title="Branch 1 was taken 68028 times"> + </span>]:<span class="lineCov">   10349764 :     while( size-- ) {</span>
-<span class="lineNum">     173 </span>                :<span class="lineCov">   10281736 :         value = snap_crc32_lookup_table[ ( value ^ *p++ ) &amp; 0xFF ] ^ ( value &gt;&gt; 8 );</span>
+<span class="lineNum">     172 </span>        [<span class="branchCov" title="Branch 0 was taken 5140868 times"> + </span><span class="branchCov" title="Branch 1 was taken 34014 times"> + </span>]:<span class="lineCov">    5174882 :     while( size-- ) {</span>
+<span class="lineNum">     173 </span>                :<span class="lineCov">    5140868 :         value = snap_crc32_lookup_table[ ( value ^ *p++ ) &amp; 0xFF ] ^ ( value &gt;&gt; 8 );</span>
 <span class="lineNum">     174 </span>                :            :     }
 <span class="lineNum">     175 </span>                :            : 
-<span class="lineNum">     176 </span>                :<span class="lineCov">      68028 :     return value ^ ~0U;</span>
+<span class="lineNum">     176 </span>                :<span class="lineCov">      34014 :     return value ^ ~0U;</span>
 <span class="lineNum">     177 </span>                :            : }
 <a name="178"><span class="lineNum">     178 </span>                :            : </a>
 <span class="lineNum">     179 </span>                :            : 
-<span class="lineNum">     180 </span>                :<span class="lineCov">         12 : bool snap_crc32_is_valid(const uint8_t *data, size_t size, uint32_t checksum)</span>
+<span class="lineNum">     180 </span>                :<span class="lineCov">          6 : bool snap_crc32_is_valid(const uint8_t *data, size_t size, uint32_t checksum)</span>
 <span class="lineNum">     181 </span>                :            : {
-<span class="lineNum">     182 </span>                :<span class="lineCov">         12 :     return snap_crc32( data, size ) == checksum;</span>
+<span class="lineNum">     182 </span>                :<span class="lineCov">          6 :     return snap_crc32( data, size ) == checksum;</span>
 <span class="lineNum">     183 </span>                :            : }
 <span class="lineNum">     184 </span>                :            : 
 <span class="lineNum">     185 </span>                :            : 
 <a name="186"><span class="lineNum">     186 </span>                :            : // Adler32</a>
 <span class="lineNum">     187 </span>                :            : 
-<span class="lineNum">     188 </span>                :<span class="lineCov">         24 : uint32_t snap_adler32(const uint8_t *data, size_t size)</span>
+<span class="lineNum">     188 </span>                :<span class="lineCov">         12 : uint32_t snap_adler32(const uint8_t *data, size_t size)</span>
 <span class="lineNum">     189 </span>                :            : {
-<span class="lineNum">     190 </span>                :<span class="lineCov">         24 :     uint32_t s1 = 1;</span>
-<span class="lineNum">     191 </span>                :<span class="lineCov">         24 :     uint32_t s2 = 0;</span>
+<span class="lineNum">     190 </span>                :<span class="lineCov">         12 :     uint32_t s1 = 1;</span>
+<span class="lineNum">     191 </span>                :<span class="lineCov">         12 :     uint32_t s2 = 0;</span>
 <span class="lineNum">     192 </span>                :            : 
-<span class="lineNum">     193 </span>        [<span class="branchCov" title="Branch 0 was taken 96 times"> + </span><span class="branchCov" title="Branch 1 was taken 24 times"> + </span>]:<span class="lineCov">        120 :     for(size_t i = 0; i &lt; size; ++i) {</span>
-<span class="lineNum">     194 </span>                :<span class="lineCov">         96 :         s1 = ( s1 + data[ i ] ) % 65521;</span>
-<span class="lineNum">     195 </span>                :<span class="lineCov">         96 :         s2 = ( s2 + s1 ) % 65521;</span>
+<span class="lineNum">     193 </span>        [<span class="branchCov" title="Branch 0 was taken 48 times"> + </span><span class="branchCov" title="Branch 1 was taken 12 times"> + </span>]:<span class="lineCov">         60 :     for(size_t i = 0; i &lt; size; ++i) {</span>
+<span class="lineNum">     194 </span>                :<span class="lineCov">         48 :         s1 = ( s1 + data[ i ] ) % 65521;</span>
+<span class="lineNum">     195 </span>                :<span class="lineCov">         48 :         s2 = ( s2 + s1 ) % 65521;</span>
 <span class="lineNum">     196 </span>                :            :     }
 <span class="lineNum">     197 </span>                :            : 
-<span class="lineNum">     198 </span>                :<span class="lineCov">         24 :     return (s2 &lt;&lt; 16) | s1;</span>
+<span class="lineNum">     198 </span>                :<span class="lineCov">         12 :     return (s2 &lt;&lt; 16) | s1;</span>
 <span class="lineNum">     199 </span>                :            : }
 <a name="200"><span class="lineNum">     200 </span>                :            : </a>
 <span class="lineNum">     201 </span>                :            : 
-<span class="lineNum">     202 </span>                :<span class="lineCov">         12 : bool snap_adler32_is_valid(const uint8_t *data, size_t size, uint32_t checksum)</span>
+<span class="lineNum">     202 </span>                :<span class="lineCov">          6 : bool snap_adler32_is_valid(const uint8_t *data, size_t size, uint32_t checksum)</span>
 <span class="lineNum">     203 </span>                :            : {
-<span class="lineNum">     204 </span>                :<span class="lineCov">         12 :     return snap_adler32( data, size ) == checksum;</span>
+<span class="lineNum">     204 </span>                :<span class="lineCov">          6 :     return snap_adler32( data, size ) == checksum;</span>
 <span class="lineNum">     205 </span>                :            : }
 <span class="lineNum">     206 </span>                :            : 
 <span class="lineNum">     207 </span>                :            : 
