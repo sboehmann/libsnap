@@ -1,0 +1,125 @@
+<html>
+  <head>
+    <meta content='text/html;charset=UTF-8' http-equiv='Content-Type'>
+    <title>libsnap &mdash; libsnap Quick Start</title>
+    <style type='text/css'>
+      @import 'css/default.css';
+      @import 'css/syntax.css';
+    </style>
+    <style media='print' type='text/css'>
+      @import 'css/print.css';
+    </style>
+    <meta content='libsnap is a portable open-source S.N.A.P implementation' name='subject'>
+  </head>
+  <body>
+    <div id='wrap'>
+      <div id='header'>
+        <h1><a href='http://hilefoks.github.com/libsnap/' title="libsnap is a portable open-source S.N.A.P implementation">libsnap</a></h1>
+        <div class='tagline'>a portable open-source S.N.A.P implementation</div>
+      </div>
+      <div id='pages'>
+        <ol class='toc'>
+          <li>Start Here
+            <ol class="toc">
+              <li><a href='index.html'>Overview</a></li>
+              <li><a href='features.html'>Features</a></li>
+              <li><a href='authors.html'>Authors</a></li>
+            </ol>
+          </li>
+          <li>libsnap
+            <ol class="toc">
+              <li><a href='libsnap_quick_start.html'>Quick Start</a></li>
+              <li><a href='libsnap_documentation.html'>Documentation</a></li>
+            </ol>
+          </li>
+          <li>libsnap++
+            <ol class="toc">
+              <li><a href='libsnapmm_quick_start.html'>Quick Start</a></li>
+              <li><a href='libsnapmm_documentation.html'>Documentation</a></li>
+            </ol>
+          </li>
+          <li>csnap
+            <ol class="toc">
+              <li><a href='csnap_quick_start.html'>Quick Start</a></li>
+              <li><a href='csnap_documentation.html'>Documentation</a></li>
+            </ol>
+          </li>
+         <li>snapgauge
+            <ol class="toc">
+              <li><a href='snapgauge_quick_start.html'>Quick Start</a></li>
+              <li><a href='snapgauge_documentation.html'>Documentation</a></li>
+            </ol>
+          </li>
+          <li>Reference
+            <ol class="toc">
+              <li><a href='api/index.html'>API Reference</a></li>
+              <li><a href='coverage/index.html'>Coverage</a></li>
+              <li><a href='http://github.com/hilefoks/libsnap'>Source Code</a></li>
+            </ol>
+          </li>
+          <li>Get Involved
+            <ol class="toc">
+              <li><a href='contributing.html'>Contributing</a></li>
+              <li><a href='http://wiki.github.com/hilefoks/libsnap/'>Wiki</a></li>
+              <li><a href='http://github.com/hilefoks/libsnap/issues'>Issues/Bugs</a></li>
+              <li><a href='download.html'>Download</a></li>
+            </ol>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <h1 id='libsnap quick start'>libsnap Quick Start</h1>
+        <p>This quick start guide is meant to be a <em>very</em> simple introduction to libsnap and its most basic concepts. However, despite its basic level, we will still cover most of the concepts you will ever need to be productive with libsnap.</p>
+<h2 id="first-project">Your First Project</h2>
+<div class="highlight"><pre><code class="c"><span class="cp">#include &lt;libsnap/snap.h&gt;</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">SNAP_UNUSED</span><span class="p">(</span> <span class="n">argc</span> <span class="p">);</span>
+    <span class="n">SNAP_UNUSED</span><span class="p">(</span> <span class="n">argv</span> <span class="p">);</span>
+    
+    <span class="n">snap_t</span> <span class="n">snap</span><span class="p">;</span>
+    <span class="n">snap_init</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">snap</span> <span class="p">);</span>
+    
+    <span class="kt">uint8_t</span> <span class="n">in</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;If a packet hits a pocket on a socket on a port, &quot;</span>
+        <span class="s">&quot;and the bus is interrupted and the interrupt&#39;s not caught, &quot;</span>
+        <span class="s">&quot;then the socket packet pocket has an error to report.&quot;</span><span class="p">;</span>
+
+    <span class="kt">size_t</span> <span class="n">in_size</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span> <span class="n">in</span> <span class="p">)</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span> <span class="n">in</span><span class="p">[</span> <span class="mi">0</span> <span class="p">]</span> <span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="kt">size_t</span> <span class="n">out_size</span> <span class="o">=</span> <span class="n">snap_encode_bound</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">snap</span><span class="p">,</span> <span class="n">in_size</span> <span class="p">);</span>
+    <span class="kt">uint8_t</span> <span class="o">*</span><span class="n">out</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span> <span class="n">out_size</span> <span class="p">);</span>
+    <span class="kt">size_t</span> <span class="n">out_pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="n">snap_encode</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">snap</span><span class="p">,</span> <span class="n">in</span><span class="p">,</span> <span class="n">in_size</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">out_pos</span><span class="p">,</span> <span class="n">out_size</span> <span class="p">);</span>
+    
+    <span class="n">out_pos</span><span class="o">--</span><span class="p">;</span> <span class="c1">// do not point to the next unwritten byte, do point to the last written one.</span>
+    
+    <span class="n">printf</span><span class="p">(</span> <span class="s">&quot;Input:&quot;</span> <span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">in_size</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">75</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span> 
+            <span class="n">printf</span><span class="p">(</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">    &quot;</span> <span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">printf</span><span class="p">(</span> <span class="s">&quot;%c&quot;</span><span class="p">,</span> <span class="n">in</span><span class="p">[</span> <span class="n">i</span> <span class="p">]</span> <span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="n">printf</span><span class="p">(</span> <span class="s">&quot;</span><span class="se">\n\n</span><span class="s">Output:&quot;</span> <span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">out_pos</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">12</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span> 
+            <span class="n">printf</span><span class="p">(</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">    &quot;</span> <span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">printf</span><span class="p">(</span> <span class="s">&quot;0x%02X&quot;</span><span class="p">,</span> <span class="n">out</span><span class="p">[</span> <span class="n">i</span> <span class="p">]</span> <span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">out_pos</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span> 
+            <span class="n">printf</span><span class="p">(</span> <span class="s">&quot;, &quot;</span> <span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span> <span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+      </div>
+      <div id='footer'>Copyright &copy; 2010 Stefan Böhmann</div>
+    </div>
+  </body>
+</html>
