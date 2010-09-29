@@ -109,27 +109,27 @@
 <span class="lineNum">      32 </span>                :            : #endif
 <a name="33"><span class="lineNum">      33 </span>                :            : </a>
 <span class="lineNum">      34 </span>                :            : 
-<span class="lineNum">      35 </span>                :<span class="lineCov">         12 : bool snap_lzma_builtin(void)</span>
+<span class="lineNum">      35 </span>                :<span class="lineCov">          6 : bool snap_lzma_builtin(void)</span>
 <span class="lineNum">      36 </span>                :            : {
 <span class="lineNum">      37 </span>                :            : #ifdef WITH_LZMA
 <span class="lineNum">      38 </span>                :            :     return true;
 <span class="lineNum">      39 </span>                :            : #endif
 <span class="lineNum">      40 </span>                :            : 
-<span class="lineNum">      41 </span>                :<span class="lineCov">         12 :     return false;</span>
+<span class="lineNum">      41 </span>                :<span class="lineCov">          6 :     return false;</span>
 <span class="lineNum">      42 </span>                :            : }
 <a name="43"><span class="lineNum">      43 </span>                :            : </a>
 <span class="lineNum">      44 </span>                :            : 
-<span class="lineNum">      45 </span>                :<span class="lineCov">         16 : size_t snap_lzma_bound(size_t size)</span>
+<span class="lineNum">      45 </span>                :<span class="lineCov">          8 : size_t snap_lzma_bound(size_t size)</span>
 <span class="lineNum">      46 </span>                :            : {
 <span class="lineNum">      47 </span>                :            : #ifdef WITH_LZMA
 <span class="lineNum">      48 </span>                :            :     return lzma_stream_buffer_bound( size );
 <span class="lineNum">      49 </span>                :            : #endif
 <span class="lineNum">      50 </span>                :            : 
-<span class="lineNum">      51 </span>                :<span class="lineCov">         16 :     return size;</span>
+<span class="lineNum">      51 </span>                :<span class="lineCov">          8 :     return size;</span>
 <span class="lineNum">      52 </span>                :            : }
 <a name="53"><span class="lineNum">      53 </span>                :            : </a>
 <span class="lineNum">      54 </span>                :            : 
-<span class="lineNum">      55 </span>                :<span class="lineCov">          4 : bool snap_lzma_encode(const uint8_t *in_data, int in_size, uint8_t *out_data, int out_size, const snap_allocator_t *allocator)</span>
+<span class="lineNum">      55 </span>                :<span class="lineCov">          2 : bool snap_lzma_encode(const uint8_t *in_data, int in_size, uint8_t *out_data, int out_size, const snap_allocator_t *allocator)</span>
 <span class="lineNum">      56 </span>                :            : {
 <span class="lineNum">      57 </span>                :            :     //TODO
 <span class="lineNum">      58 </span>                :            :     SNAP_UNUSED( in_data );
@@ -138,11 +138,11 @@
 <span class="lineNum">      61 </span>                :            :     SNAP_UNUSED( out_size );
 <span class="lineNum">      62 </span>                :            :     SNAP_UNUSED( allocator );
 <span class="lineNum">      63 </span>                :            : 
-<span class="lineNum">      64 </span>                :<span class="lineCov">          4 :     return false;</span>
+<span class="lineNum">      64 </span>                :<span class="lineCov">          2 :     return false;</span>
 <span class="lineNum">      65 </span>                :            : }
 <a name="66"><span class="lineNum">      66 </span>                :            : </a>
 <span class="lineNum">      67 </span>                :            : 
-<span class="lineNum">      68 </span>                :<span class="lineCov">          4 : bool snap_lzma_decode(const uint8_t *in_data, int in_size, uint8_t *out_data, int out_size, const snap_allocator_t *allocator)</span>
+<span class="lineNum">      68 </span>                :<span class="lineCov">          2 : bool snap_lzma_decode(const uint8_t *in_data, int in_size, uint8_t *out_data, int out_size, const snap_allocator_t *allocator)</span>
 <span class="lineNum">      69 </span>                :            : {
 <span class="lineNum">      70 </span>                :            :     //TODO
 <span class="lineNum">      71 </span>                :            :     SNAP_UNUSED( in_data );
@@ -151,29 +151,29 @@
 <span class="lineNum">      74 </span>                :            :     SNAP_UNUSED( out_size );
 <span class="lineNum">      75 </span>                :            :     SNAP_UNUSED( allocator );
 <span class="lineNum">      76 </span>                :            : 
-<span class="lineNum">      77 </span>                :<span class="lineCov">          4 :     return false;</span>
+<span class="lineNum">      77 </span>                :<span class="lineCov">          2 :     return false;</span>
 <span class="lineNum">      78 </span>                :            : }
 <a name="79"><span class="lineNum">      79 </span>                :            : </a>
 <span class="lineNum">      80 </span>                :            : 
-<span class="lineNum">      81 </span>                :<span class="lineCov">         12 : bool snap_zlib_builtin(void)</span>
+<span class="lineNum">      81 </span>                :<span class="lineCov">          6 : bool snap_zlib_builtin(void)</span>
 <span class="lineNum">      82 </span>                :            : {
 <span class="lineNum">      83 </span>                :            : #ifdef WITH_ZLIB
 <span class="lineNum">      84 </span>                :            :     return true;
 <span class="lineNum">      85 </span>                :            : #endif
-<span class="lineNum">      86 </span>                :<span class="lineCov">         12 :     return false;</span>
+<span class="lineNum">      86 </span>                :<span class="lineCov">          6 :     return false;</span>
 <span class="lineNum">      87 </span>                :            : }
 <a name="88"><span class="lineNum">      88 </span>                :            : </a>
 <span class="lineNum">      89 </span>                :            : 
-<span class="lineNum">      90 </span>                :<span class="lineCov">         16 : size_t snap_zlib_bound(size_t size)</span>
+<span class="lineNum">      90 </span>                :<span class="lineCov">          8 : size_t snap_zlib_bound(size_t size)</span>
 <span class="lineNum">      91 </span>                :            : {
 <span class="lineNum">      92 </span>                :            : #ifdef WITH_ZLIB
 <span class="lineNum">      93 </span>                :            :     return compressBound( size );
 <span class="lineNum">      94 </span>                :            : #endif
-<span class="lineNum">      95 </span>                :<span class="lineCov">         16 :     return size;</span>
+<span class="lineNum">      95 </span>                :<span class="lineCov">          8 :     return size;</span>
 <span class="lineNum">      96 </span>                :            : }
 <a name="97"><span class="lineNum">      97 </span>                :            : </a>
 <span class="lineNum">      98 </span>                :            : 
-<span class="lineNum">      99 </span>                :<span class="lineCov">          4 : bool snap_zlib_encode(const uint8_t *in_data, int in_size, uint8_t *out_data, int out_size, const snap_allocator_t *allocator)</span>
+<span class="lineNum">      99 </span>                :<span class="lineCov">          2 : bool snap_zlib_encode(const uint8_t *in_data, int in_size, uint8_t *out_data, int out_size, const snap_allocator_t *allocator)</span>
 <span class="lineNum">     100 </span>                :            : {
 <span class="lineNum">     101 </span>                :            :     //TODO
 <span class="lineNum">     102 </span>                :            :     SNAP_UNUSED( in_data );
@@ -182,11 +182,11 @@
 <span class="lineNum">     105 </span>                :            :     SNAP_UNUSED( out_size );
 <span class="lineNum">     106 </span>                :            :     SNAP_UNUSED( allocator );
 <span class="lineNum">     107 </span>                :            : 
-<span class="lineNum">     108 </span>                :<span class="lineCov">          4 :     return false;</span>
+<span class="lineNum">     108 </span>                :<span class="lineCov">          2 :     return false;</span>
 <span class="lineNum">     109 </span>                :            : }
 <a name="110"><span class="lineNum">     110 </span>                :            : </a>
 <span class="lineNum">     111 </span>                :            : 
-<span class="lineNum">     112 </span>                :<span class="lineCov">          4 : bool snap_zlib_decode(const uint8_t *in_data, int in_size, uint8_t *out_data, int out_size, const snap_allocator_t *allocator)</span>
+<span class="lineNum">     112 </span>                :<span class="lineCov">          2 : bool snap_zlib_decode(const uint8_t *in_data, int in_size, uint8_t *out_data, int out_size, const snap_allocator_t *allocator)</span>
 <span class="lineNum">     113 </span>                :            : {
 <span class="lineNum">     114 </span>                :            :     //TODO
 <span class="lineNum">     115 </span>                :            :     SNAP_UNUSED( in_data );
@@ -195,7 +195,7 @@
 <span class="lineNum">     118 </span>                :            :     SNAP_UNUSED( out_size );
 <span class="lineNum">     119 </span>                :            :     SNAP_UNUSED( allocator );
 <span class="lineNum">     120 </span>                :            : 
-<span class="lineNum">     121 </span>                :<span class="lineCov">          4 :     return false;</span>
+<span class="lineNum">     121 </span>                :<span class="lineCov">          2 :     return false;</span>
 <span class="lineNum">     122 </span>                :            : }
 <span class="lineNum">     123 </span>                :            : 
 <span class="lineNum">     124 </span>                :            : 

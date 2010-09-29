@@ -147,444 +147,444 @@
 <span class="lineNum">      70 </span>                :            : 
 <a name="71"><span class="lineNum">      71 </span>                :            : </a>
 <span class="lineNum">      72 </span>                :            : 
-<span class="lineNum">      73 </span>                :<span class="lineCov">         36 : void snap_test_priv_decode_example(uint32_t localAddress, uint32_t peerAddress,</span>
+<span class="lineNum">      73 </span>                :<span class="lineCov">         18 : void snap_test_priv_decode_example(uint32_t localAddress, uint32_t peerAddress,</span>
 <span class="lineNum">      74 </span>                :            :              bool ack, SnapErrorDetectionMode edm, uint8_t *in, size_t in_size,
 <span class="lineNum">      75 </span>                :            :              size_t expected_in_pos, uint8_t *expected_result, 
 <span class="lineNum">      76 </span>                :            :              size_t expected_result_size, uint8_t *expected_response, 
 <span class="lineNum">      77 </span>                :            :              size_t expected_response_size)
 <span class="lineNum">      78 </span>                :            : {
 <span class="lineNum">      79 </span>                :            :     snap_t snap;
-<span class="lineNum">      80 </span>                :<span class="lineCov">         36 :     snap_init( &amp;snap );</span>
+<span class="lineNum">      80 </span>                :<span class="lineCov">         18 :     snap_init( &amp;snap );</span>
 <span class="lineNum">      81 </span>                :            : 
-<span class="lineNum">      82 </span>                :<span class="lineCov">         36 :     snap_set_acknowledgement( &amp;snap, ack );</span>
-<span class="lineNum">      83 </span>                :<span class="lineCov">         36 :     snap_set_local_address( &amp;snap, localAddress );</span>
-<span class="lineNum">      84 </span>                :<span class="lineCov">         36 :     snap_set_peer_address( &amp;snap, peerAddress );</span>
-<span class="lineNum">      85 </span>                :<span class="lineCov">         36 :     snap_set_error_detection_mode( &amp;snap, edm );</span>
+<span class="lineNum">      82 </span>                :<span class="lineCov">         18 :     snap_set_acknowledgement( &amp;snap, ack );</span>
+<span class="lineNum">      83 </span>                :<span class="lineCov">         18 :     snap_set_local_address( &amp;snap, localAddress );</span>
+<span class="lineNum">      84 </span>                :<span class="lineCov">         18 :     snap_set_peer_address( &amp;snap, peerAddress );</span>
+<span class="lineNum">      85 </span>                :<span class="lineCov">         18 :     snap_set_error_detection_mode( &amp;snap, edm );</span>
 <span class="lineNum">      86 </span>                :            : 
-<span class="lineNum">      87 </span>                :<span class="lineCov">         36 :     size_t in_pos = 0;</span>
+<span class="lineNum">      87 </span>                :<span class="lineCov">         18 :     size_t in_pos = 0;</span>
 <span class="lineNum">      88 </span>                :            : 
-<span class="lineNum">      89 </span>                :<span class="lineCov">         36 :     size_t result_size = snap_encode_bound( &amp;snap, in_size );</span>
-<span class="lineNum">      90 </span>                :<span class="lineCov">         36 :     uint8_t *result = malloc( result_size );</span>
-<span class="lineNum">      91 </span>                :<span class="lineCov">         36 :     size_t result_pos = 0;</span>
+<span class="lineNum">      89 </span>                :<span class="lineCov">         18 :     size_t result_size = snap_encode_bound( &amp;snap, in_size );</span>
+<span class="lineNum">      90 </span>                :<span class="lineCov">         18 :     uint8_t *result = malloc( result_size );</span>
+<span class="lineNum">      91 </span>                :<span class="lineCov">         18 :     size_t result_pos = 0;</span>
 <span class="lineNum">      92 </span>                :            : 
-<span class="lineNum">      93 </span>                :<span class="lineCov">         36 :     size_t response_size = snap_encode_bound( &amp;snap, in_size );</span>
-<span class="lineNum">      94 </span>                :<span class="lineCov">         36 :     uint8_t *response = malloc( response_size );</span>
-<span class="lineNum">      95 </span>                :<span class="lineCov">         36 :     size_t response_pos = 0;</span>
+<span class="lineNum">      93 </span>                :<span class="lineCov">         18 :     size_t response_size = snap_encode_bound( &amp;snap, in_size );</span>
+<span class="lineNum">      94 </span>                :<span class="lineCov">         18 :     uint8_t *response = malloc( response_size );</span>
+<span class="lineNum">      95 </span>                :<span class="lineCov">         18 :     size_t response_pos = 0;</span>
 <span class="lineNum">      96 </span>                :            : 
 <span class="lineNum">      97 </span>                :            : 
-<span class="lineNum">      98 </span>                :<span class="lineCov">         36 :     SNAP_ASSERT(</span>
+<span class="lineNum">      98 </span>                :<span class="lineCov">         18 :     SNAP_ASSERT(</span>
 <span class="lineNum">      99 </span>                :            :         snap_decode( &amp;snap, in, &amp;in_pos, in_size, result, &amp;result_pos,
 <span class="lineNum">     100 </span>                :            :                           result_size, response, &amp;response_pos, response_size )
 <span class="lineNum">     101 </span>                :            :     );
 <span class="lineNum">     102 </span>                :            : 
-<span class="lineNum">     103 </span>                :<span class="lineCov">         36 :     SNAP_ASSERT( in_size == expected_in_pos );</span>
-<span class="lineNum">     104 </span>                :<span class="lineCov">         36 :     SNAP_ASSERT( expected_result_size == result_pos );</span>
-<span class="lineNum">     105 </span>                :<span class="lineCov">         36 :     SNAP_ASSERT( expected_response_size == response_pos );</span>
+<span class="lineNum">     103 </span>                :<span class="lineCov">         18 :     SNAP_ASSERT( in_size == expected_in_pos );</span>
+<span class="lineNum">     104 </span>                :<span class="lineCov">         18 :     SNAP_ASSERT( expected_result_size == result_pos );</span>
+<span class="lineNum">     105 </span>                :<span class="lineCov">         18 :     SNAP_ASSERT( expected_response_size == response_pos );</span>
 <span class="lineNum">     106 </span>                :            : 
-<span class="lineNum">     107 </span>        [<span class="branchCov" title="Branch 0 was taken 2236 times"> + </span><span class="branchCov" title="Branch 1 was taken 36 times"> + </span>]:<span class="lineCov">       2272 :     for(size_t i = 0; i &lt; expected_result_size; ++i) {</span>
-<span class="lineNum">     108 </span>                :<span class="lineCov">       2236 :         SNAP_ASSERT( result[ i ] == expected_result[ i ] );</span>
+<span class="lineNum">     107 </span>        [<span class="branchCov" title="Branch 0 was taken 1118 times"> + </span><span class="branchCov" title="Branch 1 was taken 18 times"> + </span>]:<span class="lineCov">       1136 :     for(size_t i = 0; i &lt; expected_result_size; ++i) {</span>
+<span class="lineNum">     108 </span>                :<span class="lineCov">       1118 :         SNAP_ASSERT( result[ i ] == expected_result[ i ] );</span>
 <span class="lineNum">     109 </span>                :            :     }
 <span class="lineNum">     110 </span>                :            : 
-<span class="lineNum">     111 </span>        [<span class="branchCov" title="Branch 0 was taken 28 times"> + </span><span class="branchCov" title="Branch 1 was taken 36 times"> + </span>]:<span class="lineCov">         64 :     for(size_t i = 0; i &lt; expected_response_size; ++i) {</span>
-<span class="lineNum">     112 </span>                :<span class="lineCov">         28 :         SNAP_ASSERT( response[ i ] == expected_response[ i ] );</span>
+<span class="lineNum">     111 </span>        [<span class="branchCov" title="Branch 0 was taken 14 times"> + </span><span class="branchCov" title="Branch 1 was taken 18 times"> + </span>]:<span class="lineCov">         32 :     for(size_t i = 0; i &lt; expected_response_size; ++i) {</span>
+<span class="lineNum">     112 </span>                :<span class="lineCov">         14 :         SNAP_ASSERT( response[ i ] == expected_response[ i ] );</span>
 <span class="lineNum">     113 </span>                :            :     }
-<span class="lineNum">     114 </span>                :<span class="lineCov">         36 : }</span>
+<span class="lineNum">     114 </span>                :<span class="lineCov">         18 : }</span>
 <a name="115"><span class="lineNum">     115 </span>                :            : </a>
 <span class="lineNum">     116 </span>                :            : 
-<span class="lineNum">     117 </span>                :<span class="lineCov">          4 : void snap_test_decode_illegal_ndb()</span>
+<span class="lineNum">     117 </span>                :<span class="lineCov">          2 : void snap_test_decode_illegal_ndb()</span>
 <span class="lineNum">     118 </span>                :            : {
 <span class="lineNum">     119 </span>                :            :     // with illegal ndb value
 <span class="lineNum">     120 </span>                :            : 
-<span class="lineNum">     121 </span>                :<span class="lineCov">          4 :     SNAP_HELPER_MACRO_1();</span>
-<span class="lineNum">     122 </span>                :<span class="lineCov">          4 :     data[ 3 ] = 15; // replace NDB</span>
+<span class="lineNum">     121 </span>                :<span class="lineCov">          2 :     SNAP_HELPER_MACRO_1();</span>
+<span class="lineNum">     122 </span>                :<span class="lineCov">          2 :     data[ 3 ] = 15; // replace NDB</span>
 <span class="lineNum">     123 </span>                :            : 
-<span class="lineNum">     124 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT(</span>
+<span class="lineNum">     124 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT(</span>
 <span class="lineNum">     125 </span>                :            :         !snap_decode( &amp;snap, data, &amp;data_pos, data_size, result, &amp;result_pos,
 <span class="lineNum">     126 </span>                :            :                           result_size, response, &amp;response_pos, response_size )
 <span class="lineNum">     127 </span>                :            :     );
-<span class="lineNum">     128 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data_pos == 1 + 1 + 2 + 1 );</span>
-<span class="lineNum">     129 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap.last_decode_error_pos == 4 );</span>
-<span class="lineNum">     130 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap.last_error == SNAP_ERROR_UNKNOWN_NDB_VALUE );</span>
-<span class="lineNum">     131 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( result_pos == 0 );</span>
-<span class="lineNum">     132 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( response_pos == 0 );</span>
-<span class="lineNum">     133 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     128 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data_pos == 1 + 1 + 2 + 1 );</span>
+<span class="lineNum">     129 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap.last_decode_error_pos == 4 );</span>
+<span class="lineNum">     130 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap.last_error == SNAP_ERROR_UNKNOWN_NDB_VALUE );</span>
+<span class="lineNum">     131 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( result_pos == 0 );</span>
+<span class="lineNum">     132 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( response_pos == 0 );</span>
+<span class="lineNum">     133 </span>                :<span class="lineCov">          2 : }</span>
 <a name="134"><span class="lineNum">     134 </span>                :            : </a>
 <span class="lineNum">     135 </span>                :            : 
-<span class="lineNum">     136 </span>                :<span class="lineCov">          4 : void snap_test_decode_illegal_edm()</span>
+<span class="lineNum">     136 </span>                :<span class="lineCov">          2 : void snap_test_decode_illegal_edm()</span>
 <span class="lineNum">     137 </span>                :            : {
 <span class="lineNum">     138 </span>                :            :     // with illegal ndb value
 <span class="lineNum">     139 </span>                :            : 
-<span class="lineNum">     140 </span>                :<span class="lineCov">          4 :     SNAP_HELPER_MACRO_1();</span>
-<span class="lineNum">     141 </span>                :<span class="lineCov">          4 :     data[ 3 ] = 112; // replace EDM</span>
+<span class="lineNum">     140 </span>                :<span class="lineCov">          2 :     SNAP_HELPER_MACRO_1();</span>
+<span class="lineNum">     141 </span>                :<span class="lineCov">          2 :     data[ 3 ] = 112; // replace EDM</span>
 <span class="lineNum">     142 </span>                :            : 
-<span class="lineNum">     143 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT(</span>
+<span class="lineNum">     143 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT(</span>
 <span class="lineNum">     144 </span>                :            :         !snap_decode( &amp;snap, data, &amp;data_pos, data_size, result, &amp;result_pos,
 <span class="lineNum">     145 </span>                :            :                           result_size, response, &amp;response_pos, response_size )
 <span class="lineNum">     146 </span>                :            :     );
-<span class="lineNum">     147 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data_pos == 1 + 1 + 2 + 1 );</span>
-<span class="lineNum">     148 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap.last_decode_error_pos == 4 );</span>
-<span class="lineNum">     149 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap.last_error == SNAP_ERROR_UNKNOWN_EDM_TYPE );</span>
-<span class="lineNum">     150 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( result_pos == 0 );</span>
-<span class="lineNum">     151 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( response_pos == 0 );</span>
-<span class="lineNum">     152 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     147 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data_pos == 1 + 1 + 2 + 1 );</span>
+<span class="lineNum">     148 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap.last_decode_error_pos == 4 );</span>
+<span class="lineNum">     149 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap.last_error == SNAP_ERROR_UNKNOWN_EDM_TYPE );</span>
+<span class="lineNum">     150 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( result_pos == 0 );</span>
+<span class="lineNum">     151 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( response_pos == 0 );</span>
+<span class="lineNum">     152 </span>                :<span class="lineCov">          2 : }</span>
 <a name="153"><span class="lineNum">     153 </span>                :            : </a>
 <span class="lineNum">     154 </span>                :            : 
-<span class="lineNum">     155 </span>                :<span class="lineCov">          4 : void snap_test_decode_invalid_edm()</span>
+<span class="lineNum">     155 </span>                :<span class="lineCov">          2 : void snap_test_decode_invalid_edm()</span>
 <span class="lineNum">     156 </span>                :            : {
-<span class="lineNum">     157 </span>                :<span class="lineCov">          4 :     uint32_t local = 0;     // 0 Bytes</span>
-<span class="lineNum">     158 </span>                :<span class="lineCov">          4 :     uint32_t peer = 86542;  // 3 Bytes</span>
-<span class="lineNum">     159 </span>                :<span class="lineCov">          4 :     bool ack = false;</span>
-<span class="lineNum">     160 </span>                :<span class="lineCov">          4 :     SnapErrorDetectionMode edm = EDM_CRC16;</span>
+<span class="lineNum">     157 </span>                :<span class="lineCov">          2 :     uint32_t local = 0;     // 0 Bytes</span>
+<span class="lineNum">     158 </span>                :<span class="lineCov">          2 :     uint32_t peer = 86542;  // 3 Bytes</span>
+<span class="lineNum">     159 </span>                :<span class="lineCov">          2 :     bool ack = false;</span>
+<span class="lineNum">     160 </span>                :<span class="lineCov">          2 :     SnapErrorDetectionMode edm = EDM_CRC16;</span>
 <span class="lineNum">     161 </span>                :            : 
-<span class="lineNum">     162 </span>                :<span class="lineCov">          4 :     uint8_t data[] = {</span>
+<span class="lineNum">     162 </span>                :<span class="lineCov">          2 :     uint8_t data[] = {</span>
 <span class="lineNum">     163 </span>                :            :         0x54, 0xC0, 0x4A, 0x01, 0x52, 0x0E, 0x48, 0x65, 0x6C, 0x6C, 0x6F,
 <span class="lineNum">     164 </span>                :            :         0x20, 0x53, 0x4E, 0x41, 0x50, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64,
 <span class="lineNum">     165 </span>                :            :         0x21, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 <span class="lineNum">     166 </span>                :            :         0x00, 0x00, 0x00, 0x00, 0x00, 0xFA, 0x61 /* a valid checksum is 0x60 instead of 0x61 */
 <span class="lineNum">     167 </span>                :            :     };
-<span class="lineNum">     168 </span>                :<span class="lineCov">          4 :     size_t data_size = sizeof( data ) / sizeof( data[ 0 ] );</span>
+<span class="lineNum">     168 </span>                :<span class="lineCov">          2 :     size_t data_size = sizeof( data ) / sizeof( data[ 0 ] );</span>
 <span class="lineNum">     169 </span>                :            : 
-<span class="lineNum">     170 </span>                :<span class="lineCov">          4 :     uint8_t expected_result[] = &quot;Hello SNAP World!&quot;;</span>
+<span class="lineNum">     170 </span>                :<span class="lineCov">          2 :     uint8_t expected_result[] = &quot;Hello SNAP World!&quot;;</span>
 <span class="lineNum">     171 </span>                :            : 
-<span class="lineNum">     172 </span>                :<span class="lineCov">          4 :     size_t expected_result_size = sizeof( expected_result ) / sizeof( expected_result[ 0 ] );</span>
+<span class="lineNum">     172 </span>                :<span class="lineCov">          2 :     size_t expected_result_size = sizeof( expected_result ) / sizeof( expected_result[ 0 ] );</span>
 <span class="lineNum">     173 </span>                :            : 
 <span class="lineNum">     174 </span>                :            :     // remove implicit trailing '\0' (introduced through the string notation of expected_result)
-<span class="lineNum">     175 </span>                :<span class="lineCov">          4 :     expected_result_size--;</span>
+<span class="lineNum">     175 </span>                :<span class="lineCov">          2 :     expected_result_size--;</span>
 <span class="lineNum">     176 </span>                :            : 
-<span class="lineNum">     177 </span>                :<span class="lineCov">          4 :     uint8_t expected_response[] = { '\0' };</span>
-<span class="lineNum">     178 </span>                :<span class="lineCov">          4 :     size_t expected_response_size = 0;</span>
+<span class="lineNum">     177 </span>                :<span class="lineCov">          2 :     uint8_t expected_response[] = { '\0' };</span>
+<span class="lineNum">     178 </span>                :<span class="lineCov">          2 :     size_t expected_response_size = 0;</span>
 <span class="lineNum">     179 </span>                :            : 
 <span class="lineNum">     180 </span>                :            :     snap_t snap;
-<span class="lineNum">     181 </span>                :<span class="lineCov">          4 :     snap_init( &amp;snap );</span>
+<span class="lineNum">     181 </span>                :<span class="lineCov">          2 :     snap_init( &amp;snap );</span>
 <span class="lineNum">     182 </span>                :            : 
-<span class="lineNum">     183 </span>                :<span class="lineCov">          4 :     snap_set_acknowledgement( &amp;snap, ack );</span>
-<span class="lineNum">     184 </span>                :<span class="lineCov">          4 :     snap_set_local_address( &amp;snap, local );</span>
-<span class="lineNum">     185 </span>                :<span class="lineCov">          4 :     snap_set_peer_address( &amp;snap, peer );</span>
-<span class="lineNum">     186 </span>                :<span class="lineCov">          4 :     snap_set_error_detection_mode( &amp;snap, edm );</span>
+<span class="lineNum">     183 </span>                :<span class="lineCov">          2 :     snap_set_acknowledgement( &amp;snap, ack );</span>
+<span class="lineNum">     184 </span>                :<span class="lineCov">          2 :     snap_set_local_address( &amp;snap, local );</span>
+<span class="lineNum">     185 </span>                :<span class="lineCov">          2 :     snap_set_peer_address( &amp;snap, peer );</span>
+<span class="lineNum">     186 </span>                :<span class="lineCov">          2 :     snap_set_error_detection_mode( &amp;snap, edm );</span>
 <span class="lineNum">     187 </span>                :            : 
-<span class="lineNum">     188 </span>                :<span class="lineCov">          4 :     size_t in_pos = 0;</span>
+<span class="lineNum">     188 </span>                :<span class="lineCov">          2 :     size_t in_pos = 0;</span>
 <span class="lineNum">     189 </span>                :            : 
-<span class="lineNum">     190 </span>                :<span class="lineCov">          4 :     size_t result_size = snap_encode_bound( &amp;snap, data_size );</span>
-<span class="lineNum">     191 </span>                :<span class="lineCov">          4 :     uint8_t *result = malloc( result_size );</span>
-<span class="lineNum">     192 </span>                :<span class="lineCov">          4 :     size_t result_pos = 0;</span>
+<span class="lineNum">     190 </span>                :<span class="lineCov">          2 :     size_t result_size = snap_encode_bound( &amp;snap, data_size );</span>
+<span class="lineNum">     191 </span>                :<span class="lineCov">          2 :     uint8_t *result = malloc( result_size );</span>
+<span class="lineNum">     192 </span>                :<span class="lineCov">          2 :     size_t result_pos = 0;</span>
 <span class="lineNum">     193 </span>                :            : 
-<span class="lineNum">     194 </span>                :<span class="lineCov">          4 :     size_t response_size = snap_encode_bound( &amp;snap, data_size );</span>
-<span class="lineNum">     195 </span>                :<span class="lineCov">          4 :     uint8_t *response = malloc( response_size );</span>
-<span class="lineNum">     196 </span>                :<span class="lineCov">          4 :     size_t response_pos = 0;</span>
+<span class="lineNum">     194 </span>                :<span class="lineCov">          2 :     size_t response_size = snap_encode_bound( &amp;snap, data_size );</span>
+<span class="lineNum">     195 </span>                :<span class="lineCov">          2 :     uint8_t *response = malloc( response_size );</span>
+<span class="lineNum">     196 </span>                :<span class="lineCov">          2 :     size_t response_pos = 0;</span>
 <span class="lineNum">     197 </span>                :            : 
 <span class="lineNum">     198 </span>                :            : 
-<span class="lineNum">     199 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT(</span>
+<span class="lineNum">     199 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT(</span>
 <span class="lineNum">     200 </span>                :            :         !snap_decode( &amp;snap, data, &amp;in_pos, data_size, result, &amp;result_pos,
 <span class="lineNum">     201 </span>                :            :                           result_size, response, &amp;response_pos, response_size )
 <span class="lineNum">     202 </span>                :            :     );
 <span class="lineNum">     203 </span>                :            : 
-<span class="lineNum">     204 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( in_pos == data_size );</span>
-<span class="lineNum">     205 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap.last_decode_error_pos == data_size - 2 ); // - 2 byte size of edm</span>
-<span class="lineNum">     206 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap.last_error == SNAP_ERROR_INVALID_EDM );</span>
-<span class="lineNum">     207 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( result_pos == 0 );</span>
-<span class="lineNum">     208 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( response_pos == 0 );</span>
+<span class="lineNum">     204 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( in_pos == data_size );</span>
+<span class="lineNum">     205 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap.last_decode_error_pos == data_size - 2 ); // - 2 byte size of edm</span>
+<span class="lineNum">     206 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap.last_error == SNAP_ERROR_INVALID_EDM );</span>
+<span class="lineNum">     207 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( result_pos == 0 );</span>
+<span class="lineNum">     208 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( response_pos == 0 );</span>
 <span class="lineNum">     209 </span>                :            : 
-<span class="lineNum">     210 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( !snap_is_ready( &amp;snap ) );</span>
-<span class="lineNum">     211 </span>                :<span class="lineCov">          4 :     snap_reset( &amp;snap );</span>
-<span class="lineNum">     212 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_is_ready( &amp;snap ) );</span>
+<span class="lineNum">     210 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( !snap_is_ready( &amp;snap ) );</span>
+<span class="lineNum">     211 </span>                :<span class="lineCov">          2 :     snap_reset( &amp;snap );</span>
+<span class="lineNum">     212 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_is_ready( &amp;snap ) );</span>
 <span class="lineNum">     213 </span>                :            : 
-<span class="lineNum">     214 </span>                :<span class="lineCov">          4 :     in_pos = 0;</span>
-<span class="lineNum">     215 </span>                :<span class="lineCov">          4 :     data[ 1 ] = data[ 1 ] + 1;</span>
+<span class="lineNum">     214 </span>                :<span class="lineCov">          2 :     in_pos = 0;</span>
+<span class="lineNum">     215 </span>                :<span class="lineCov">          2 :     data[ 1 ] = data[ 1 ] + 1;</span>
 <span class="lineNum">     216 </span>                :            : 
-<span class="lineNum">     217 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT(</span>
+<span class="lineNum">     217 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT(</span>
 <span class="lineNum">     218 </span>                :            :         !snap_decode( &amp;snap, data, &amp;in_pos, data_size, result, &amp;result_pos,
 <span class="lineNum">     219 </span>                :            :                           result_size, response, &amp;response_pos, response_size )
 <span class="lineNum">     220 </span>                :            :     );
 <span class="lineNum">     221 </span>                :            : 
-<span class="lineNum">     222 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( in_pos == data_size );</span>
-<span class="lineNum">     223 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap.last_decode_error_pos == data_size - 2 ); // - 2 byte size of edm</span>
-<span class="lineNum">     224 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap.last_error == SNAP_ERROR_INVALID_EDM );</span>
-<span class="lineNum">     225 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( result_pos == 0 );</span>
-<span class="lineNum">     226 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( response_pos == snap_util_nak_response_bound( local, peer ) );</span>
-<span class="lineNum">     227 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( response[ 0 ] == 'T' );</span>
+<span class="lineNum">     222 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( in_pos == data_size );</span>
+<span class="lineNum">     223 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap.last_decode_error_pos == data_size - 2 ); // - 2 byte size of edm</span>
+<span class="lineNum">     224 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap.last_error == SNAP_ERROR_INVALID_EDM );</span>
+<span class="lineNum">     225 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( result_pos == 0 );</span>
+<span class="lineNum">     226 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( response_pos == snap_util_nak_response_bound( local, peer ) );</span>
+<span class="lineNum">     227 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( response[ 0 ] == 'T' );</span>
 <span class="lineNum">     228 </span>                :            : 
-<span class="lineNum">     229 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( !snap_is_ready( &amp;snap ) );</span>
+<span class="lineNum">     229 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( !snap_is_ready( &amp;snap ) );</span>
 <span class="lineNum">     230 </span>                :            : 
-<span class="lineNum">     231 </span>                :<span class="lineCov">          4 :     snap_reset( &amp;snap );</span>
-<span class="lineNum">     232 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( snap_is_ready( &amp;snap ) );</span>
+<span class="lineNum">     231 </span>                :<span class="lineCov">          2 :     snap_reset( &amp;snap );</span>
+<span class="lineNum">     232 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( snap_is_ready( &amp;snap ) );</span>
 <span class="lineNum">     233 </span>                :            : 
 <span class="lineNum">     234 </span>                :            :     //TODO
 <span class="lineNum">     235 </span>                :            :     SNAP_UNUSED( expected_response_size );
 <span class="lineNum">     236 </span>                :            :     SNAP_UNUSED( expected_response );
-<span class="lineNum">     237 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     237 </span>                :<span class="lineCov">          2 : }</span>
 <a name="238"><span class="lineNum">     238 </span>                :            : </a>
 <span class="lineNum">     239 </span>                :            : 
-<span class="lineNum">     240 </span>                :<span class="lineCov">          4 : void snap_test_decode_no_data()</span>
+<span class="lineNum">     240 </span>                :<span class="lineCov">          2 : void snap_test_decode_no_data()</span>
 <span class="lineNum">     241 </span>                :            : {
 <span class="lineNum">     242 </span>                :            :     // no data (size 0)
 <span class="lineNum">     243 </span>                :            : 
-<span class="lineNum">     244 </span>                :<span class="lineCov">          4 :     SNAP_HELPER_MACRO_1();</span>
+<span class="lineNum">     244 </span>                :<span class="lineCov">          2 :     SNAP_HELPER_MACRO_1();</span>
 <span class="lineNum">     245 </span>                :            : 
-<span class="lineNum">     246 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT(</span>
+<span class="lineNum">     246 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT(</span>
 <span class="lineNum">     247 </span>                :            :         snap_decode( &amp;snap, data, &amp;data_pos, 0, result, &amp;result_pos,
 <span class="lineNum">     248 </span>                :            :                           result_size, response, &amp;response_pos, response_size )
 <span class="lineNum">     249 </span>                :            :     );
-<span class="lineNum">     250 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data_pos == 0 );</span>
-<span class="lineNum">     251 </span>                :<span class="lineCov">          4 :     SNAP_HELPER_MACRO_1_DATA_INTEGRITY_CHECK();</span>
-<span class="lineNum">     252 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( result_pos == 0 );</span>
-<span class="lineNum">     253 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( response_pos == 0 );</span>
+<span class="lineNum">     250 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data_pos == 0 );</span>
+<span class="lineNum">     251 </span>                :<span class="lineCov">          2 :     SNAP_HELPER_MACRO_1_DATA_INTEGRITY_CHECK();</span>
+<span class="lineNum">     252 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( result_pos == 0 );</span>
+<span class="lineNum">     253 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( response_pos == 0 );</span>
 <span class="lineNum">     254 </span>                :            : 
-<span class="lineNum">     255 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT(</span>
+<span class="lineNum">     255 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT(</span>
 <span class="lineNum">     256 </span>                :            :         snap_decode( &amp;snap, data + 2, &amp;data_pos, data_size - 2, result, &amp;result_pos,
 <span class="lineNum">     257 </span>                :            :                           result_size, response, &amp;response_pos, response_size )
 <span class="lineNum">     258 </span>                :            :     );
-<span class="lineNum">     259 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data_pos == data_size - 2 );</span>
-<span class="lineNum">     260 </span>                :<span class="lineCov">          4 :     SNAP_HELPER_MACRO_1_DATA_INTEGRITY_CHECK();</span>
-<span class="lineNum">     261 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( result_pos == 0 );</span>
-<span class="lineNum">     262 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( response_pos == 0 );</span>
-<span class="lineNum">     263 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     259 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data_pos == data_size - 2 );</span>
+<span class="lineNum">     260 </span>                :<span class="lineCov">          2 :     SNAP_HELPER_MACRO_1_DATA_INTEGRITY_CHECK();</span>
+<span class="lineNum">     261 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( result_pos == 0 );</span>
+<span class="lineNum">     262 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( response_pos == 0 );</span>
+<span class="lineNum">     263 </span>                :<span class="lineCov">          2 : }</span>
 <a name="264"><span class="lineNum">     264 </span>                :            : </a>
 <span class="lineNum">     265 </span>                :            : 
-<span class="lineNum">     266 </span>                :<span class="lineCov">          4 : void snap_test_decode_codswallop_1()</span>
+<span class="lineNum">     266 </span>                :<span class="lineCov">          2 : void snap_test_decode_codswallop_1()</span>
 <span class="lineNum">     267 </span>                :            : {
 <span class="lineNum">     268 </span>                :            :     // only random noise
 <span class="lineNum">     269 </span>                :            : 
-<span class="lineNum">     270 </span>                :<span class="lineCov">          4 :     SNAP_HELPER_MACRO_1();</span>
-<span class="lineNum">     271 </span>                :<span class="lineCov">          4 :     data[ 1 ] = 'H'; // replace SYNC Byte</span>
+<span class="lineNum">     270 </span>                :<span class="lineCov">          2 :     SNAP_HELPER_MACRO_1();</span>
+<span class="lineNum">     271 </span>                :<span class="lineCov">          2 :     data[ 1 ] = 'H'; // replace SYNC Byte</span>
 <span class="lineNum">     272 </span>                :            : 
-<span class="lineNum">     273 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT(</span>
+<span class="lineNum">     273 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT(</span>
 <span class="lineNum">     274 </span>                :            :         snap_decode( &amp;snap, data, &amp;data_pos, data_size, result, &amp;result_pos,
 <span class="lineNum">     275 </span>                :            :                           result_size, response, &amp;response_pos, response_size )
 <span class="lineNum">     276 </span>                :            :     );
-<span class="lineNum">     277 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data_pos == data_size );</span>
-<span class="lineNum">     278 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 0 ] == 'S' );</span>
-<span class="lineNum">     279 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 1 ] == 'H' );</span>
-<span class="lineNum">     280 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 2 ] == 0 );</span>
-<span class="lineNum">     281 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 3 ] == 0 );</span>
-<span class="lineNum">     282 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 4 ] == 'X' );</span>
-<span class="lineNum">     283 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 5 ] == 'Y' );</span>
-<span class="lineNum">     284 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 6 ] == 'Z' );</span>
-<span class="lineNum">     285 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     277 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data_pos == data_size );</span>
+<span class="lineNum">     278 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 0 ] == 'S' );</span>
+<span class="lineNum">     279 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 1 ] == 'H' );</span>
+<span class="lineNum">     280 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 2 ] == 0 );</span>
+<span class="lineNum">     281 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 3 ] == 0 );</span>
+<span class="lineNum">     282 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 4 ] == 'X' );</span>
+<span class="lineNum">     283 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 5 ] == 'Y' );</span>
+<span class="lineNum">     284 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 6 ] == 'Z' );</span>
+<span class="lineNum">     285 </span>                :<span class="lineCov">          2 : }</span>
 <a name="286"><span class="lineNum">     286 </span>                :            : </a>
 <span class="lineNum">     287 </span>                :            : 
-<span class="lineNum">     288 </span>                :<span class="lineCov">          4 : void snap_test_decode_codswallop_2()</span>
+<span class="lineNum">     288 </span>                :<span class="lineCov">          2 : void snap_test_decode_codswallop_2()</span>
 <span class="lineNum">     289 </span>                :            : {
 <span class="lineNum">     290 </span>                :            :     // only random noise
 <span class="lineNum">     291 </span>                :            : 
-<span class="lineNum">     292 </span>                :<span class="lineCov">          4 :     SNAP_HELPER_MACRO_1();</span>
-<span class="lineNum">     293 </span>                :<span class="lineCov">          4 :     data[ 1 ] = 'H'; // replace SYNC Byte</span>
+<span class="lineNum">     292 </span>                :<span class="lineCov">          2 :     SNAP_HELPER_MACRO_1();</span>
+<span class="lineNum">     293 </span>                :<span class="lineCov">          2 :     data[ 1 ] = 'H'; // replace SYNC Byte</span>
 <span class="lineNum">     294 </span>                :            : 
-<span class="lineNum">     295 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT(</span>
+<span class="lineNum">     295 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT(</span>
 <span class="lineNum">     296 </span>                :            :         snap_decode( &amp;snap, data, &amp;data_pos, real_data_size, result, &amp;result_pos,
 <span class="lineNum">     297 </span>                :            :                           result_size, response, &amp;response_pos, response_size )
 <span class="lineNum">     298 </span>                :            :     );
-<span class="lineNum">     299 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data_pos == real_data_size );</span>
-<span class="lineNum">     300 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 0 ] == 'S' );</span>
-<span class="lineNum">     301 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 1 ] == 'H' );</span>
-<span class="lineNum">     302 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 2 ] == 0 );</span>
-<span class="lineNum">     303 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 3 ] == 0 );</span>
-<span class="lineNum">     304 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 4 ] == 'X' );</span>
-<span class="lineNum">     305 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 5 ] == 'Y' );</span>
-<span class="lineNum">     306 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 6 ] == 'Z' );</span>
-<span class="lineNum">     307 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     299 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data_pos == real_data_size );</span>
+<span class="lineNum">     300 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 0 ] == 'S' );</span>
+<span class="lineNum">     301 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 1 ] == 'H' );</span>
+<span class="lineNum">     302 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 2 ] == 0 );</span>
+<span class="lineNum">     303 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 3 ] == 0 );</span>
+<span class="lineNum">     304 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 4 ] == 'X' );</span>
+<span class="lineNum">     305 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 5 ] == 'Y' );</span>
+<span class="lineNum">     306 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 6 ] == 'Z' );</span>
+<span class="lineNum">     307 </span>                :<span class="lineCov">          2 : }</span>
 <a name="308"><span class="lineNum">     308 </span>                :            : </a>
 <span class="lineNum">     309 </span>                :            : 
-<span class="lineNum">     310 </span>                :<span class="lineCov">          4 : void snap_test_decode_corner_case_sync_at_end()</span>
+<span class="lineNum">     310 </span>                :<span class="lineCov">          2 : void snap_test_decode_corner_case_sync_at_end()</span>
 <span class="lineNum">     311 </span>                :            : {
 <span class="lineNum">     312 </span>                :            :     // corner case when SYNC is at the end of the stream.
 <span class="lineNum">     313 </span>                :            : 
-<span class="lineNum">     314 </span>                :<span class="lineCov">          4 :     SNAP_HELPER_MACRO_1();</span>
+<span class="lineNum">     314 </span>                :<span class="lineCov">          2 :     SNAP_HELPER_MACRO_1();</span>
 <span class="lineNum">     315 </span>                :            : 
-<span class="lineNum">     316 </span>                :<span class="lineCov">          4 :     data[ 1 ] = 'H'; // replace old SYNC byte</span>
-<span class="lineNum">     317 </span>                :<span class="lineCov">          4 :     data[ 6 ] = 'T'; // add SYNC byte add the end</span>
+<span class="lineNum">     316 </span>                :<span class="lineCov">          2 :     data[ 1 ] = 'H'; // replace old SYNC byte</span>
+<span class="lineNum">     317 </span>                :<span class="lineCov">          2 :     data[ 6 ] = 'T'; // add SYNC byte add the end</span>
 <span class="lineNum">     318 </span>                :            : 
-<span class="lineNum">     319 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT(</span>
+<span class="lineNum">     319 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT(</span>
 <span class="lineNum">     320 </span>                :            :         snap_decode( &amp;snap, data, &amp;data_pos, real_data_size, result, &amp;result_pos,
 <span class="lineNum">     321 </span>                :            :                           result_size, response, &amp;response_pos, response_size )
 <span class="lineNum">     322 </span>                :            :     );
 <span class="lineNum">     323 </span>                :            : 
-<span class="lineNum">     324 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data_pos == real_data_size - 1 );</span>
-<span class="lineNum">     325 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ data_pos ] == 'T' );</span>
-<span class="lineNum">     326 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 0 ] == 'S' );</span>
-<span class="lineNum">     327 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 1 ] == 'H' );</span>
-<span class="lineNum">     328 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 2 ] == 0 );</span>
-<span class="lineNum">     329 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 3 ] == 0 );</span>
-<span class="lineNum">     330 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 4 ] == 'X' );</span>
-<span class="lineNum">     331 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 5 ] == 'Y' );</span>
-<span class="lineNum">     332 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ 6 ] == 'T' );</span>
-<span class="lineNum">     333 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     324 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data_pos == real_data_size - 1 );</span>
+<span class="lineNum">     325 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ data_pos ] == 'T' );</span>
+<span class="lineNum">     326 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 0 ] == 'S' );</span>
+<span class="lineNum">     327 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 1 ] == 'H' );</span>
+<span class="lineNum">     328 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 2 ] == 0 );</span>
+<span class="lineNum">     329 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 3 ] == 0 );</span>
+<span class="lineNum">     330 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 4 ] == 'X' );</span>
+<span class="lineNum">     331 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 5 ] == 'Y' );</span>
+<span class="lineNum">     332 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ 6 ] == 'T' );</span>
+<span class="lineNum">     333 </span>                :<span class="lineCov">          2 : }</span>
 <a name="334"><span class="lineNum">     334 </span>                :            : </a>
 <span class="lineNum">     335 </span>                :            : 
-<span class="lineNum">     336 </span>                :<span class="lineCov">          4 : void snap_test_decode_too_small()</span>
+<span class="lineNum">     336 </span>                :<span class="lineCov">          2 : void snap_test_decode_too_small()</span>
 <span class="lineNum">     337 </span>                :            : {
 <span class="lineNum">     338 </span>                :            :     // simple packet without leading unnecessary stuff (e.g preamble bytes)
 <span class="lineNum">     339 </span>                :            :     // but too small
 <span class="lineNum">     340 </span>                :            : 
-<span class="lineNum">     341 </span>                :<span class="lineCov">          4 :     SNAP_HELPER_MACRO_1();</span>
+<span class="lineNum">     341 </span>                :<span class="lineCov">          2 :     SNAP_HELPER_MACRO_1();</span>
 <span class="lineNum">     342 </span>                :            : 
-<span class="lineNum">     343 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT(</span>
+<span class="lineNum">     343 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT(</span>
 <span class="lineNum">     344 </span>                :            :         snap_decode( &amp;snap, data + 1, &amp;data_pos, data_size - 2, result, &amp;result_pos,
 <span class="lineNum">     345 </span>                :            :                           result_size, response, &amp;response_pos, response_size )
 <span class="lineNum">     346 </span>                :            :     );
-<span class="lineNum">     347 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data_pos == 0 );</span>
-<span class="lineNum">     348 </span>                :<span class="lineCov">          4 :     SNAP_HELPER_MACRO_1_DATA_INTEGRITY_CHECK();</span>
-<span class="lineNum">     349 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( result_pos == 0 );</span>
-<span class="lineNum">     350 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( response_pos == 0 );</span>
-<span class="lineNum">     351 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     347 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data_pos == 0 );</span>
+<span class="lineNum">     348 </span>                :<span class="lineCov">          2 :     SNAP_HELPER_MACRO_1_DATA_INTEGRITY_CHECK();</span>
+<span class="lineNum">     349 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( result_pos == 0 );</span>
+<span class="lineNum">     350 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( response_pos == 0 );</span>
+<span class="lineNum">     351 </span>                :<span class="lineCov">          2 : }</span>
 <a name="352"><span class="lineNum">     352 </span>                :            : </a>
 <span class="lineNum">     353 </span>                :            : 
-<span class="lineNum">     354 </span>                :<span class="lineCov">          4 : void snap_test_decode_too_small_with_preamble()</span>
+<span class="lineNum">     354 </span>                :<span class="lineCov">          2 : void snap_test_decode_too_small_with_preamble()</span>
 <span class="lineNum">     355 </span>                :            : {
 <span class="lineNum">     356 </span>                :            :     // simple packet with leading unnecessary stuff (e.g preamble bytes)
 <span class="lineNum">     357 </span>                :            :     // but too small
 <span class="lineNum">     358 </span>                :            : 
-<span class="lineNum">     359 </span>                :<span class="lineCov">          4 :     SNAP_HELPER_MACRO_1();</span>
+<span class="lineNum">     359 </span>                :<span class="lineCov">          2 :     SNAP_HELPER_MACRO_1();</span>
 <span class="lineNum">     360 </span>                :            : 
-<span class="lineNum">     361 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT(</span>
+<span class="lineNum">     361 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT(</span>
 <span class="lineNum">     362 </span>                :            :         snap_decode( &amp;snap, data, &amp;data_pos, data_size - 2, result, &amp;result_pos,
 <span class="lineNum">     363 </span>                :            :                           result_size, response, &amp;response_pos, response_size )
 <span class="lineNum">     364 </span>                :            :     );
-<span class="lineNum">     365 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data_pos == 1 ); // snap_encode should skip the leading stuff</span>
-<span class="lineNum">     366 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( data[ data_pos ] == 'T' ); // and point to the SYNC byte</span>
-<span class="lineNum">     367 </span>                :<span class="lineCov">          4 :     SNAP_HELPER_MACRO_1_DATA_INTEGRITY_CHECK();</span>
-<span class="lineNum">     368 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( result_pos == 0 );</span>
-<span class="lineNum">     369 </span>                :<span class="lineCov">          4 :     SNAP_ASSERT( response_pos == 0 );</span>
-<span class="lineNum">     370 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     365 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data_pos == 1 ); // snap_encode should skip the leading stuff</span>
+<span class="lineNum">     366 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( data[ data_pos ] == 'T' ); // and point to the SYNC byte</span>
+<span class="lineNum">     367 </span>                :<span class="lineCov">          2 :     SNAP_HELPER_MACRO_1_DATA_INTEGRITY_CHECK();</span>
+<span class="lineNum">     368 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( result_pos == 0 );</span>
+<span class="lineNum">     369 </span>                :<span class="lineCov">          2 :     SNAP_ASSERT( response_pos == 0 );</span>
+<span class="lineNum">     370 </span>                :<span class="lineCov">          2 : }</span>
 <a name="371"><span class="lineNum">     371 </span>                :            : </a>
 <span class="lineNum">     372 </span>                :            : 
-<span class="lineNum">     373 </span>                :<span class="lineCov">          4 : void snap_test_decode_example_1()</span>
+<span class="lineNum">     373 </span>                :<span class="lineCov">          2 : void snap_test_decode_example_1()</span>
 <span class="lineNum">     374 </span>                :            : {
-<span class="lineNum">     375 </span>                :<span class="lineCov">          4 :     uint32_t local = 0; // 0 Bytes</span>
-<span class="lineNum">     376 </span>                :<span class="lineCov">          4 :     uint32_t peer = 0;  // 0 Bytes</span>
-<span class="lineNum">     377 </span>                :<span class="lineCov">          4 :     bool ack = false;</span>
-<span class="lineNum">     378 </span>                :<span class="lineCov">          4 :     SnapErrorDetectionMode edm = EDM_NONE;</span>
+<span class="lineNum">     375 </span>                :<span class="lineCov">          2 :     uint32_t local = 0; // 0 Bytes</span>
+<span class="lineNum">     376 </span>                :<span class="lineCov">          2 :     uint32_t peer = 0;  // 0 Bytes</span>
+<span class="lineNum">     377 </span>                :<span class="lineCov">          2 :     bool ack = false;</span>
+<span class="lineNum">     378 </span>                :<span class="lineCov">          2 :     SnapErrorDetectionMode edm = EDM_NONE;</span>
 <span class="lineNum">     379 </span>                :            : 
-<span class="lineNum">     380 </span>                :<span class="lineCov">          4 :     uint8_t data[] = {</span>
+<span class="lineNum">     380 </span>                :<span class="lineCov">          2 :     uint8_t data[] = {</span>
 <span class="lineNum">     381 </span>                :            :         0x54, 0x00, 0x0A, 0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x53, 0x4E,
 <span class="lineNum">     382 </span>                :            :         0x41, 0x50, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64, 0x21, 0x00, 0x00,
 <span class="lineNum">     383 </span>                :            :         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 <span class="lineNum">     384 </span>                :            :         0x00, 0x00
 <span class="lineNum">     385 </span>                :            :     };
 <span class="lineNum">     386 </span>                :            : 
-<span class="lineNum">     387 </span>                :<span class="lineCov">          4 :     size_t data_size = sizeof( data ) / sizeof( data[ 0 ] );</span>
+<span class="lineNum">     387 </span>                :<span class="lineCov">          2 :     size_t data_size = sizeof( data ) / sizeof( data[ 0 ] );</span>
 <span class="lineNum">     388 </span>                :            : 
-<span class="lineNum">     389 </span>                :<span class="lineCov">          4 :     uint8_t expected_result[] = &quot;Hello SNAP World!&quot;;</span>
+<span class="lineNum">     389 </span>                :<span class="lineCov">          2 :     uint8_t expected_result[] = &quot;Hello SNAP World!&quot;;</span>
 <span class="lineNum">     390 </span>                :            : 
-<span class="lineNum">     391 </span>                :<span class="lineCov">          4 :     size_t expected_result_size = sizeof( expected_result ) / sizeof( expected_result[ 0 ] );</span>
+<span class="lineNum">     391 </span>                :<span class="lineCov">          2 :     size_t expected_result_size = sizeof( expected_result ) / sizeof( expected_result[ 0 ] );</span>
 <span class="lineNum">     392 </span>                :            : 
 <span class="lineNum">     393 </span>                :            :     // remove implicit trailing '\0' (introduced through the string notation of expected_result)
-<span class="lineNum">     394 </span>                :<span class="lineCov">          4 :     expected_result_size--;</span>
+<span class="lineNum">     394 </span>                :<span class="lineCov">          2 :     expected_result_size--;</span>
 <span class="lineNum">     395 </span>                :            : 
-<span class="lineNum">     396 </span>                :<span class="lineCov">          4 :     uint8_t expected_response[] = { '\0' };</span>
-<span class="lineNum">     397 </span>                :<span class="lineCov">          4 :     size_t expected_response_size = 0;</span>
+<span class="lineNum">     396 </span>                :<span class="lineCov">          2 :     uint8_t expected_response[] = { '\0' };</span>
+<span class="lineNum">     397 </span>                :<span class="lineCov">          2 :     size_t expected_response_size = 0;</span>
 <span class="lineNum">     398 </span>                :            : 
-<span class="lineNum">     399 </span>                :<span class="lineCov">          4 :     snap_test_priv_decode_example(</span>
+<span class="lineNum">     399 </span>                :<span class="lineCov">          2 :     snap_test_priv_decode_example(</span>
 <span class="lineNum">     400 </span>                :            :             local, peer, ack, edm, data, data_size, data_size, expected_result,
 <span class="lineNum">     401 </span>                :            :             expected_result_size, expected_response, expected_response_size
 <span class="lineNum">     402 </span>                :            :     );
-<span class="lineNum">     403 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     403 </span>                :<span class="lineCov">          2 : }</span>
 <a name="404"><span class="lineNum">     404 </span>                :            : </a>
 <span class="lineNum">     405 </span>                :            : 
-<span class="lineNum">     406 </span>                :<span class="lineCov">          4 : void snap_test_decode_example_2()</span>
+<span class="lineNum">     406 </span>                :<span class="lineCov">          2 : void snap_test_decode_example_2()</span>
 <span class="lineNum">     407 </span>                :            : {
-<span class="lineNum">     408 </span>                :<span class="lineCov">          4 :     uint32_t local = 123;   // 1 Bytes</span>
-<span class="lineNum">     409 </span>                :<span class="lineCov">          4 :     uint32_t peer = 43232;  // 2 Bytes</span>
-<span class="lineNum">     410 </span>                :<span class="lineCov">          4 :     bool ack = true;</span>
-<span class="lineNum">     411 </span>                :<span class="lineCov">          4 :     SnapErrorDetectionMode edm = EDM_NONE;</span>
+<span class="lineNum">     408 </span>                :<span class="lineCov">          2 :     uint32_t local = 123;   // 1 Bytes</span>
+<span class="lineNum">     409 </span>                :<span class="lineCov">          2 :     uint32_t peer = 43232;  // 2 Bytes</span>
+<span class="lineNum">     410 </span>                :<span class="lineCov">          2 :     bool ack = true;</span>
+<span class="lineNum">     411 </span>                :<span class="lineCov">          2 :     SnapErrorDetectionMode edm = EDM_NONE;</span>
 <span class="lineNum">     412 </span>                :            : 
-<span class="lineNum">     413 </span>                :<span class="lineCov">          4 :     uint8_t data[] = {</span>
+<span class="lineNum">     413 </span>                :<span class="lineCov">          2 :     uint8_t data[] = {</span>
 <span class="lineNum">     414 </span>                :            :         0x54, 0x91, 0x0A, 0xA8, 0xEA, 0x7B, 0x48, 0x65, 0x6C, 0x6C, 0x6F,
 <span class="lineNum">     415 </span>                :            :         0x20, 0x53, 0x4E, 0x41, 0x50, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64,
 <span class="lineNum">     416 </span>                :            :         0x21, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 <span class="lineNum">     417 </span>                :            :         0x00, 0x00, 0x00, 0x00, 0x00
 <span class="lineNum">     418 </span>                :            :     };
-<span class="lineNum">     419 </span>                :<span class="lineCov">          4 :     size_t data_size = sizeof( data ) / sizeof( data[ 0 ] );</span>
+<span class="lineNum">     419 </span>                :<span class="lineCov">          2 :     size_t data_size = sizeof( data ) / sizeof( data[ 0 ] );</span>
 <span class="lineNum">     420 </span>                :            : 
-<span class="lineNum">     421 </span>                :<span class="lineCov">          4 :     uint8_t expected_result[] = &quot;Hello SNAP World!&quot;;</span>
-<span class="lineNum">     422 </span>                :<span class="lineCov">          4 :     size_t expected_result_size = sizeof( expected_result ) / sizeof( expected_result[ 0 ] );</span>
+<span class="lineNum">     421 </span>                :<span class="lineCov">          2 :     uint8_t expected_result[] = &quot;Hello SNAP World!&quot;;</span>
+<span class="lineNum">     422 </span>                :<span class="lineCov">          2 :     size_t expected_result_size = sizeof( expected_result ) / sizeof( expected_result[ 0 ] );</span>
 <span class="lineNum">     423 </span>                :            : 
 <span class="lineNum">     424 </span>                :            :     // remove implicit trailing '\0' (introduced through the string notation of expected_result)
-<span class="lineNum">     425 </span>                :<span class="lineCov">          4 :     expected_result_size--;</span>
+<span class="lineNum">     425 </span>                :<span class="lineCov">          2 :     expected_result_size--;</span>
 <span class="lineNum">     426 </span>                :            : 
-<span class="lineNum">     427 </span>                :<span class="lineCov">          4 :     uint8_t expected_response[] = { 0x54, 0x62, 0x20, 0x7B, 0xA8, 0xEA, 0xE3 }; // ACK packet</span>
-<span class="lineNum">     428 </span>                :<span class="lineCov">          4 :     size_t expected_response_size = 7;</span>
+<span class="lineNum">     427 </span>                :<span class="lineCov">          2 :     uint8_t expected_response[] = { 0x54, 0x62, 0x20, 0x7B, 0xA8, 0xEA, 0xE3 }; // ACK packet</span>
+<span class="lineNum">     428 </span>                :<span class="lineCov">          2 :     size_t expected_response_size = 7;</span>
 <span class="lineNum">     429 </span>                :            : 
-<span class="lineNum">     430 </span>                :<span class="lineCov">          4 :     snap_test_priv_decode_example(</span>
+<span class="lineNum">     430 </span>                :<span class="lineCov">          2 :     snap_test_priv_decode_example(</span>
 <span class="lineNum">     431 </span>                :            :             local, peer, ack, edm, data, data_size, data_size, expected_result,
 <span class="lineNum">     432 </span>                :            :             expected_result_size, expected_response, expected_response_size
 <span class="lineNum">     433 </span>                :            :     );
-<span class="lineNum">     434 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     434 </span>                :<span class="lineCov">          2 : }</span>
 <a name="435"><span class="lineNum">     435 </span>                :            : </a>
 <span class="lineNum">     436 </span>                :            : 
-<span class="lineNum">     437 </span>                :<span class="lineCov">          4 : void snap_test_decode_example_3()</span>
+<span class="lineNum">     437 </span>                :<span class="lineCov">          2 : void snap_test_decode_example_3()</span>
 <span class="lineNum">     438 </span>                :            : {
-<span class="lineNum">     439 </span>                :<span class="lineCov">          4 :     uint32_t local = 0;     // 0 Bytes</span>
-<span class="lineNum">     440 </span>                :<span class="lineCov">          4 :     uint32_t peer = 86542;  // 3 Bytes</span>
-<span class="lineNum">     441 </span>                :<span class="lineCov">          4 :     bool ack = false;</span>
-<span class="lineNum">     442 </span>                :<span class="lineCov">          4 :     SnapErrorDetectionMode edm = EDM_CRC16;</span>
+<span class="lineNum">     439 </span>                :<span class="lineCov">          2 :     uint32_t local = 0;     // 0 Bytes</span>
+<span class="lineNum">     440 </span>                :<span class="lineCov">          2 :     uint32_t peer = 86542;  // 3 Bytes</span>
+<span class="lineNum">     441 </span>                :<span class="lineCov">          2 :     bool ack = false;</span>
+<span class="lineNum">     442 </span>                :<span class="lineCov">          2 :     SnapErrorDetectionMode edm = EDM_CRC16;</span>
 <span class="lineNum">     443 </span>                :            : 
-<span class="lineNum">     444 </span>                :<span class="lineCov">          4 :     uint8_t data[] = {</span>
+<span class="lineNum">     444 </span>                :<span class="lineCov">          2 :     uint8_t data[] = {</span>
 <span class="lineNum">     445 </span>                :            :         0x54, 0xC0, 0x4A, 0x01, 0x52, 0x0E, 0x48, 0x65, 0x6C, 0x6C, 0x6F,
 <span class="lineNum">     446 </span>                :            :         0x20, 0x53, 0x4E, 0x41, 0x50, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64,
 <span class="lineNum">     447 </span>                :            :         0x21, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 <span class="lineNum">     448 </span>                :            :         0x00, 0x00, 0x00, 0x00, 0x00, 0xFA, 0x60
 <span class="lineNum">     449 </span>                :            :     };
-<span class="lineNum">     450 </span>                :<span class="lineCov">          4 :     size_t data_size = sizeof( data ) / sizeof( data[ 0 ] );</span>
+<span class="lineNum">     450 </span>                :<span class="lineCov">          2 :     size_t data_size = sizeof( data ) / sizeof( data[ 0 ] );</span>
 <span class="lineNum">     451 </span>                :            : 
-<span class="lineNum">     452 </span>                :<span class="lineCov">          4 :     uint8_t expected_result[] = &quot;Hello SNAP World!&quot;;</span>
+<span class="lineNum">     452 </span>                :<span class="lineCov">          2 :     uint8_t expected_result[] = &quot;Hello SNAP World!&quot;;</span>
 <span class="lineNum">     453 </span>                :            : 
-<span class="lineNum">     454 </span>                :<span class="lineCov">          4 :     size_t expected_result_size = sizeof( expected_result ) / sizeof( expected_result[ 0 ] );</span>
+<span class="lineNum">     454 </span>                :<span class="lineCov">          2 :     size_t expected_result_size = sizeof( expected_result ) / sizeof( expected_result[ 0 ] );</span>
 <span class="lineNum">     455 </span>                :            : 
 <span class="lineNum">     456 </span>                :            :     // remove implicit trailing '\0' (introduced through the string notation of expected_result)
-<span class="lineNum">     457 </span>                :<span class="lineCov">          4 :     expected_result_size--;</span>
+<span class="lineNum">     457 </span>                :<span class="lineCov">          2 :     expected_result_size--;</span>
 <span class="lineNum">     458 </span>                :            : 
-<span class="lineNum">     459 </span>                :<span class="lineCov">          4 :     uint8_t expected_response[] = { '\0' };</span>
-<span class="lineNum">     460 </span>                :<span class="lineCov">          4 :     size_t expected_response_size = 0;</span>
+<span class="lineNum">     459 </span>                :<span class="lineCov">          2 :     uint8_t expected_response[] = { '\0' };</span>
+<span class="lineNum">     460 </span>                :<span class="lineCov">          2 :     size_t expected_response_size = 0;</span>
 <span class="lineNum">     461 </span>                :            : 
-<span class="lineNum">     462 </span>                :<span class="lineCov">          4 :     snap_test_priv_decode_example(</span>
+<span class="lineNum">     462 </span>                :<span class="lineCov">          2 :     snap_test_priv_decode_example(</span>
 <span class="lineNum">     463 </span>                :            :             local, peer, ack, edm, data, data_size, data_size, expected_result,
 <span class="lineNum">     464 </span>                :            :             expected_result_size, expected_response, expected_response_size
 <span class="lineNum">     465 </span>                :            :     );
-<span class="lineNum">     466 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     466 </span>                :<span class="lineCov">          2 : }</span>
 <a name="467"><span class="lineNum">     467 </span>                :            : </a>
 <span class="lineNum">     468 </span>                :            : 
-<span class="lineNum">     469 </span>                :<span class="lineCov">          4 : void snap_test_decode_example_4()</span>
+<span class="lineNum">     469 </span>                :<span class="lineCov">          2 : void snap_test_decode_example_4()</span>
 <span class="lineNum">     470 </span>                :            : {
 <span class="lineNum">     471 </span>                :            :     // crc32 and no fill bytes
 <span class="lineNum">     472 </span>                :            : 
-<span class="lineNum">     473 </span>                :<span class="lineCov">          4 :     uint32_t local = 0; // 0 Bytes</span>
-<span class="lineNum">     474 </span>                :<span class="lineCov">          4 :     uint32_t peer = 0;  // 0 Bytes</span>
-<span class="lineNum">     475 </span>                :<span class="lineCov">          4 :     bool ack = false;</span>
-<span class="lineNum">     476 </span>                :<span class="lineCov">          4 :     SnapErrorDetectionMode edm = EDM_CRC32;</span>
+<span class="lineNum">     473 </span>                :<span class="lineCov">          2 :     uint32_t local = 0; // 0 Bytes</span>
+<span class="lineNum">     474 </span>                :<span class="lineCov">          2 :     uint32_t peer = 0;  // 0 Bytes</span>
+<span class="lineNum">     475 </span>                :<span class="lineCov">          2 :     bool ack = false;</span>
+<span class="lineNum">     476 </span>                :<span class="lineCov">          2 :     SnapErrorDetectionMode edm = EDM_CRC32;</span>
 <span class="lineNum">     477 </span>                :            : 
-<span class="lineNum">     478 </span>                :<span class="lineCov">          4 :     uint8_t data[] = {</span>
+<span class="lineNum">     478 </span>                :<span class="lineCov">          2 :     uint8_t data[] = {</span>
 <span class="lineNum">     479 </span>                :            :         0x54, 0x00, 0x58, 0x53, 0x2E, 0x4E, 0x2E, 0x41,
 <span class="lineNum">     480 </span>                :            :         0x2E, 0x50, 0x2E, 0x52, 0x9E, 0xC3, 0xAC
 <span class="lineNum">     481 </span>                :            :     };
-<span class="lineNum">     482 </span>                :<span class="lineCov">          4 :     size_t data_size = sizeof( data ) / sizeof( data[ 0 ] );</span>
+<span class="lineNum">     482 </span>                :<span class="lineCov">          2 :     size_t data_size = sizeof( data ) / sizeof( data[ 0 ] );</span>
 <span class="lineNum">     483 </span>                :            : 
-<span class="lineNum">     484 </span>                :<span class="lineCov">          4 :     uint8_t expected_result[] = &quot;S.N.A.P.&quot;;</span>
+<span class="lineNum">     484 </span>                :<span class="lineCov">          2 :     uint8_t expected_result[] = &quot;S.N.A.P.&quot;;</span>
 <span class="lineNum">     485 </span>                :            : 
-<span class="lineNum">     486 </span>                :<span class="lineCov">          4 :     size_t expected_result_size = sizeof( expected_result ) / sizeof( expected_result[ 0 ] );</span>
+<span class="lineNum">     486 </span>                :<span class="lineCov">          2 :     size_t expected_result_size = sizeof( expected_result ) / sizeof( expected_result[ 0 ] );</span>
 <span class="lineNum">     487 </span>                :            : 
 <span class="lineNum">     488 </span>                :            :     // remove implicit trailing '\0' (introduced through the string notation of expected_result)
-<span class="lineNum">     489 </span>                :<span class="lineCov">          4 :     expected_result_size--;</span>
+<span class="lineNum">     489 </span>                :<span class="lineCov">          2 :     expected_result_size--;</span>
 <span class="lineNum">     490 </span>                :            : 
-<span class="lineNum">     491 </span>                :<span class="lineCov">          4 :     uint8_t expected_response[] = { '\0' };</span>
-<span class="lineNum">     492 </span>                :<span class="lineCov">          4 :     size_t expected_response_size = 0;</span>
+<span class="lineNum">     491 </span>                :<span class="lineCov">          2 :     uint8_t expected_response[] = { '\0' };</span>
+<span class="lineNum">     492 </span>                :<span class="lineCov">          2 :     size_t expected_response_size = 0;</span>
 <span class="lineNum">     493 </span>                :            : 
-<span class="lineNum">     494 </span>                :<span class="lineCov">          4 :     snap_test_priv_decode_example(</span>
+<span class="lineNum">     494 </span>                :<span class="lineCov">          2 :     snap_test_priv_decode_example(</span>
 <span class="lineNum">     495 </span>                :            :             local, peer, ack, edm, data, data_size, data_size, expected_result,
 <span class="lineNum">     496 </span>                :            :             expected_result_size, expected_response, expected_response_size
 <span class="lineNum">     497 </span>                :            :     );
-<span class="lineNum">     498 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     498 </span>                :<span class="lineCov">          2 : }</span>
 <a name="499"><span class="lineNum">     499 </span>                :            : </a>
 <span class="lineNum">     500 </span>                :            : 
-<span class="lineNum">     501 </span>                :<span class="lineCov">          4 : void snap_test_decode_example_5()</span>
+<span class="lineNum">     501 </span>                :<span class="lineCov">          2 : void snap_test_decode_example_5()</span>
 <span class="lineNum">     502 </span>                :            : {
 <span class="lineNum">     503 </span>                :            :     // Same data as in example/simple_encode.c and example/simple_decode.c
 <span class="lineNum">     504 </span>                :            : 
-<span class="lineNum">     505 </span>                :<span class="lineCov">          4 :     uint32_t local = 0; // 0 Bytes</span>
-<span class="lineNum">     506 </span>                :<span class="lineCov">          4 :     uint32_t peer = 0;  // 0 Bytes</span>
-<span class="lineNum">     507 </span>                :<span class="lineCov">          4 :     bool ack = false;</span>
-<span class="lineNum">     508 </span>                :<span class="lineCov">          4 :     SnapErrorDetectionMode edm = EDM_NONE;</span>
+<span class="lineNum">     505 </span>                :<span class="lineCov">          2 :     uint32_t local = 0; // 0 Bytes</span>
+<span class="lineNum">     506 </span>                :<span class="lineCov">          2 :     uint32_t peer = 0;  // 0 Bytes</span>
+<span class="lineNum">     507 </span>                :<span class="lineCov">          2 :     bool ack = false;</span>
+<span class="lineNum">     508 </span>                :<span class="lineCov">          2 :     SnapErrorDetectionMode edm = EDM_NONE;</span>
 <span class="lineNum">     509 </span>                :            : 
-<span class="lineNum">     510 </span>                :<span class="lineCov">          4 :     uint8_t data[] = {</span>
+<span class="lineNum">     510 </span>                :<span class="lineCov">          2 :     uint8_t data[] = {</span>
 <span class="lineNum">     511 </span>                :            :         0x54, 0x00, 0x0D, 0x49, 0x66, 0x20, 0x61, 0x20, 0x70, 0x61, 0x63, 0x6B,
 <span class="lineNum">     512 </span>                :            :         0x65, 0x74, 0x20, 0x68, 0x69, 0x74, 0x73, 0x20, 0x61, 0x20, 0x70, 0x6F,
 <span class="lineNum">     513 </span>                :            :         0x63, 0x6B, 0x65, 0x74, 0x20, 0x6F, 0x6E, 0x20, 0x61, 0x20, 0x73, 0x6F,
@@ -609,45 +609,45 @@
 <span class="lineNum">     532 </span>                :            :         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 <span class="lineNum">     533 </span>                :            :     };
 <span class="lineNum">     534 </span>                :            : 
-<span class="lineNum">     535 </span>                :<span class="lineCov">          4 :     size_t data_size = sizeof( data ) / sizeof( data[ 0 ] );</span>
+<span class="lineNum">     535 </span>                :<span class="lineCov">          2 :     size_t data_size = sizeof( data ) / sizeof( data[ 0 ] );</span>
 <span class="lineNum">     536 </span>                :            : 
-<span class="lineNum">     537 </span>                :<span class="lineCov">          4 :     uint8_t expected_result[] = &quot;If a packet hits a pocket on a socket on a port, &quot;</span>
+<span class="lineNum">     537 </span>                :<span class="lineCov">          2 :     uint8_t expected_result[] = &quot;If a packet hits a pocket on a socket on a port, &quot;</span>
 <span class="lineNum">     538 </span>                :            :         &quot;and the bus is interrupted and the interrupt's not caught, &quot;
 <span class="lineNum">     539 </span>                :            :         &quot;then the socket packet pocket has an error to report.&quot;;
 <span class="lineNum">     540 </span>                :            : 
-<span class="lineNum">     541 </span>                :<span class="lineCov">          4 :     size_t expected_result_size = sizeof( expected_result ) / sizeof( expected_result[ 0 ] );</span>
+<span class="lineNum">     541 </span>                :<span class="lineCov">          2 :     size_t expected_result_size = sizeof( expected_result ) / sizeof( expected_result[ 0 ] );</span>
 <span class="lineNum">     542 </span>                :            : 
 <span class="lineNum">     543 </span>                :            :     // remove implicit trailing '\0' (introduced through the string notation of expected_result)
-<span class="lineNum">     544 </span>                :<span class="lineCov">          4 :     expected_result_size--;</span>
+<span class="lineNum">     544 </span>                :<span class="lineCov">          2 :     expected_result_size--;</span>
 <span class="lineNum">     545 </span>                :            : 
-<span class="lineNum">     546 </span>                :<span class="lineCov">          4 :     uint8_t expected_response[] = { '\0' };</span>
-<span class="lineNum">     547 </span>                :<span class="lineCov">          4 :     size_t expected_response_size = 0;</span>
+<span class="lineNum">     546 </span>                :<span class="lineCov">          2 :     uint8_t expected_response[] = { '\0' };</span>
+<span class="lineNum">     547 </span>                :<span class="lineCov">          2 :     size_t expected_response_size = 0;</span>
 <span class="lineNum">     548 </span>                :            : 
-<span class="lineNum">     549 </span>                :<span class="lineCov">          4 :     snap_test_priv_decode_example(</span>
+<span class="lineNum">     549 </span>                :<span class="lineCov">          2 :     snap_test_priv_decode_example(</span>
 <span class="lineNum">     550 </span>                :            :             local, peer, ack, edm, data, data_size, data_size, expected_result,
 <span class="lineNum">     551 </span>                :            :             expected_result_size, expected_response, expected_response_size
 <span class="lineNum">     552 </span>                :            :     );
 <span class="lineNum">     553 </span>                :            : 
-<span class="lineNum">     554 </span>                :<span class="lineCov">          4 :     expected_result_size = 0;</span>
-<span class="lineNum">     555 </span>                :<span class="lineCov">          4 :     data[ 2 ] = data[ 2 ] + 1;</span>
-<span class="lineNum">     556 </span>                :<span class="lineCov">          4 :     edm = EDM_THREETIMES;</span>
-<span class="lineNum">     557 </span>                :<span class="lineCov">          4 :     snap_test_priv_decode_example(</span>
+<span class="lineNum">     554 </span>                :<span class="lineCov">          2 :     expected_result_size = 0;</span>
+<span class="lineNum">     555 </span>                :<span class="lineCov">          2 :     data[ 2 ] = data[ 2 ] + 1;</span>
+<span class="lineNum">     556 </span>                :<span class="lineCov">          2 :     edm = EDM_THREETIMES;</span>
+<span class="lineNum">     557 </span>                :<span class="lineCov">          2 :     snap_test_priv_decode_example(</span>
 <span class="lineNum">     558 </span>                :            :             local, peer, ack, edm, data, data_size, data_size, expected_result,
 <span class="lineNum">     559 </span>                :            :             expected_result_size, expected_response, expected_response_size
 <span class="lineNum">     560 </span>                :            :     );
-<span class="lineNum">     561 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     561 </span>                :<span class="lineCov">          2 : }</span>
 <a name="562"><span class="lineNum">     562 </span>                :            : </a>
 <span class="lineNum">     563 </span>                :            : 
-<span class="lineNum">     564 </span>                :<span class="lineCov">          4 : void snap_test_decode_example_6()</span>
+<span class="lineNum">     564 </span>                :<span class="lineCov">          2 : void snap_test_decode_example_6()</span>
 <span class="lineNum">     565 </span>                :            : {
 <span class="lineNum">     566 </span>                :            :     // as in example 5, but with 8 bit checksum
 <span class="lineNum">     567 </span>                :            : 
-<span class="lineNum">     568 </span>                :<span class="lineCov">          4 :     uint32_t local = 0; // 0 Bytes</span>
-<span class="lineNum">     569 </span>                :<span class="lineCov">          4 :     uint32_t peer = 0;  // 0 Bytes</span>
-<span class="lineNum">     570 </span>                :<span class="lineCov">          4 :     bool ack = false;</span>
-<span class="lineNum">     571 </span>                :<span class="lineCov">          4 :     SnapErrorDetectionMode edm = EDM_CHECKSUM;</span>
+<span class="lineNum">     568 </span>                :<span class="lineCov">          2 :     uint32_t local = 0; // 0 Bytes</span>
+<span class="lineNum">     569 </span>                :<span class="lineCov">          2 :     uint32_t peer = 0;  // 0 Bytes</span>
+<span class="lineNum">     570 </span>                :<span class="lineCov">          2 :     bool ack = false;</span>
+<span class="lineNum">     571 </span>                :<span class="lineCov">          2 :     SnapErrorDetectionMode edm = EDM_CHECKSUM;</span>
 <span class="lineNum">     572 </span>                :            : 
-<span class="lineNum">     573 </span>                :<span class="lineCov">          4 :     uint8_t data[] = {</span>
+<span class="lineNum">     573 </span>                :<span class="lineCov">          2 :     uint8_t data[] = {</span>
 <span class="lineNum">     574 </span>                :            :         0x54, 0x00, 0x2D, 0x49, 0x66, 0x20, 0x61, 0x20, 0x70, 0x61, 0x63, 0x6B,
 <span class="lineNum">     575 </span>                :            :         0x65, 0x74, 0x20, 0x68, 0x69, 0x74, 0x73, 0x20, 0x61, 0x20, 0x70, 0x6F,
 <span class="lineNum">     576 </span>                :            :         0x63, 0x6B, 0x65, 0x74, 0x20, 0x6F, 0x6E, 0x20, 0x61, 0x20, 0x73, 0x6F,
@@ -672,37 +672,37 @@
 <span class="lineNum">     595 </span>                :            :         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC7
 <span class="lineNum">     596 </span>                :            :     };
 <span class="lineNum">     597 </span>                :            : 
-<span class="lineNum">     598 </span>                :<span class="lineCov">          4 :     size_t data_size = sizeof( data ) / sizeof( data[ 0 ] );</span>
+<span class="lineNum">     598 </span>                :<span class="lineCov">          2 :     size_t data_size = sizeof( data ) / sizeof( data[ 0 ] );</span>
 <span class="lineNum">     599 </span>                :            : 
-<span class="lineNum">     600 </span>                :<span class="lineCov">          4 :     uint8_t expected_result[] = &quot;If a packet hits a pocket on a socket on a port, &quot;</span>
+<span class="lineNum">     600 </span>                :<span class="lineCov">          2 :     uint8_t expected_result[] = &quot;If a packet hits a pocket on a socket on a port, &quot;</span>
 <span class="lineNum">     601 </span>                :            :         &quot;and the bus is interrupted and the interrupt's not caught, &quot;
 <span class="lineNum">     602 </span>                :            :         &quot;then the socket packet pocket has an error to report.&quot;;
 <span class="lineNum">     603 </span>                :            : 
-<span class="lineNum">     604 </span>                :<span class="lineCov">          4 :     size_t expected_result_size = sizeof( expected_result ) / sizeof( expected_result[ 0 ] );</span>
+<span class="lineNum">     604 </span>                :<span class="lineCov">          2 :     size_t expected_result_size = sizeof( expected_result ) / sizeof( expected_result[ 0 ] );</span>
 <span class="lineNum">     605 </span>                :            : 
 <span class="lineNum">     606 </span>                :            :     // remove implicit trailing '\0' (introduced through the string notation of expected_result)
-<span class="lineNum">     607 </span>                :<span class="lineCov">          4 :     expected_result_size--;</span>
+<span class="lineNum">     607 </span>                :<span class="lineCov">          2 :     expected_result_size--;</span>
 <span class="lineNum">     608 </span>                :            : 
-<span class="lineNum">     609 </span>                :<span class="lineCov">          4 :     uint8_t expected_response[] = { '\0' };</span>
-<span class="lineNum">     610 </span>                :<span class="lineCov">          4 :     size_t expected_response_size = 0;</span>
+<span class="lineNum">     609 </span>                :<span class="lineCov">          2 :     uint8_t expected_response[] = { '\0' };</span>
+<span class="lineNum">     610 </span>                :<span class="lineCov">          2 :     size_t expected_response_size = 0;</span>
 <span class="lineNum">     611 </span>                :            : 
-<span class="lineNum">     612 </span>                :<span class="lineCov">          4 :     snap_test_priv_decode_example(</span>
+<span class="lineNum">     612 </span>                :<span class="lineCov">          2 :     snap_test_priv_decode_example(</span>
 <span class="lineNum">     613 </span>                :            :             local, peer, ack, edm, data, data_size, data_size, expected_result,
 <span class="lineNum">     614 </span>                :            :             expected_result_size, expected_response, expected_response_size
 <span class="lineNum">     615 </span>                :            :     );
-<span class="lineNum">     616 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     616 </span>                :<span class="lineCov">          2 : }</span>
 <a name="617"><span class="lineNum">     617 </span>                :            : </a>
 <span class="lineNum">     618 </span>                :            : 
-<span class="lineNum">     619 </span>                :<span class="lineCov">          4 : void snap_test_decode_example_7()</span>
+<span class="lineNum">     619 </span>                :<span class="lineCov">          2 : void snap_test_decode_example_7()</span>
 <span class="lineNum">     620 </span>                :            : {
 <span class="lineNum">     621 </span>                :            :     // as in example 5, but with 8 bit crc
 <span class="lineNum">     622 </span>                :            : 
-<span class="lineNum">     623 </span>                :<span class="lineCov">          4 :     uint32_t local = 0; // 0 Bytes</span>
-<span class="lineNum">     624 </span>                :<span class="lineCov">          4 :     uint32_t peer = 0;  // 0 Bytes</span>
-<span class="lineNum">     625 </span>                :<span class="lineCov">          4 :     bool ack = false;</span>
-<span class="lineNum">     626 </span>                :<span class="lineCov">          4 :     SnapErrorDetectionMode edm = EDM_CRC8;</span>
+<span class="lineNum">     623 </span>                :<span class="lineCov">          2 :     uint32_t local = 0; // 0 Bytes</span>
+<span class="lineNum">     624 </span>                :<span class="lineCov">          2 :     uint32_t peer = 0;  // 0 Bytes</span>
+<span class="lineNum">     625 </span>                :<span class="lineCov">          2 :     bool ack = false;</span>
+<span class="lineNum">     626 </span>                :<span class="lineCov">          2 :     SnapErrorDetectionMode edm = EDM_CRC8;</span>
 <span class="lineNum">     627 </span>                :            : 
-<span class="lineNum">     628 </span>                :<span class="lineCov">          4 :     uint8_t data[] = {</span>
+<span class="lineNum">     628 </span>                :<span class="lineCov">          2 :     uint8_t data[] = {</span>
 <span class="lineNum">     629 </span>                :            :         0x54, 0x00, 0x3D, 0x49, 0x66, 0x20, 0x61, 0x20, 0x70, 0x61, 0x63, 0x6B,
 <span class="lineNum">     630 </span>                :            :         0x65, 0x74, 0x20, 0x68, 0x69, 0x74, 0x73, 0x20, 0x61, 0x20, 0x70, 0x6F,
 <span class="lineNum">     631 </span>                :            :         0x63, 0x6B, 0x65, 0x74, 0x20, 0x6F, 0x6E, 0x20, 0x61, 0x20, 0x73, 0x6F,
@@ -727,38 +727,38 @@
 <span class="lineNum">     650 </span>                :            :         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xB8
 <span class="lineNum">     651 </span>                :            :     };
 <span class="lineNum">     652 </span>                :            : 
-<span class="lineNum">     653 </span>                :<span class="lineCov">          4 :     size_t data_size = sizeof( data ) / sizeof( data[ 0 ] );</span>
+<span class="lineNum">     653 </span>                :<span class="lineCov">          2 :     size_t data_size = sizeof( data ) / sizeof( data[ 0 ] );</span>
 <span class="lineNum">     654 </span>                :            : 
-<span class="lineNum">     655 </span>                :<span class="lineCov">          4 :     uint8_t expected_result[] = &quot;If a packet hits a pocket on a socket on a port, &quot;</span>
+<span class="lineNum">     655 </span>                :<span class="lineCov">          2 :     uint8_t expected_result[] = &quot;If a packet hits a pocket on a socket on a port, &quot;</span>
 <span class="lineNum">     656 </span>                :            :         &quot;and the bus is interrupted and the interrupt's not caught, &quot;
 <span class="lineNum">     657 </span>                :            :         &quot;then the socket packet pocket has an error to report.&quot;;
 <span class="lineNum">     658 </span>                :            : 
-<span class="lineNum">     659 </span>                :<span class="lineCov">          4 :     size_t expected_result_size = sizeof( expected_result ) / sizeof( expected_result[ 0 ] );</span>
+<span class="lineNum">     659 </span>                :<span class="lineCov">          2 :     size_t expected_result_size = sizeof( expected_result ) / sizeof( expected_result[ 0 ] );</span>
 <span class="lineNum">     660 </span>                :            : 
 <span class="lineNum">     661 </span>                :            :     // remove implicit trailing '\0' (introduced through the string notation of expected_result)
-<span class="lineNum">     662 </span>                :<span class="lineCov">          4 :     expected_result_size--;</span>
+<span class="lineNum">     662 </span>                :<span class="lineCov">          2 :     expected_result_size--;</span>
 <span class="lineNum">     663 </span>                :            : 
-<span class="lineNum">     664 </span>                :<span class="lineCov">          4 :     uint8_t expected_response[] = { '\0' };</span>
-<span class="lineNum">     665 </span>                :<span class="lineCov">          4 :     size_t expected_response_size = 0;</span>
+<span class="lineNum">     664 </span>                :<span class="lineCov">          2 :     uint8_t expected_response[] = { '\0' };</span>
+<span class="lineNum">     665 </span>                :<span class="lineCov">          2 :     size_t expected_response_size = 0;</span>
 <span class="lineNum">     666 </span>                :            : 
-<span class="lineNum">     667 </span>                :<span class="lineCov">          4 :     snap_test_priv_decode_example(</span>
+<span class="lineNum">     667 </span>                :<span class="lineCov">          2 :     snap_test_priv_decode_example(</span>
 <span class="lineNum">     668 </span>                :            :             local, peer, ack, edm, data, data_size, data_size, expected_result,
 <span class="lineNum">     669 </span>                :            :             expected_result_size, expected_response, expected_response_size
 <span class="lineNum">     670 </span>                :            :     );
-<span class="lineNum">     671 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     671 </span>                :<span class="lineCov">          2 : }</span>
 <a name="672"><span class="lineNum">     672 </span>                :            : </a>
 <span class="lineNum">     673 </span>                :            : 
-<span class="lineNum">     674 </span>                :<span class="lineCov">          4 : void snap_test_decode_example_8()</span>
+<span class="lineNum">     674 </span>                :<span class="lineCov">          2 : void snap_test_decode_example_8()</span>
 <span class="lineNum">     675 </span>                :            : {
 <span class="lineNum">     676 </span>                :            :     // full 3 times packet
 <span class="lineNum">     677 </span>                :            :     // TODO more test with this EDM type - here be dragons!
 <span class="lineNum">     678 </span>                :            : 
-<span class="lineNum">     679 </span>                :<span class="lineCov">          4 :     uint32_t local = 0;     // 0 Bytes</span>
-<span class="lineNum">     680 </span>                :<span class="lineCov">          4 :     uint32_t peer = 86542;  // 3 Bytes</span>
-<span class="lineNum">     681 </span>                :<span class="lineCov">          4 :     bool ack = false;</span>
-<span class="lineNum">     682 </span>                :<span class="lineCov">          4 :     SnapErrorDetectionMode edm = EDM_THREETIMES;</span>
+<span class="lineNum">     679 </span>                :<span class="lineCov">          2 :     uint32_t local = 0;     // 0 Bytes</span>
+<span class="lineNum">     680 </span>                :<span class="lineCov">          2 :     uint32_t peer = 86542;  // 3 Bytes</span>
+<span class="lineNum">     681 </span>                :<span class="lineCov">          2 :     bool ack = false;</span>
+<span class="lineNum">     682 </span>                :<span class="lineCov">          2 :     SnapErrorDetectionMode edm = EDM_THREETIMES;</span>
 <span class="lineNum">     683 </span>                :            : 
-<span class="lineNum">     684 </span>                :<span class="lineCov">          4 :     uint8_t data[] = {</span>
+<span class="lineNum">     684 </span>                :<span class="lineCov">          2 :     uint8_t data[] = {</span>
 <span class="lineNum">     685 </span>                :            :         0x54, 0x00, 0x1A, 0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x53, 0x4E,
 <span class="lineNum">     686 </span>                :            :         0x41, 0x50, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64, 0x21, 0x00, 0x00,
 <span class="lineNum">     687 </span>                :            :         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -770,50 +770,50 @@
 <span class="lineNum">     693 </span>                :            :         0x64, 0x21, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 <span class="lineNum">     694 </span>                :            :         0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 <span class="lineNum">     695 </span>                :            :     };
-<span class="lineNum">     696 </span>                :<span class="lineCov">          4 :     size_t data_size = sizeof( data ) / sizeof( data[ 0 ] );</span>
+<span class="lineNum">     696 </span>                :<span class="lineCov">          2 :     size_t data_size = sizeof( data ) / sizeof( data[ 0 ] );</span>
 <span class="lineNum">     697 </span>                :            : 
-<span class="lineNum">     698 </span>                :<span class="lineCov">          4 :     uint8_t expected_result[] = &quot;Hello SNAP World!&quot;;</span>
+<span class="lineNum">     698 </span>                :<span class="lineCov">          2 :     uint8_t expected_result[] = &quot;Hello SNAP World!&quot;;</span>
 <span class="lineNum">     699 </span>                :            : 
-<span class="lineNum">     700 </span>                :<span class="lineCov">          4 :     size_t expected_result_size = sizeof( expected_result ) / sizeof( expected_result[ 0 ] );</span>
+<span class="lineNum">     700 </span>                :<span class="lineCov">          2 :     size_t expected_result_size = sizeof( expected_result ) / sizeof( expected_result[ 0 ] );</span>
 <span class="lineNum">     701 </span>                :            : 
 <span class="lineNum">     702 </span>                :            :     // remove implicit trailing '\0' (introduced through the string notation of expected_result)
-<span class="lineNum">     703 </span>                :<span class="lineCov">          4 :     expected_result_size--;</span>
+<span class="lineNum">     703 </span>                :<span class="lineCov">          2 :     expected_result_size--;</span>
 <span class="lineNum">     704 </span>                :            : 
-<span class="lineNum">     705 </span>                :<span class="lineCov">          4 :     uint8_t expected_response[] = { '\0' };</span>
-<span class="lineNum">     706 </span>                :<span class="lineCov">          4 :     size_t expected_response_size = 0;</span>
+<span class="lineNum">     705 </span>                :<span class="lineCov">          2 :     uint8_t expected_response[] = { '\0' };</span>
+<span class="lineNum">     706 </span>                :<span class="lineCov">          2 :     size_t expected_response_size = 0;</span>
 <span class="lineNum">     707 </span>                :            : 
-<span class="lineNum">     708 </span>                :<span class="lineCov">          4 :     snap_test_priv_decode_example(</span>
+<span class="lineNum">     708 </span>                :<span class="lineCov">          2 :     snap_test_priv_decode_example(</span>
 <span class="lineNum">     709 </span>                :            :             local, peer, ack, edm, data, data_size, data_size, expected_result,
 <span class="lineNum">     710 </span>                :            :             expected_result_size, expected_response, expected_response_size
 <span class="lineNum">     711 </span>                :            :     );
-<span class="lineNum">     712 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     712 </span>                :<span class="lineCov">          2 : }</span>
 <span class="lineNum">     713 </span>                :            : 
 <span class="lineNum">     714 </span>                :            : 
 <a name="715"><span class="lineNum">     715 </span>                :            : char test_suite_name[] = &quot;decoder&quot;;</a>
 <span class="lineNum">     716 </span>                :            : 
-<span class="lineNum">     717 </span>                :<span class="lineCov">          4 : void test_suite(CU_pSuite suite)</span>
+<span class="lineNum">     717 </span>                :<span class="lineCov">          2 : void test_suite(CU_pSuite suite)</span>
 <span class="lineNum">     718 </span>                :            : {
 <span class="lineNum">     719 </span>                :            :     //CU_add_test( suite, &quot;&quot;, );
 <span class="lineNum">     720 </span>                :            : 
-<span class="lineNum">     721 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;decode with illegal ndb value&quot;, snap_test_decode_illegal_ndb );</span>
-<span class="lineNum">     722 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;decode with illegal edm value&quot;, snap_test_decode_illegal_edm );</span>
-<span class="lineNum">     723 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;decode with invalid edm value&quot;, snap_test_decode_invalid_edm );</span>
-<span class="lineNum">     724 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;decode no data&quot;, snap_test_decode_no_data );</span>
-<span class="lineNum">     725 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;decode codswallop 1&quot;, snap_test_decode_codswallop_1 );</span>
-<span class="lineNum">     726 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;decode codswallop 2&quot;, snap_test_decode_codswallop_2 );</span>
-<span class="lineNum">     727 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;decode corner case when SYNC is at the end of the stream&quot;, snap_test_decode_corner_case_sync_at_end );</span>
-<span class="lineNum">     728 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;decode too small data&quot;, snap_test_decode_too_small );</span>
-<span class="lineNum">     729 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;decode too small with preamble&quot;, snap_test_decode_too_small_with_preamble );</span>
+<span class="lineNum">     721 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;decode with illegal ndb value&quot;, snap_test_decode_illegal_ndb );</span>
+<span class="lineNum">     722 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;decode with illegal edm value&quot;, snap_test_decode_illegal_edm );</span>
+<span class="lineNum">     723 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;decode with invalid edm value&quot;, snap_test_decode_invalid_edm );</span>
+<span class="lineNum">     724 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;decode no data&quot;, snap_test_decode_no_data );</span>
+<span class="lineNum">     725 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;decode codswallop 1&quot;, snap_test_decode_codswallop_1 );</span>
+<span class="lineNum">     726 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;decode codswallop 2&quot;, snap_test_decode_codswallop_2 );</span>
+<span class="lineNum">     727 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;decode corner case when SYNC is at the end of the stream&quot;, snap_test_decode_corner_case_sync_at_end );</span>
+<span class="lineNum">     728 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;decode too small data&quot;, snap_test_decode_too_small );</span>
+<span class="lineNum">     729 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;decode too small with preamble&quot;, snap_test_decode_too_small_with_preamble );</span>
 <span class="lineNum">     730 </span>                :            : 
-<span class="lineNum">     731 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;decode example 1&quot;, snap_test_decode_example_1 );</span>
-<span class="lineNum">     732 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;decode example 2&quot;, snap_test_decode_example_2 );</span>
-<span class="lineNum">     733 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;decode example 3&quot;, snap_test_decode_example_3 );</span>
-<span class="lineNum">     734 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;decode example 4&quot;, snap_test_decode_example_4 );</span>
-<span class="lineNum">     735 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;decode example 5&quot;, snap_test_decode_example_5 );</span>
-<span class="lineNum">     736 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;decode example 6&quot;, snap_test_decode_example_6 );</span>
-<span class="lineNum">     737 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;decode example 7&quot;, snap_test_decode_example_7 );</span>
-<span class="lineNum">     738 </span>                :<span class="lineCov">          4 :     CU_add_test( suite, &quot;decode example 8&quot;, snap_test_decode_example_8 );</span>
-<span class="lineNum">     739 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     731 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;decode example 1&quot;, snap_test_decode_example_1 );</span>
+<span class="lineNum">     732 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;decode example 2&quot;, snap_test_decode_example_2 );</span>
+<span class="lineNum">     733 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;decode example 3&quot;, snap_test_decode_example_3 );</span>
+<span class="lineNum">     734 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;decode example 4&quot;, snap_test_decode_example_4 );</span>
+<span class="lineNum">     735 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;decode example 5&quot;, snap_test_decode_example_5 );</span>
+<span class="lineNum">     736 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;decode example 6&quot;, snap_test_decode_example_6 );</span>
+<span class="lineNum">     737 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;decode example 7&quot;, snap_test_decode_example_7 );</span>
+<span class="lineNum">     738 </span>                :<span class="lineCov">          2 :     CU_add_test( suite, &quot;decode example 8&quot;, snap_test_decode_example_8 );</span>
+<span class="lineNum">     739 </span>                :<span class="lineCov">          2 : }</span>
 <span class="lineNum">     740 </span>                :            : 
 <span class="lineNum">     741 </span>                :            : 
 <span class="lineNum">     742 </span>                :            : // kate: word-wrap off; encoding utf-8; indent-width 4; tab-width 4; line-numbers on; mixed-indent off; remove-trailing-space-save on; replace-tabs-save on; replace-tabs on; space-indent on;
