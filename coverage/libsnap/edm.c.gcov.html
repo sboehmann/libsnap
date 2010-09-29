@@ -1,0 +1,303 @@
+<!-- This comment will put IE 6, 7 and 8 in quirks mode -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <link href="../gcov.css" rel="stylesheet" type="text/css" />
+  <title>libsnap &mdash; code coverage report</title>
+</head>
+<body>
+<h1 style="text-align:center;"><a href='http://hilefoks.github.com/libsnap/' title="libsnap is a portable open-source S.N.A.P implementation" style="font-weight: bold; color: #0044b3; text-decoration: none;">libsnap</a></h1>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">libsnap</a> - edm.c<span style="font-size: 80%;"> (source / <a href="edm.c.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">libsnap tests</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">50</td>
+            <td class="headerCovTableEntry">50</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2010-09-29</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+            | Branches:
+            <span class="coverLegendCov">+</span> taken
+            <span class="coverLegendNoCov">-</span> not taken
+            <span class="coverLegendNoCov">#</span> not executed
+</td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">20</td>
+            <td class="headerCovTableEntry">20</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            :  * Copyright 2010  Stefan Böhmann &lt;kde@hilefoks.org&gt;
+<span class="lineNum">       3 </span>                :            :  *
+<span class="lineNum">       4 </span>                :            :  * This program is free software; you can redistribute it and/or
+<span class="lineNum">       5 </span>                :            :  * modify it under the terms of the GNU General Public License as
+<span class="lineNum">       6 </span>                :            :  * published by the Free Software Foundation; either version 2 of
+<span class="lineNum">       7 </span>                :            :  * the License, or (at your option) any later version.
+<span class="lineNum">       8 </span>                :            :  *
+<span class="lineNum">       9 </span>                :            :  * This program is distributed in the hope that it will be useful,
+<span class="lineNum">      10 </span>                :            :  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+<span class="lineNum">      11 </span>                :            :  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+<span class="lineNum">      12 </span>                :            :  * GNU General Public License for more details.
+<span class="lineNum">      13 </span>                :            :  *
+<span class="lineNum">      14 </span>                :            :  * You should have received a copy of the GNU General Public License
+<span class="lineNum">      15 </span>                :            :  * along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+<span class="lineNum">      16 </span>                :            :  */
+<span class="lineNum">      17 </span>                :            : #ifdef __cplusplus
+<span class="lineNum">      18 </span>                :            : extern &quot;C&quot; {
+<span class="lineNum">      19 </span>                :            : #endif
+<span class="lineNum">      20 </span>                :            : 
+<span class="lineNum">      21 </span>                :            : #include &quot;edm.h&quot;
+<span class="lineNum">      22 </span>                :            : #include &quot;global.h&quot;
+<span class="lineNum">      23 </span>                :            : 
+<span class="lineNum">      24 </span>                :            : #define CRC8_POLYNOMIAL 0x18u
+<span class="lineNum">      25 </span>                :            : #define CRC8_INIT 0x00u
+<span class="lineNum">      26 </span>                :            : 
+<span class="lineNum">      27 </span>                :            : #define CRC16_POLYNOMIAL 0x1021u // = X^16+X^12+X^5+X^0
+<span class="lineNum">      28 </span>                :            : #define CRC16_INIT 0x0000u
+<span class="lineNum">      29 </span>                :            : 
+<span class="lineNum">      30 </span>                :            : #define CRC32_POLYNOMIAL 0x04C11DB7u
+<span class="lineNum">      31 </span>                :            : 
+<span class="lineNum">      32 </span>                :            : uint32_t snap_crc32_lookup_table[] =
+<span class="lineNum">      33 </span>                :            : {
+<span class="lineNum">      34 </span>                :            :     0x00000000, 0x77073096, 0xee0e612c, 0x990951ba, 0x076dc419, 0x706af48f,
+<span class="lineNum">      35 </span>                :            :     0xe963a535, 0x9e6495a3, 0x0edb8832, 0x79dcb8a4, 0xe0d5e91e, 0x97d2d988,
+<span class="lineNum">      36 </span>                :            :     0x09b64c2b, 0x7eb17cbd, 0xe7b82d07, 0x90bf1d91, 0x1db71064, 0x6ab020f2,
+<span class="lineNum">      37 </span>                :            :     0xf3b97148, 0x84be41de, 0x1adad47d, 0x6ddde4eb, 0xf4d4b551, 0x83d385c7,
+<span class="lineNum">      38 </span>                :            :     0x136c9856, 0x646ba8c0, 0xfd62f97a, 0x8a65c9ec, 0x14015c4f, 0x63066cd9,
+<span class="lineNum">      39 </span>                :            :     0xfa0f3d63, 0x8d080df5, 0x3b6e20c8, 0x4c69105e, 0xd56041e4, 0xa2677172,
+<span class="lineNum">      40 </span>                :            :     0x3c03e4d1, 0x4b04d447, 0xd20d85fd, 0xa50ab56b, 0x35b5a8fa, 0x42b2986c,
+<span class="lineNum">      41 </span>                :            :     0xdbbbc9d6, 0xacbcf940, 0x32d86ce3, 0x45df5c75, 0xdcd60dcf, 0xabd13d59,
+<span class="lineNum">      42 </span>                :            :     0x26d930ac, 0x51de003a, 0xc8d75180, 0xbfd06116, 0x21b4f4b5, 0x56b3c423,
+<span class="lineNum">      43 </span>                :            :     0xcfba9599, 0xb8bda50f, 0x2802b89e, 0x5f058808, 0xc60cd9b2, 0xb10be924,
+<span class="lineNum">      44 </span>                :            :     0x2f6f7c87, 0x58684c11, 0xc1611dab, 0xb6662d3d, 0x76dc4190, 0x01db7106,
+<span class="lineNum">      45 </span>                :            :     0x98d220bc, 0xefd5102a, 0x71b18589, 0x06b6b51f, 0x9fbfe4a5, 0xe8b8d433,
+<span class="lineNum">      46 </span>                :            :     0x7807c9a2, 0x0f00f934, 0x9609a88e, 0xe10e9818, 0x7f6a0dbb, 0x086d3d2d,
+<span class="lineNum">      47 </span>                :            :     0x91646c97, 0xe6635c01, 0x6b6b51f4, 0x1c6c6162, 0x856530d8, 0xf262004e,
+<span class="lineNum">      48 </span>                :            :     0x6c0695ed, 0x1b01a57b, 0x8208f4c1, 0xf50fc457, 0x65b0d9c6, 0x12b7e950,
+<span class="lineNum">      49 </span>                :            :     0x8bbeb8ea, 0xfcb9887c, 0x62dd1ddf, 0x15da2d49, 0x8cd37cf3, 0xfbd44c65,
+<span class="lineNum">      50 </span>                :            :     0x4db26158, 0x3ab551ce, 0xa3bc0074, 0xd4bb30e2, 0x4adfa541, 0x3dd895d7,
+<span class="lineNum">      51 </span>                :            :     0xa4d1c46d, 0xd3d6f4fb, 0x4369e96a, 0x346ed9fc, 0xad678846, 0xda60b8d0,
+<span class="lineNum">      52 </span>                :            :     0x44042d73, 0x33031de5, 0xaa0a4c5f, 0xdd0d7cc9, 0x5005713c, 0x270241aa,
+<span class="lineNum">      53 </span>                :            :     0xbe0b1010, 0xc90c2086, 0x5768b525, 0x206f85b3, 0xb966d409, 0xce61e49f,
+<span class="lineNum">      54 </span>                :            :     0x5edef90e, 0x29d9c998, 0xb0d09822, 0xc7d7a8b4, 0x59b33d17, 0x2eb40d81,
+<span class="lineNum">      55 </span>                :            :     0xb7bd5c3b, 0xc0ba6cad, 0xedb88320, 0x9abfb3b6, 0x03b6e20c, 0x74b1d29a,
+<span class="lineNum">      56 </span>                :            :     0xead54739, 0x9dd277af, 0x04db2615, 0x73dc1683, 0xe3630b12, 0x94643b84,
+<span class="lineNum">      57 </span>                :            :     0x0d6d6a3e, 0x7a6a5aa8, 0xe40ecf0b, 0x9309ff9d, 0x0a00ae27, 0x7d079eb1,
+<span class="lineNum">      58 </span>                :            :     0xf00f9344, 0x8708a3d2, 0x1e01f268, 0x6906c2fe, 0xf762575d, 0x806567cb,
+<span class="lineNum">      59 </span>                :            :     0x196c3671, 0x6e6b06e7, 0xfed41b76, 0x89d32be0, 0x10da7a5a, 0x67dd4acc,
+<span class="lineNum">      60 </span>                :            :     0xf9b9df6f, 0x8ebeeff9, 0x17b7be43, 0x60b08ed5, 0xd6d6a3e8, 0xa1d1937e,
+<span class="lineNum">      61 </span>                :            :     0x38d8c2c4, 0x4fdff252, 0xd1bb67f1, 0xa6bc5767, 0x3fb506dd, 0x48b2364b,
+<span class="lineNum">      62 </span>                :            :     0xd80d2bda, 0xaf0a1b4c, 0x36034af6, 0x41047a60, 0xdf60efc3, 0xa867df55,
+<span class="lineNum">      63 </span>                :            :     0x316e8eef, 0x4669be79, 0xcb61b38c, 0xbc66831a, 0x256fd2a0, 0x5268e236,
+<span class="lineNum">      64 </span>                :            :     0xcc0c7795, 0xbb0b4703, 0x220216b9, 0x5505262f, 0xc5ba3bbe, 0xb2bd0b28,
+<span class="lineNum">      65 </span>                :            :     0x2bb45a92, 0x5cb36a04, 0xc2d7ffa7, 0xb5d0cf31, 0x2cd99e8b, 0x5bdeae1d,
+<span class="lineNum">      66 </span>                :            :     0x9b64c2b0, 0xec63f226, 0x756aa39c, 0x026d930a, 0x9c0906a9, 0xeb0e363f,
+<span class="lineNum">      67 </span>                :            :     0x72076785, 0x05005713, 0x95bf4a82, 0xe2b87a14, 0x7bb12bae, 0x0cb61b38,
+<span class="lineNum">      68 </span>                :            :     0x92d28e9b, 0xe5d5be0d, 0x7cdcefb7, 0x0bdbdf21, 0x86d3d2d4, 0xf1d4e242,
+<span class="lineNum">      69 </span>                :            :     0x68ddb3f8, 0x1fda836e, 0x81be16cd, 0xf6b9265b, 0x6fb077e1, 0x18b74777,
+<span class="lineNum">      70 </span>                :            :     0x88085ae6, 0xff0f6a70, 0x66063bca, 0x11010b5c, 0x8f659eff, 0xf862ae69,
+<span class="lineNum">      71 </span>                :            :     0x616bffd3, 0x166ccf45, 0xa00ae278, 0xd70dd2ee, 0x4e048354, 0x3903b3c2,
+<span class="lineNum">      72 </span>                :            :     0xa7672661, 0xd06016f7, 0x4969474d, 0x3e6e77db, 0xaed16a4a, 0xd9d65adc,
+<span class="lineNum">      73 </span>                :            :     0x40df0b66, 0x37d83bf0, 0xa9bcae53, 0xdebb9ec5, 0x47b2cf7f, 0x30b5ffe9,
+<span class="lineNum">      74 </span>                :            :     0xbdbdf21c, 0xcabac28a, 0x53b39330, 0x24b4a3a6, 0xbad03605, 0xcdd70693,
+<span class="lineNum">      75 </span>                :            :     0x54de5729, 0x23d967bf, 0xb3667a2e, 0xc4614ab8, 0x5d681b02, 0x2a6f2b94,
+<span class="lineNum">      76 </span>                :            :     0xb40bbe37, 0xc30c8ea1, 0x5a05df1b, 0x2d02ef8d
+<span class="lineNum">      77 </span>                :            : };
+<span class="lineNum">      78 </span>                :            : 
+<span class="lineNum">      79 </span>                :            : 
+<span class="lineNum">      80 </span>                :            : 
+<a name="81"><span class="lineNum">      81 </span>                :            : // 8 Bit Checksum</a>
+<span class="lineNum">      82 </span>                :            : 
+<span class="lineNum">      83 </span>                :<span class="lineCov">      73236 : uint8_t snap_checksum(const uint8_t *data, size_t size)</span>
+<span class="lineNum">      84 </span>                :            : {
+<span class="lineNum">      85 </span>                :<span class="lineCov">      73236 :     uint8_t value = 0;</span>
+<span class="lineNum">      86 </span>                :            : 
+<span class="lineNum">      87 </span>        [<span class="branchCov" title="Branch 0 was taken 10317576 times"> + </span><span class="branchCov" title="Branch 1 was taken 73236 times"> + </span>]:<span class="lineCov">   10390812 :     for(size_t i = 0; i &lt; size; ++i) {</span>
+<span class="lineNum">      88 </span>                :<span class="lineCov">   10317576 :         value += data[ i ];</span>
+<span class="lineNum">      89 </span>                :            :     }
+<span class="lineNum">      90 </span>                :            : 
+<span class="lineNum">      91 </span>                :<span class="lineCov">      73236 :     return value;</span>
+<span class="lineNum">      92 </span>                :            : }
+<a name="93"><span class="lineNum">      93 </span>                :            : </a>
+<span class="lineNum">      94 </span>                :            : 
+<span class="lineNum">      95 </span>                :<span class="lineCov">         12 : bool snap_checksum_is_valid(const uint8_t *data, size_t size, uint8_t checksum)</span>
+<span class="lineNum">      96 </span>                :            : {
+<span class="lineNum">      97 </span>                :<span class="lineCov">         12 :     return snap_checksum( data, size ) == checksum;</span>
+<span class="lineNum">      98 </span>                :            : }
+<span class="lineNum">      99 </span>                :            : 
+<span class="lineNum">     100 </span>                :            : 
+<a name="101"><span class="lineNum">     101 </span>                :            : // 8 Bit CRC</a>
+<span class="lineNum">     102 </span>                :            : 
+<span class="lineNum">     103 </span>                :<span class="lineCov">      68028 : uint8_t snap_crc8(const uint8_t *data, size_t size)</span>
+<span class="lineNum">     104 </span>                :            : {
+<span class="lineNum">     105 </span>                :<span class="lineCov">      68028 :     uint8_t value = CRC8_INIT;</span>
+<span class="lineNum">     106 </span>                :            : 
+<span class="lineNum">     107 </span>        [<span class="branchCov" title="Branch 0 was taken 10282728 times"> + </span><span class="branchCov" title="Branch 1 was taken 68028 times"> + </span>]:<span class="lineCov">   10350756 :     for(size_t i = 0; i &lt; size; ++i) {</span>
+<span class="lineNum">     108 </span>                :<span class="lineCov">   10282728 :         uint8_t byte = data[ i ];</span>
+<span class="lineNum">     109 </span>                :            : 
+<span class="lineNum">     110 </span>        [<span class="branchCov" title="Branch 0 was taken 82261824 times"> + </span><span class="branchCov" title="Branch 1 was taken 10282728 times"> + </span>]:<span class="lineCov">   92544552 :         for(size_t k = 8; k &gt; 0; --k) {</span>
+<span class="lineNum">     111 </span>                :<span class="lineCov">   82261824 :             bool feedback_bit = ( ( value ^ byte ) &amp; 0x01 ) == 0x01;</span>
+<span class="lineNum">     112 </span>                :            : 
+<span class="lineNum">     113 </span>        [<span class="branchCov" title="Branch 0 was taken 41050048 times"> + </span><span class="branchCov" title="Branch 1 was taken 41211776 times"> + </span>]:<span class="lineCov">   82261824 :             if( feedback_bit ) {</span>
+<span class="lineNum">     114 </span>                :<span class="lineCov">   41050048 :                 value ^= CRC8_POLYNOMIAL;</span>
+<span class="lineNum">     115 </span>                :            :             }
+<span class="lineNum">     116 </span>                :<span class="lineCov">   82261824 :             value = (value &gt;&gt; 1) &amp; 0x7F;</span>
+<span class="lineNum">     117 </span>                :            : 
+<span class="lineNum">     118 </span>        [<span class="branchCov" title="Branch 0 was taken 41050048 times"> + </span><span class="branchCov" title="Branch 1 was taken 41211776 times"> + </span>]:<span class="lineCov">   82261824 :             if( feedback_bit ) {</span>
+<span class="lineNum">     119 </span>                :<span class="lineCov">   41050048 :                 value |= 0x80;</span>
+<span class="lineNum">     120 </span>                :            :             }
+<span class="lineNum">     121 </span>                :            : 
+<span class="lineNum">     122 </span>                :<span class="lineCov">   82261824 :             byte = byte &gt;&gt; 1u;</span>
+<span class="lineNum">     123 </span>                :            :         }
+<span class="lineNum">     124 </span>                :            :     }
+<span class="lineNum">     125 </span>                :            : 
+<span class="lineNum">     126 </span>                :<span class="lineCov">      68028 :     return value;</span>
+<span class="lineNum">     127 </span>                :            : }
+<a name="128"><span class="lineNum">     128 </span>                :            : </a>
+<span class="lineNum">     129 </span>                :            : 
+<span class="lineNum">     130 </span>                :<span class="lineCov">         12 : bool snap_crc8_is_valid(const uint8_t *data, size_t size, uint8_t checksum)</span>
+<span class="lineNum">     131 </span>                :            : {
+<span class="lineNum">     132 </span>                :<span class="lineCov">         12 :     return snap_crc8( data, size ) == checksum;</span>
+<span class="lineNum">     133 </span>                :            : }
+<span class="lineNum">     134 </span>                :            : 
+<span class="lineNum">     135 </span>                :            : 
+<a name="136"><span class="lineNum">     136 </span>                :            : // 16 Bit CRC</a>
+<span class="lineNum">     137 </span>                :            : 
+<span class="lineNum">     138 </span>                :<span class="lineCov">      68048 : uint16_t snap_crc16(const uint8_t *data, size_t size)</span>
+<span class="lineNum">     139 </span>                :            : {
+<span class="lineNum">     140 </span>                :<span class="lineCov">      68048 :     uint16_t value = CRC16_INIT;</span>
+<span class="lineNum">     141 </span>                :            : 
+<span class="lineNum">     142 </span>        [<span class="branchCov" title="Branch 0 was taken 10282200 times"> + </span><span class="branchCov" title="Branch 1 was taken 68048 times"> + </span>]:<span class="lineCov">   10350248 :     for(size_t i = 0; i &lt; size; ++i) {</span>
+<span class="lineNum">     143 </span>                :<span class="lineCov">   10282200 :         value = ( data[ i ] &lt;&lt; 8u ) ^ value;</span>
+<span class="lineNum">     144 </span>                :            : 
+<span class="lineNum">     145 </span>        [<span class="branchCov" title="Branch 0 was taken 82257600 times"> + </span><span class="branchCov" title="Branch 1 was taken 10282200 times"> + </span>]:<span class="lineCov">   92539800 :         for(size_t k = 0; k &lt; 8; ++k) {</span>
+<span class="lineNum">     146 </span>        [<span class="branchCov" title="Branch 0 was taken 41157698 times"> + </span><span class="branchCov" title="Branch 1 was taken 41099902 times"> + </span>]:<span class="lineCov">   82257600 :             if( (value &amp; 0x8000) == 0x8000 ) { // if MSB is one</span>
+<span class="lineNum">     147 </span>                :<span class="lineCov">   41157698 :                 value = ( value &lt;&lt; 1u) ^ CRC16_POLYNOMIAL;</span>
+<span class="lineNum">     148 </span>                :            :             }
+<span class="lineNum">     149 </span>                :            :             else {
+<span class="lineNum">     150 </span>                :<span class="lineCov">   41099902 :                 value &lt;&lt;= 1u;</span>
+<span class="lineNum">     151 </span>                :            :             }
+<span class="lineNum">     152 </span>                :            :         }
+<span class="lineNum">     153 </span>                :            :     }
+<span class="lineNum">     154 </span>                :            : 
+<span class="lineNum">     155 </span>                :<span class="lineCov">      68048 :     return value;</span>
+<span class="lineNum">     156 </span>                :            : }
+<a name="157"><span class="lineNum">     157 </span>                :            : </a>
+<span class="lineNum">     158 </span>                :            : 
+<span class="lineNum">     159 </span>                :<span class="lineCov">         12 : bool snap_crc16_is_valid(const uint8_t *data, size_t size, uint16_t checksum)</span>
+<span class="lineNum">     160 </span>                :            : {
+<span class="lineNum">     161 </span>                :<span class="lineCov">         12 :     return snap_crc16( data, size ) == checksum;</span>
+<span class="lineNum">     162 </span>                :            : }
+<span class="lineNum">     163 </span>                :            : 
+<span class="lineNum">     164 </span>                :            : 
+<a name="165"><span class="lineNum">     165 </span>                :            : // 32 Bit CRC</a>
+<span class="lineNum">     166 </span>                :            : 
+<span class="lineNum">     167 </span>                :<span class="lineCov">      68028 : uint32_t snap_crc32(const uint8_t *data, size_t size)</span>
+<span class="lineNum">     168 </span>                :            : {
+<span class="lineNum">     169 </span>                :<span class="lineCov">      68028 :     const uint8_t *p = data;</span>
+<span class="lineNum">     170 </span>                :<span class="lineCov">      68028 :     uint32_t value = ~0U;</span>
+<span class="lineNum">     171 </span>                :            : 
+<span class="lineNum">     172 </span>        [<span class="branchCov" title="Branch 0 was taken 10281736 times"> + </span><span class="branchCov" title="Branch 1 was taken 68028 times"> + </span>]:<span class="lineCov">   10349764 :     while( size-- ) {</span>
+<span class="lineNum">     173 </span>                :<span class="lineCov">   10281736 :         value = snap_crc32_lookup_table[ ( value ^ *p++ ) &amp; 0xFF ] ^ ( value &gt;&gt; 8 );</span>
+<span class="lineNum">     174 </span>                :            :     }
+<span class="lineNum">     175 </span>                :            : 
+<span class="lineNum">     176 </span>                :<span class="lineCov">      68028 :     return value ^ ~0U;</span>
+<span class="lineNum">     177 </span>                :            : }
+<a name="178"><span class="lineNum">     178 </span>                :            : </a>
+<span class="lineNum">     179 </span>                :            : 
+<span class="lineNum">     180 </span>                :<span class="lineCov">         12 : bool snap_crc32_is_valid(const uint8_t *data, size_t size, uint32_t checksum)</span>
+<span class="lineNum">     181 </span>                :            : {
+<span class="lineNum">     182 </span>                :<span class="lineCov">         12 :     return snap_crc32( data, size ) == checksum;</span>
+<span class="lineNum">     183 </span>                :            : }
+<span class="lineNum">     184 </span>                :            : 
+<span class="lineNum">     185 </span>                :            : 
+<a name="186"><span class="lineNum">     186 </span>                :            : // Adler32</a>
+<span class="lineNum">     187 </span>                :            : 
+<span class="lineNum">     188 </span>                :<span class="lineCov">         24 : uint32_t snap_adler32(const uint8_t *data, size_t size)</span>
+<span class="lineNum">     189 </span>                :            : {
+<span class="lineNum">     190 </span>                :<span class="lineCov">         24 :     uint32_t s1 = 1;</span>
+<span class="lineNum">     191 </span>                :<span class="lineCov">         24 :     uint32_t s2 = 0;</span>
+<span class="lineNum">     192 </span>                :            : 
+<span class="lineNum">     193 </span>        [<span class="branchCov" title="Branch 0 was taken 96 times"> + </span><span class="branchCov" title="Branch 1 was taken 24 times"> + </span>]:<span class="lineCov">        120 :     for(size_t i = 0; i &lt; size; ++i) {</span>
+<span class="lineNum">     194 </span>                :<span class="lineCov">         96 :         s1 = ( s1 + data[ i ] ) % 65521;</span>
+<span class="lineNum">     195 </span>                :<span class="lineCov">         96 :         s2 = ( s2 + s1 ) % 65521;</span>
+<span class="lineNum">     196 </span>                :            :     }
+<span class="lineNum">     197 </span>                :            : 
+<span class="lineNum">     198 </span>                :<span class="lineCov">         24 :     return (s2 &lt;&lt; 16) | s1;</span>
+<span class="lineNum">     199 </span>                :            : }
+<a name="200"><span class="lineNum">     200 </span>                :            : </a>
+<span class="lineNum">     201 </span>                :            : 
+<span class="lineNum">     202 </span>                :<span class="lineCov">         12 : bool snap_adler32_is_valid(const uint8_t *data, size_t size, uint32_t checksum)</span>
+<span class="lineNum">     203 </span>                :            : {
+<span class="lineNum">     204 </span>                :<span class="lineCov">         12 :     return snap_adler32( data, size ) == checksum;</span>
+<span class="lineNum">     205 </span>                :            : }
+<span class="lineNum">     206 </span>                :            : 
+<span class="lineNum">     207 </span>                :            : 
+<span class="lineNum">     208 </span>                :            : #ifdef __cplusplus
+<span class="lineNum">     209 </span>                :            : }   // end extern &quot;C&quot;
+<span class="lineNum">     210 </span>                :            : #endif
+<span class="lineNum">     211 </span>                :            : 
+<span class="lineNum">     212 </span>                :            : // kate: word-wrap off; encoding utf-8; indent-width 4; tab-width 4; line-numbers on; mixed-indent off; remove-trailing-space-save on; replace-tabs-save on; replace-tabs on; space-indent on;
+<span class="lineNum">     213 </span>                :            : // vim:set spell et sw=4 ts=4 nowrap cino=l1,cs,U1:
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.8</a></td></tr>
+  </table>
+  <br>
+  </body>
+</html>

@@ -1,0 +1,120 @@
+<html>
+  <head>
+    <meta content='text/html;charset=UTF-8' http-equiv='Content-Type'>
+    <title>libsnap &mdash; Contributing</title>
+    <style type='text/css'>
+      @import 'css/default.css';
+      @import 'css/syntax.css';
+    </style>
+    <style media='print' type='text/css'>
+      @import 'css/print.css';
+    </style>
+    <meta content='libsnap is a portable open-source S.N.A.P implementation' name='subject'>
+  </head>
+  <body>
+    <div id='wrap'>
+      <div id='header'>
+        <h1><a href='http://hilefoks.github.com/libsnap/' title="libsnap is a portable open-source S.N.A.P implementation">libsnap</a></h1>
+        <div class='tagline'>a portable open-source S.N.A.P implementation</div>
+      </div>
+      <div id='pages'>
+        <ol class='toc'>
+          <li>Start Here
+            <ol class="toc">
+              <li><a href='index.html'>Overview</a></li>
+              <li><a href='features.html'>Features</a></li>
+              <li><a href='authors.html'>Authors</a></li>
+            </ol>
+          </li>
+          <li>libsnap
+            <ol class="toc">
+              <li><a href='libsnap_quick_start.html'>Quick Start</a></li>
+              <li><a href='libsnap_documentation.html'>Documentation</a></li>
+            </ol>
+          </li>
+          <li>libsnap++
+            <ol class="toc">
+              <li><a href='libsnapmm_quick_start.html'>Quick Start</a></li>
+              <li><a href='libsnapmm_documentation.html'>Documentation</a></li>
+            </ol>
+          </li>
+          <li>csnap
+            <ol class="toc">
+              <li><a href='csnap_quick_start.html'>Quick Start</a></li>
+              <li><a href='csnap_documentation.html'>Documentation</a></li>
+            </ol>
+          </li>
+         <li>snapgauge
+            <ol class="toc">
+              <li><a href='snapgauge_quick_start.html'>Quick Start</a></li>
+              <li><a href='snapgauge_documentation.html'>Documentation</a></li>
+            </ol>
+          </li>
+          <li>Reference
+            <ol class="toc">
+              <li><a href='api/index.html'>API Reference</a></li>
+              <li><a href='coverage/index.html'>Coverage</a></li>
+              <li><a href='http://github.com/hilefoks/libsnap'>Source Code</a></li>
+            </ol>
+          </li>
+          <li>Get Involved
+            <ol class="toc">
+              <li><a href='contributing.html'>Contributing</a></li>
+              <li><a href='http://wiki.github.com/hilefoks/libsnap/'>Wiki</a></li>
+              <li><a href='http://github.com/hilefoks/libsnap/issues'>Issues/Bugs</a></li>
+              <li><a href='download.html'>Download</a></li>
+            </ol>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <h1 id='contributing'>Contributing</h1>
+        <p>libsnap is a community effort, and we welcome all contributors. Here&#8217;s your chance to get involved and help your fellow developers.</p>
+<h2 id="bugs">Bugs and Issues</h2>
+<p>We really do try to keep bugs to a minimum, and anticipate everything you&#8217;ll ever want to do with libsnap.  We&#8217;re also, not perfect. So you may have found a bug, or have an enhancement in mind, or better yet, a patch to contribute. Here&#8217;s what you can do.</p>
+<p>If it&#8217;s a bug, enhancement or patch, add it to <a href="http://github.com/hilefoks/libsnap/issues">our bug tracker</a>.<br />
+When reporting a bug, please tell us which version of libsnap, which target platform and which compiler you are using, and also which operating system you are on:</p>
+<div class="highlight"><pre><code class="sh"><span class="nv">$ </span>csnap --version
+<span class="nv">$ </span>uname -a
+</code></pre>
+</div><h2 id="wiki">Wiki</h2>
+<p><a href="http://wiki.github.com/hilefoks/libsnap">Our Wiki</a>.</p>
+<h2 id="code">Contributing Code</h2>
+<p>Yes, please.</p>
+<p>If you have a patch to submit, do it through <a href="http://github.com/hilefoks/libsnap/issues">our bug tracker</a>.</p>
+<h3>The Perfect Patch</h3>
+<p>If you want to get your patch accepted quickly:</p>
+<ol>
+	<li>Provide a good summary of the bug/fix.  We use that to decide which issue we can do quickly, and also copy and paste it into the changelog.</li>
+	<li>Provide short explanation of what failed, under what conditions, why, and what else could be affected by the change (when relevant).  The helps us understand the problem and move on to the next step.</li>
+	<li>Provide a patch with a relevant unit test, or a fix to incomplete/broken unit test. First thing we have to do is replicate the problem, before applying the change, and then make sure the change fixes that problem.  And we need to have those unit test in there, they make sure we don&#8217;t accidentally break it again in the future.</li>
+	<li>Provide a patch with the fix/change itself.  Keep it separate from the unit test, so it&#8217;s easy to apply them individually.</li>
+</ol>
+<p>If you don&#8217;t know how to fix it, but can at least write a unit test for the correct behavior (which, obviously would fail), do just that.  A unit test is preferred to a fix.</p>
+<h2 id="edge">Living on the edge</h2>
+<p>Did we mention libsnap is an open source project? In fact, when you install libsnap you get all the source code, documentation, test case and everything you need to use it, extend it and patch it.</p>
+<h3 id="git">Git</h3>
+<p>But if you want to work with the latest and greatest, you&#8217;ll want to check out <a href="http://github.com/hilefoks/libsnap">libsnap from Git</a></p>
+<div class="highlight"><pre><code class="sh"><span class="nv">$ </span>git clone git://github.com/hilefoks/libsnap.git
+</code></pre>
+</div><p>If you want to learn more about Git, you can start by watching Scott Chacon’s <a href="http://en.oreilly.com/rails2008/public/asset/attachment/2816">Git presentation</a> (<span class="caps">PDF</span>), or any of the <a href="http://www.gitcasts.com/">Git screencasts</a>.  For more, there&#8217;s also the <a href="http://peepcode.com/products/git-internals-pdf">Git Internals book</a>.</p>
+<p>And keep this <a href="http://ktown.kde.org/~zrusin/git/git-cheat-sheet-medium.png">Git cheat sheet</a> close at hand. Very useful.</p>
+<h4>GitHub</h4>
+<p>You are also welcome to fork the <a href="http://github.com/hilefoks/libsnap">libsnap repository on GitHub</a>.</p>
+<h1 id="testing">Unit Tests</h1>
+<p>Obviously we won&#8217;t turn down patches, but we&#8217;ll love you even more if you include a test case.  One that will fail without the patch, and run successfully with it.  If not for our love, then think of the benefit to you: once we add that test case, we won&#8217;t accidentally break that feature in the next release.</p>
+<p>We test using <a href="http://cunit.sourceforge.net">CUnit</a>, a Unit Testing Framework for C.</p>
+<p>You can run tests using:</p>
+<div class="highlight"><pre><code class="sh">~/libsnap <span class="nv">$ </span>make <span class="nb">test</span>
+</code></pre>
+</div><p>For full test coverage:</p>
+<div class="highlight"><pre><code class="sh">~/libsnap <span class="nv">$ </span>make coverage
+</code></pre>
+</div><p>You can also check out the <a href="coverage/index.html">coverage report</a> we publish with each release.</p>
+<h1 id="docs">Documentation<br />
+&#8230;</h1>
+      </div>
+      <div id='footer'>Copyright &copy; 2010 Stefan Böhmann</div>
+    </div>
+  </body>
+</html>
